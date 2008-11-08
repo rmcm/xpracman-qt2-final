@@ -1,0 +1,6 @@
+#!/bin/sh
+# Postscript Filter
+# $Id: psfilter 2 1998-05-30 03:57:33Z source $
+# Use Ghostscript to lj
+umask 0077
+/usr/local/bin/gs -r150 -q -sPAPERSIZE=a4 -sDEVICE=laserjet -sOutputFile=- -

@@ -1,0 +1,26 @@
+/* XPM */
+const char * whatsthis_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 4 1",
+"  c #b2b2c0c0dcdc0000",
+". c black",
+"X c navy",
+"o c black",
+/* pixels */
+".        XXXXX  ",
+"..      XXX XXX ",
+"...    XXX   XXX",
+"....   XX     XX",
+".....  XX     XX",
+"......  X    XXX",
+".......     XXX ",
+"........   XXX  ",
+"......... XXX   ",
+".....     XXX   ",
+".. ...          ",
+".  ...    XXX   ",
+"    ...   XXX   ",
+"    ...         ",
+"     ...        ",
+"     ...        "
+};

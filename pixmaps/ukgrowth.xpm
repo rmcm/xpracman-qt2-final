@@ -1,0 +1,25 @@
+/* XPM */
+const char * ukgrowth_xpm[] = {
+/* width height ncolors chars_per_pixel */
+"13 14 4 1",
+/* colors */
+"  c None s None",
+". c blue",
+"X c gray50",
+"o c black",
+/* pixels */
+"   XXXXXX    ",
+"  X.......   ",
+" X..ooo....  ",
+"X..o    X...o",
+"....o   X...o",
+"  oo   X...oo",
+"      X..oo  ",
+"     X..o    ",
+"     Xo      ",
+"             ",
+"    XXX      ",
+"   XX...     ",
+"   X....o    ",
+"     ooo     "
+};

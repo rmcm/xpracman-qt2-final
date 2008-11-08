@@ -1,0 +1,49 @@
+#!/bin/bash -x
+#    $Id: import_set 2897 2006-06-15 03:47:22Z source $
+#
+#  Copyright 2006 X=X Computer Software Trust
+#                  Kangaroo Ground Australia 3097
+#
+#
+# This is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+# 
+# This software is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this software; see the file COPYING.  If not, write to
+# the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+# 
+# Report problems and direct all questions to:
+# 
+#     Rex McMaster, rmcm@compsoft.com.au
+# 
+
+# Process files to fax
+echo $*
+if test $# != 2 ; then \
+    echo "usage: `basename $0 ` address filename";
+    exit 1;
+fi
+
+_EMAILADDRESS=$1
+_FILENAME=$2
+
+# Convert PS to PDF
+_FILENAME_PDF=${_FILENAME%.ps}.pdf
+if ! ps2pdf ${_FILENAME} ${_FILENAME_PDF} ; then
+    echo "Failed to convert attachment to PDF"
+    exit -1
+fi
+
+## call the system handler
+# Kmail
+exec kmail --composer --attach "${_FILENAME_PDF}" "${_EMAILADDRESS}" 
+
+## shouldn't get to here
+exit -1

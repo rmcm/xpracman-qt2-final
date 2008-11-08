@@ -1,0 +1,14 @@
+You have completed the installation.
+
+To run XPracman use the following command;
+
+   $INSTALL_PATH/xpracman.sh
+   
+If you are running KDE, then you can copy the Desktop shortcut
+to your Desktop directory;
+
+   cp $INSTALL_PATH/XPracMan.kdelnk $HOME/Desktop
+
+This message can be found in;
+
+    $INSTALL_PATH/README.installed

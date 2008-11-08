@@ -1,0 +1,5239 @@
+2006-11-07  Source Code Management  <source@toshi2.mcmaster.wattle.id.au>
+
+	* qtmarvin/qmvqueryconditionwidget.cpp (QmvQueryConditionWidget):
+	Feature:: Disable auto-completion on search pattern
+
+	* qtmarvin/qmvtable.cpp (setContentFromEditor): Feature::
+	implement edit-prompting (set in mtat ... input method = "RWP")
+
+	* qtmarvin/qmvsqlquery.cpp (noticeChanges): No longer active
+	set-updates locally - just announce that the query has
+	changed. This allows the qmvquerywidget object (at user-level) to
+	control loading/cancelling of the set.
+	(countEstimate): Feature:: return the count of rows associated
+	with the currently constructed query.
+
+	* qtmarvin/qmvrelationwidget.cpp (getCompositeQuery): New method.
+	(formSet): Widen the possible form set which applies to the
+	current set - extend from exact match to "starts-with"
+
+	* qtmarvin/qmvquerywidget.cpp (initSimple): Feature:: use a
+	query-controller to allow user to cancel queries.
+	(getBaseQuery): new method
+	(updateRelationSet): Feature:: new method to localise query for
+	better user-control. Warn user if estimated rows in query exceed
+	mtcl limit.
+
+	* qtmarvin/qmvquerycondition.cpp (sqlCondition): Reduce the
+	complexity of joined conditions and allow them to be joined with
+	OR ("|")
+
+	* qtmarvin/qmvdb.cpp (selectChild): apply user-filters to child list.
+
+2006-10-12 22:24  source
+
+	* qtmarvin/qmvtoolwindow.cpp, qtmarvin/qmvtoolwindow.h:
+	  Enhancement: window to mirror main window, size and position
+
+2006-10-04 22:56  source
+
+	* qtmarvin/Makefile: add new class - qmvformeditfields
+
+2006-10-02 11:52  source
+
+	* qtmarvin/qmvmultilineedit.cpp: * qtmarvin/qmvmultilineedit.cpp
+	  (QmvMultiLineEdit): add strong
+	  focus policy
+
+2006-10-02 11:52  source
+
+	* qtmarvin/qmvform.cpp, qtmarvin/qmvform.h,
+	  qtmarvin/qmvformeditfields.cpp, qtmarvin/qmvformeditfields.h:
+	  Feature: add extensible method of editing specified fields on
+	  forms.
+
+2006-10-02 11:50  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: remove
+	  references to documentation
+
+2006-09-27 09:05  source
+
+	* qtmarvin/qmvcanvasview.cpp: * qtmarvin/qmvcanvasview.cpp
+	  (contentsMouseReleaseEvent): Notice
+	  clicks which are not on objects - cab be used for controls.
+
+2006-09-18 22:43  source
+
+	* schema/marvin/create_metadata.sql: import uncommited changes
+	  from
+	  /usr/local/src/xpracman/src/schema/marvin/create_metadata.sql
+
+2006-09-05 02:56  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h,
+	  qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: Feature:
+	  configurable edit-promting for field edits
+
+2006-09-05 02:55  source
+
+	* qtmarvin/.cdtproject, qtmarvin/.project: eclipse
+
+2006-09-05 02:54  source
+
+	* qtkugar/.cdtproject, qtkugar/.project: eclipse
+
+2006-09-05 02:54  source
+
+	* pgmarvin/.cdtproject, pgmarvin/.project: eclipse
+
+2006-09-03 08:30  source
+
+	* Makefile: lock in qt reference
+
+2006-09-03 08:24  source
+
+	* Makefile: Standardise default envars to SuSE
+
+2006-09-02 02:38  source
+
+	* qtmarvin/Makefile: Add GTAGS (used by doxygen)
+
+2006-09-02 02:38  source
+
+	* qtmarvin/Doxyfile: Add GTAGS (used by doxygen)
+
+2006-09-02 02:28  source
+
+	* qtkugar: ignore libqtkugar.a
+
+2006-09-02 02:15  source
+
+	* pgmarvin: ignore libpgmarvin.a
+
+2006-09-02 02:01  source
+
+	* pgmarvin/Makefile: Add GTAGS (used by doxygen)
+
+2006-07-18 02:08  source
+
+	* tools/tree_perms.sh: check and set permissions
+
+2006-07-17 10:35  source
+
+	* branches/XPRACMAN_4_2/medical/pracman/schema/prac/patn-triggers.sql,
+	  schema/marvin/fn_column_default.sql: System Feature: replace
+	  patn_feet_code with default value if set to null (eg during new
+	  patient insert from appointment book)
+
+2006-07-16 13:38  source
+
+	* tools/vncusers-sbin: fix path to X11 socket
+
+2006-07-11 10:42  source
+
+	* qtmarvin/qmvtoolwindow.cpp, qtmarvin/qmvtoolwindow.h,
+	  trunk/medical/pracman/xpracman/userpreferences,
+	  trunk/medical/pracman/xpracman/xpracapptool.cpp: Feature:
+	  configuration canvas zooming
+
+2006-07-11 07:25  source
+
+	* README: testing loginfo
+
+2006-07-11 07:24  source
+
+	* README: testing loginfo
+
+2006-07-11 07:22  source
+
+	* README: testing loginfo
+
+2006-07-11 07:19  source
+
+	* README: testing loginfo
+
+2006-07-11 07:09  source
+
+	* README: testing loginfo
+
+2006-07-11 07:02  source
+
+	* ChangeLog: testing loginfo - off
+
+2006-07-11 06:00  source
+
+	* Makefile: add new targets: cvstag ChangeLog
+	  extend cvsupdate
+
+2006-07-11 05:33  source
+
+	* ChangeLog: regular update
+
+2006-07-11 00:42  source
+
+	* tools/Makefile, tools/vncusers-rc.d, tools/vncusers-sbin: -
+	  improve cleaning process for stop and restart
+	  - prevent overwriting sysconfig file
+
+2006-07-10 07:59  source
+
+	* tools/pg_admin.sh: make WEEKLIST an envar
+
+2006-07-10 07:42  source
+
+	* tools/xdump: modernise tar args
+
+2006-07-10 07:40  source
+
+	* tools/xdump: put excludes in external file
+
+2006-07-10 06:56  source
+
+	* tools/xdump: add md5 tags - incorrectly added to branch
+
+2006-07-05 06:33  source
+
+	* AUTHORS, ChangeLog, EXTENSION, INSTALL, Makefile:
+	  MERGED_FROM_XPRACMAN_4_2
+
+2006-07-05 04:56  source
+
+	* tools/Makefile, tools/backups.sh, tools/dumpdata,
+	  tools/dumpforms, tools/dumpforms.sh, tools/dumpmetadata,
+	  tools/dumpschema, tools/mapshare.bat, tools/mirror,
+	  tools/pg_admin.sh, tools/ps2dymo, tools/smb.conf,
+	  tools/transfer_to_syncdir_csv.template, tools/txt2dymo,
+	  tools/vncusers-rc.d, tools/vncusers-sbin,
+	  tools/vncusers-sysconfig, tools/vncusers.vm, tools/xdump: Merge
+	  from XPRACMAN_4_2
+
+2006-07-02 08:31  source
+
+	* qtmarvin/qmvroweditor.cpp, qtmarvin/qmvselect.cpp: *
+	  qmvselect.cpp (init): Fix keyboard focus problem
+	  
+	  * qmvroweditor.cpp (QmvRowEditor): Fix keyboard focus problem
+
+2006-06-15 03:41  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  importSet(),addToSet(): allow quiet (no broadcast) additions to
+	  set.
+
+2006-06-14 02:18  source
+
+	* qtmarvin/qmvrelationwidget.cpp: displayCell(): initialise et -
+	  was causing sporadic display of colourdialog
+
+2006-06-11 12:35  source
+
+	* qtmarvin/version.cpp, trunk/medical/pracman/xpracman/version.h:
+	  change version title to MAIN_TRUNK
+
+2006-06-11 11:47  source
+
+	* qtmarvin/Makefile, qtmarvin/qmcdatenav.cpp, qtmarvin/qmv.h,
+	  qtmarvin/qmvaccess.cpp, qtmarvin/qmvapplication.h,
+	  qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h,
+	  qtmarvin/qmvcanvasgrid.cpp, qtmarvin/qmvcanvasview.cpp,
+	  qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h,
+	  qtmarvin/qmvcombobox.cpp, qtmarvin/qmvcombobox.h,
+	  qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h, qtmarvin/qmvform.cpp,
+	  qtmarvin/qmvform.h, qtmarvin/qmvhelp.cpp,
+	  qtmarvin/qmvmultilineedit.cpp, qtmarvin/qmvquerywidget.cpp,
+	  qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h,
+	  qtmarvin/qmvroweditor.cpp, qtmarvin/qmvtable.cpp,
+	  qtmarvin/qmvtoolwindow.cpp, qtmarvin/qmvtoolwindow.h,
+	  qtmarvin/qmvtswidget.cpp, qtmarvin/version.cpp: Merge changes
+	  from branch XPRACMAN_4_2 to MAIN TRUNK
+
+2006-06-11 08:02  source
+
+	* qtkugar/Makefile, qtkugar/main.cpp, qtkugar/mlabelobject.cpp,
+	  qtkugar/version.cpp: Merge changes from XPRACMAN_4_2 branch to
+	  MAIN TRUNK
+
+2006-06-11 07:14  source
+
+	* pgmarvin/version.c: Set version to MAIN_TRUNK
+
+2006-06-11 07:12  source
+
+	* pgmarvin/Makefile, pgmarvin/version.c: Merge changes from
+	  XPRACMAN_4_2 branch to main trunk
+
+2006-06-01 02:30  source
+
+	* schema/marvin/mtau-functions.sql: - provide fn_mtau_insert
+	  - display functions not yet available
+
+2006-05-22 05:54  source
+
+	* qtmarvin/qmvrelationwidget.cpp: (QmvRelationWidget): Add
+	  refresh-set
+	  (displayCell): add CopyText
+
+2006-05-22 01:56  source
+
+	* schema/marvin/mtal-crea.sql: add foreign
+
+2006-05-22 01:06  source
+
+	* schema/marvin/a4toa5.sql: Script to convert marvin form from a4
+	  to a5
+
+2005-10-30 00:06  source
+
+	* schema/marvin/trigger_utils.sql: add trigger view
+
+2005-10-15 23:20  source
+
+	* schema/marvin/create_metadata.sql: reformat - no functional
+	  change
+
+2005-10-13 03:24  source
+
+	* schema/marvin/trigger_utils.sql: add single functions
+
+2005-03-15 01:10  source
+
+	* qtmarvin/qmvselect.cpp: reset text if there is a pixmap
+
+2005-02-05 23:19  source
+
+	* branches/XPRACMAN_4_2/medical/pracman/schema/prac/crsm-crea.sql,
+	  branches/XPRACMAN_4_2/medical/pracman/schema/prac/gsti-crea.sql,
+	  branches/XPRACMAN_4_2/medical/pracman/schema/prac/pate-crea.sql,
+	  branches/XPRACMAN_4_2/medical/pracman/schema/prac/svsm-crea.sql,
+	  schema/marvin/mtsv-crea.sql: add class title
+
+2005-02-05 22:59  source
+
+	* branches/XPRACMAN_4_2/medical/pracman/schema/prac/svlt-crea.sql,
+	  schema/marvin/mtau-crea.sql, schema/marvin/mttk-crea.sql,
+	  schema/marvin/mtvs-crea.sql: add class title
+
+2005-02-05 22:45  source
+
+	* schema/marvin/mtsv-crea.sql: minor - standardisation
+
+2005-01-30 23:29  source
+
+	* schema/marvin/mtvs-crea.sql: DB Versioning metadata
+
+2005-01-30 23:13  source
+
+	* qtmarvin/qmvselect.cpp, qtmarvin/qmvselect.h: (QmvSelect): new
+	  constructor to include pixmaps.
+	  (init): load the pixmaps into the list.
+
+2005-01-16 01:39  source
+
+	* schema/marvin/constraints.sql: *** empty log message ***
+
+2005-01-16 01:34  source
+
+	* schema/marvin/constraints.sql: *** empty log message ***
+
+2005-01-16 01:15  source
+
+	* schema/marvin/mtsv-crea.sql: cleanup
+
+2004-12-08 04:56  source
+
+	* qtmarvin/qmvselect.cpp: merger diff from 1.13.2.1
+
+2004-07-06 20:45  source
+
+	* qtmarvin/qmvmultilineedit.cpp: The popup message introduced in
+	  1.18 is occasionally causing
+	  a loop in QString during the arg() substitution. This patch
+	  simplfies
+	  the substitution to investigate. The loop should stop (but no SQL
+	  error is shown to the user.)
+
+2004-06-29 07:29  source
+
+	* qtmarvin/qmvcanvasview.cpp: Check for "active" flag before
+	  allowing move.
+
+2004-05-03 09:28  source
+
+	* qtmarvin/qmvroweditor.cpp: (load): set focus and current cell
+	  after load.
+
+2004-04-04 05:09  source
+
+	* tools/mkdep: mktemp - rely on PATH
+
+2004-03-01 02:37  source
+
+	* tools/mkdep: imported from NetBSD
+
+2004-03-01 02:34  source
+
+	* Makefile, pgmarvin/Makefile, qtkugar/Makefile,
+	  qtmarvin/Makefile, trunk/medical/pracman/xpracman/Makefile: set
+	  MAKEDEP
+
+2004-02-28 11:47  source
+
+	* INSTALL, README: remove cruft, default to xpracman
+
+2004-02-28 08:23  source
+
+	* pixmaps/Makefile: *** empty log message ***
+
+2004-02-28 07:42  source
+
+	* pgmarvin/version.c, qtkugar/version.cpp, qtmarvin/version.cpp,
+	  trunk/medical/pracman/xpracman/version.h: bump version to 4.2RC3
+
+2004-02-28 07:39  source
+
+	* qtkugar/Makefile, qtmarvin/Makefile,
+	  trunk/medical/pracman/xpracman/Makefile: default BUILDVERSION to
+	  null
+
+2004-02-28 07:35  source
+
+	* Makefile: remove cruft, default to xpracman
+
+2004-02-25 07:54  source
+
+	* qtmarvin/qmvmultilineedit.cpp: (save): popup explaination if
+	  save fails
+
+2004-02-25 03:11  source
+
+	* schema/marvin/mtau-crea.sql: restrice access - select and insert
+	  only
+
+2004-02-25 03:03  source
+
+	* schema/marvin/mtau-crea.sql: *** empty log message ***
+
+2004-02-25 03:03  source
+
+	* schema/marvin/mtau-crea.sql: add row sequence
+
+2004-02-24 20:53  source
+
+	* schema/marvin/mvac_label-crea.sql: typo
+
+2004-02-22 22:21  source
+
+	* schema/marvin/mvac_label-crea.sql: ported from
+	  dbmarvin/create-access.sql
+
+2004-02-20 08:26  source
+
+	* schema/marvin/mtau-crea.sql: first cut
+
+2004-02-16 09:56  source
+
+	* qtmarvin/qmvtuple.cpp: (save): exclude Virtual attributes from
+	  attribute list.
+
+2004-02-10 22:12  source
+
+	* schema/marvin/mtop-crea.sql: fix label display
+
+2004-02-10 08:03  source
+
+	* pgmarvin/version.c, qtkugar/version.cpp, qtmarvin/version.cpp,
+	  trunk/medical/pracman/xpracman/version.h: bump version string.
+
+2004-02-10 07:52  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h: add support
+	  for Virtual Attributes.
+
+2004-02-10 07:49  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: (SQLSelectList): New
+	  method to standardise
+	  attribute list for select-string. Allow for virtual attributes.
+	  (open): Replace wildcard select list with standard list
+	  
+	  Misc changes to adhoc meta select statements to prevent loops
+	  while
+	  expanding wildcards.
+
+2004-02-10 07:45  source
+
+	* qtmarvin/qmvquerycondition.cpp: (sqlCondition): Add virtual
+	  attributes.
+
+2004-02-10 07:42  source
+
+	* qtmarvin/qmvtuple.cpp: (reload): use select list from
+	  SQLSelectList() to
+	  respect virtual attributes.
+
+2004-02-09 05:36  source
+
+	* qtmarvin/qmvtupleattribute.cpp: (load): fix bug - set
+	  current_value before
+	  testing for alert.
+
+2004-02-09 03:13  source
+
+	* qtmarvin/qmvtable.cpp: (setTexTCopy): All misc user strings to
+	  be used.
+
+2004-02-05 20:53  source
+
+	* qtkugar/mreportengine.cpp: Handle FF action tags
+
+2004-02-01 23:34  source
+
+	* pixmaps/redball.xpm: *** empty log message ***
+
+2004-02-01 23:29  source
+
+	* qtkugar/version.cpp, qtmarvin/version.cpp,
+	  trunk/medical/pracman/xpracman/version.h: begin release for 4.2
+
+2004-02-01 23:19  source
+
+	* pgmarvin/version.c: typo
+
+2004-02-01 23:17  source
+
+	* pgmarvin/version.c: begin 4.2 release cycle
+
+2004-02-01 05:40  source
+
+	* schema/marvin/mtag-crea.sql, schema/marvin/mtal-crea.sql,
+	  schema/marvin/mtop-crea.sql: add drop table etc
+
+2004-01-28 23:32  source
+
+	* schema/marvin/mttk-crea.sql: first version
+
+2004-01-27 21:43  source
+
+	* qtmarvin/qmvtuple.cpp: (userLabelValue): extend to handle more
+	  than 9
+	  parameters in the argument list. Document.
+
+2004-01-22 10:28  source
+
+	* qtmarvin/qmvquerycondition.cpp, qtmarvin/qmvtuple.cpp: use
+	  central escape hander - QmvClass::cleanForSQL()
+
+2004-01-22 10:27  source
+
+	* qtmarvin/qmvclass.cpp: (cleanForSQL): refine escape handling
+
+2004-01-22 02:02  source
+
+	* qtmarvin/qmvtable.cpp: test and retry query objects for copytext
+	  search.
+
+2004-01-22 02:01  source
+
+	* qtmarvin/qmvroweditor.cpp: connect signal for field refresh
+
+2004-01-21 23:26  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h,
+	  qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: activate the
+	  copytext functions - test with postcode/suburb
+
+2004-01-21 05:40  source
+
+	* qtmarvin/qmvroweditor.cpp: add whatsthis
+
+2004-01-21 03:51  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: (open): use wait
+	  cursor even if no progress dialog
+	  (cleanForSQL): new method
+
+2004-01-21 03:50  source
+
+	* qtmarvin/qmvquerywidget.cpp: disable progress dialog: temporary,
+	  while locating qhosting with kde2
+
+2004-01-20 20:47  source
+
+	* qtmarvin/qmvclass.cpp: (open): hide the controller at end of
+	  query - it is
+	  ghosting on some desktops.
+
+2004-01-20 20:46  source
+
+	* qtmarvin/qmvtupleattribute.cpp: initialise current and original
+	  string values to zero-length
+	  strings instead of nulls.
+
+2004-01-20 20:45  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: add CopyText - not
+	  saving yet.
+
+2004-01-20 20:45  source
+
+	* qtmarvin/qmvmultilineedit.cpp: add CopyText condition
+
+2004-01-20 20:44  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h: add CopyText
+	  function.
+
+2004-01-19 21:14  source
+
+	* qtmarvin/qmvtoolwindow.cpp: replace missing show()
+
+2004-01-19 21:13  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: remove mtag
+	  references - now handled in qmvapplication class
+
+2004-01-19 09:21  source
+
+	* schema/marvin/mtag-crea.sql: set permissions and defaults
+
+2004-01-19 07:44  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvtuple.cpp,
+	  qtmarvin/qmvtuple.h: - use new methods from QmvClass.
+
+2004-01-19 07:42  source
+
+	* qtmarvin/qmvtoolwindow.cpp, qtmarvin/qmvtoolwindow.h: remove
+	  debugging
+
+2004-01-19 07:40  source
+
+	* qtmarvin/qmvsqlquery.cpp: - use new methods from QmvClass.
+	  - standardise query..limit..offset syntax
+
+2004-01-19 07:39  source
+
+	* qtmarvin/qmvrelationwidget.cpp: add corner widget - layout needs
+	  some work.
+
+2004-01-19 07:37  source
+
+	* qtmarvin/qmvquerywidget.cpp: refine progress dialog
+
+2004-01-19 07:20  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: new methods to
+	  return class metadata ...
+
+2004-01-19 07:16  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: Add
+	  metadata-configurable toolbars/menus. Ref mtag/mtad.
+
+2004-01-19 00:30  source
+
+	* schema/marvin/mtag-crea.sql, schema/marvin/mtal-crea.sql,
+	  schema/marvin/mtcl-crea.sql, schema/marvin/mtop-crea.sql: cleanup
+
+2004-01-18 06:11  source
+
+	* schema/marvin/create_metadata.sql: set mtcl_group to null
+
+2004-01-18 02:37  source
+
+	* schema/marvin/mtag-crea.sql: first version
+
+2003-12-17 12:11  source
+
+	* schema/marvin/mtat-addconstraints.sql: add mtag constraint
+
+2003-12-08 10:33  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: Add local tooltips
+	  and whatsthis hints to expose foreign rows.
+
+2003-12-03 00:22  source
+
+	* schema/marvin/create_metadata.sql: remove reference to
+	  pg_type.typprlen - it is obsolete.
+
+2003-11-27 08:01  source
+
+	* qtmarvin/qmvtabbar.cpp,
+	  trunk/pathology/microbiology/xmicro/xmicroimagetool.cpp,
+	  trunk/pathology/microbiology/xmicro/xmicrorulestool.cpp: minor
+
+2003-11-14 21:03  source
+
+	* qtkugar/Makefile: CXX fixed
+
+2003-11-04 23:28  source
+
+	* qtmarvin/qmvselect.h: - standardise loading method to use
+	  label_list and value_list
+	  - add new constructor for native data structures
+	  (QList<QStringList>)
+
+2003-11-04 10:40  source
+
+	* qtmarvin/qmvselect.cpp: - standardise loading method to use
+	  label_list and value_list
+	  - add new constructor for native data structures
+	  (QList<QStringList>)
+
+2003-10-30 11:21  source
+
+	* qtmarvin/qmvrelationwidget.cpp: *** empty log message ***
+
+2003-10-30 11:18  source
+
+	* qtmarvin/qmvselect.cpp: - allow sorting and column swaps
+	  - initialise attributes in list.
+
+2003-10-29 23:37  source
+
+	* schema/marvin/mtop-crea.sql: typo
+
+2003-10-29 23:35  source
+
+	* schema/marvin/mtop-crea.sql,
+	  trunk/pathology/microbiology/schema/micr/patches/patch-20031030.sql:
+	  first version
+
+2003-10-29 22:04  source
+
+	* schema/marvin/mtal-crea.sql: first version
+
+2003-10-13 01:06  source
+
+	* qtmarvin/qmvbitgraph.cpp, qtmarvin/qmvbitgraph.h: new method to
+	  accept pixmaps for cells
+
+2003-10-09 02:12  source
+
+	* qtmarvin/Makefile: add QmvBitGraph class
+
+2003-10-09 02:12  source
+
+	* qtmarvin/qmvbitgraph.cpp, qtmarvin/qmvbitgraph.h: first cut
+
+2003-10-09 02:11  source
+
+	* qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h:
+	  generalise access for alert colours.
+
+2003-10-09 02:10  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: -
+	  begin integration on bitGraph image for alerts.
+	  - integrate progress/message notifications.
+
+2003-10-09 02:08  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: add methods to access
+	  progressBar and statusBar
+
+2003-10-09 02:07  source
+
+	* qtmarvin/qmvclass.cpp: minor tuning of progressDialog
+
+2003-10-09 02:06  source
+
+	* qtmarvin/qmvattribute.cpp: include FK/lists in alert colours.
+
+2003-10-09 02:06  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: - expose
+	  the progressBar
+
+2003-10-03 07:47  source
+
+	* qtmarvin/qmvimage.cpp: remove debug line
+
+2003-10-03 07:42  source
+
+	* qtmarvin/qmvimage.cpp, qtmarvin/qmvimage.h: (loadFromURL):
+	  change name of overloaded method
+	  from load() to loadFromUrl().
+
+2003-10-03 07:41  source
+
+	* qtmarvin/qmvcanvasgrid.cpp, qtmarvin/qmvcanvasgrid.h:
+	  (QmvCanvasGrid): move some attribute
+	  initialisation to list.
+	  (updateGridImage): move scratch Qimage from stack to heap.
+
+2003-10-01 02:03  source
+
+	* qtmarvin/qmvtuple.cpp: (htmlLabel): strip alpha from colour
+
+2003-10-01 02:01  source
+
+	* qtmarvin/qmvclass.cpp: (QmvSqlClass): bulk-load alterts
+
+2003-10-01 02:00  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h: - add
+	  priority to alerts.
+	  - subclass QList to allow sorting on priority
+
+2003-09-28 08:36  source
+
+	* qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h:
+	  (isAlert): new method
+
+2003-09-28 08:36  source
+
+	* qtmarvin/qmvattribute.cpp: *** empty log message ***
+
+2003-09-28 08:33  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  add alert tag to vertical header buttons.
+	  open minieditor via vertical header button click.
+
+2003-09-28 06:43  source
+
+	* qtmarvin/qmvtupleattribute.cpp: (load): allow for alphavalue
+
+2003-09-28 06:43  source
+
+	* qtmarvin/qmvtable.cpp: (setColor): include alphavalue
+	  (paint): strip alphavalue
+
+2003-09-28 06:41  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: (relStrToDateTime):
+	  new method
+	  (strToDateTime): add standard date symbols
+	  (QmvSqlClass): load alerts
+
+2003-09-28 06:40  source
+
+	* qtmarvin/qmvattribute.cpp: (addAlert): strip alpha from colour.
+
+2003-09-27 08:23  source
+
+	* qtmarvin/qmvtupleattribute.cpp: notice alerts
+
+2003-09-27 08:22  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h: add alert
+	  list
+
+2003-09-27 03:35  source
+
+	* qtmarvin/qmvsqlquery.cpp: (sqlQuery): bugfix - stop duplicate
+	  search.
+
+2003-09-27 03:34  source
+
+	* qtmarvin/qmvquerywidget.cpp, qtmarvin/qmvquerywidget.h:
+	  (QmvQueryWidget): list initialise. tighten
+	  delete in destructor.
+
+2003-09-27 03:32  source
+
+	* qtmarvin/qmvqueryconditionwidget.cpp: (QmvQueryConditionWidget):
+	  Cleanup
+	  WhatsThis help. Handle pattern input in the same way as attribute
+	  and operator.
+
+2003-09-27 03:31  source
+
+	* qtmarvin/qmvquerycondition.cpp, qtmarvin/qmvquerycondition.h:
+	  (sqlCondition): multiple attribute queries.
+
+2003-09-26 04:57  source
+
+	* qtmarvin/qmvqueryconditionwidget.cpp,
+	  qtmarvin/qmvqueryconditionwidget.h: (QmvQueryConditionWidget):
+	  Attribute
+	  and operator lists non-editable, and changes do not trigger
+	  queries.
+	  (eventFilter): add eventfilter to grab RETURNS from combolists.
+	  (atActivated, opActivated): do not trigger queries
+
+2003-09-26 03:28  source
+
+	* qtmarvin/qmvcanvasgrid.cpp: fix minor painter problem
+
+2003-09-23 22:23  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  (QmvRelationWidget): fixed heights for RO
+	  panel. Replace QLabel with QTextView for RO panel. Use standard
+	  accelerators for insert/delete. Disable query in child panels.
+	  Disable ESCAPE in minieditor.
+
+2003-09-23 22:20  source
+
+	* qtmarvin/qmvdb.cpp: (focusPanel): HACK. fix the height of parent
+	  R/O panel
+	  to 80 pixels.
+
+2003-09-20 09:44  source
+
+	* qtmarvin/qmvcombobox.cpp: typo
+
+2003-09-14 22:30  source
+
+	* qtmarvin/qmvmultilineedit.cpp: turn off debuggin
+
+2003-09-14 22:29  source
+
+	* qtmarvin/qmvtable.cpp: (keyPressEvent): cleanup end-of-edit
+
+2003-09-14 22:27  source
+
+	* qtmarvin/qmvmultilineedit.cpp, qtmarvin/qmvmultilineedit.h:
+	  (keyPressEvent): Return/Enter/Escape will
+	  end edit
+	  (selectList): Use "highlighted" signal from QmvComboBox instead
+	  of
+	  activated.
+	  (editCompleted): new method - not doing much yet. TODO-close
+	  combobox.
+
+2003-09-14 22:22  source
+
+	* qtmarvin/qmvcombobox.cpp, qtmarvin/qmvcombobox.h: (QmvComboBox):
+	  consolidate common
+	  constructor code into init()
+	  (init): new method()
+	  (returnPressed): renamed from returnPressed().
+	  minor event cleanup
+
+2003-09-11 00:30  source
+
+	* qtkugar/Makefile: sync with 4.1
+
+2003-09-07 09:28  source
+
+	* qtmarvin/qmvtuple.cpp: (htmlLabel): bugfix
+
+2003-09-07 09:27  source
+
+	* qtmarvin/qmvtable.cpp: (paint): include colour-group hooks from
+	  QmvTupleAttribute.
+	  (setColor): bugfix - zero-pad colours.
+
+2003-09-07 09:27  source
+
+	* qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h:
+	  (setColourGroup, isColourGroupSet)
+	  (colourGroup): new methods.
+	  (load): bugfix - zero-pad colours.
+	  (load): set BG colour to yellow for list type cells.
+
+2003-09-07 02:09  source
+
+	* qtmarvin/qmvtupleattribute.cpp: Constructor: convert assignments
+	  to initialization list.
+
+2003-09-07 01:51  source
+
+	* qtmarvin/qmvattribute.cpp: (extendList): bugfix - handle limit=0
+	  as unlimited.
+	  Constructor: convert assignments to initialization list.
+
+2003-09-07 01:16  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: Constructors:
+	  convert assignments to initialization lists.
+	  FK popup if single-click in current cell.
+	  Cleanup
+
+2003-09-07 01:13  source
+
+	* qtmarvin/qmvmultilineedit.cpp, qtmarvin/qmvmultilineedit.h:
+	  Cleanup and remove fkpopup code.
+	  Constructor: convert assignments to initialization list.
+
+2003-09-04 03:52  source
+
+	* qtmarvin/qmvmultilineedit.cpp, qtmarvin/qmvmultilineedit.h: add
+	  misc temp changes to popup fk - now handled by QmvTable, so need
+	  to be backed out.
+
+2003-09-04 01:18  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  backout popupFKDetails() method - now handled in QmvTable::
+
+2003-09-04 01:16  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: Transfer HTMLpopup
+	  from higher classes.
+	  (popupFKDetails): new method
+	  (getTupleAttribute): new method
+	  (setColoar): Prepend # to colour string
+
+2003-09-04 01:14  source
+
+	* qtmarvin/qmvtuple.cpp: (htmlLabel): handle colour attributes
+
+2003-09-04 01:13  source
+
+	* qtmarvin/qmvtupleattribute.cpp: (load): handle colour attributes
+
+2003-09-03 04:27  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  (cellClicked): popup foreign details if
+	  applicable.
+	  (popupFKDetails): New method.
+
+2003-09-03 04:23  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h,
+	  qtmarvin/qmvtuple.cpp, qtmarvin/qmvtuple.h: (htmlLabel): New
+	  Method
+
+2003-09-03 04:22  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h:
+	  (extendList): Check for implemented foreign
+	  class.
+	  (fkQueryString): New method.
+	  (foreignRelation): New Method.
+
+2003-09-03 04:21  source
+
+	* qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h:
+	  (loadForeignKey): New Method
+
+2003-09-03 04:03  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: Reimplement the
+	  mouse event handlers to cleanup the differentiation
+	  between single and double clicks.
+
+2003-08-30 10:24  source
+
+	* qtkugar/Makefile, trunk/medical/pracman/xpracman/Makefile: ***
+	  empty log message ***
+
+2003-08-30 09:24  source
+
+	* qtmarvin/Makefile, qtmarvin/qmvcanvasview.cpp,
+	  qtmarvin/qmvcanvasview.h, qtmarvin/qmvpopup.cpp,
+	  qtmarvin/qmvpopup.h, qtmarvin/version.cpp: merge from 4.1
+
+2003-08-14 06:33  source
+
+	* qtmarvin/qmvcanvasgrid.cpp, qtmarvin/qmvcanvasgrid.h,
+	  trunk/pathology/microbiology/xmicro/xmicroimagetool.cpp: Cache
+	  imageupdates
+
+2003-05-28 04:55  source
+
+	* Makefile: add make depend
+
+2003-05-28 04:43  source
+
+	* Makefile: add cvs update
+
+2003-05-17 08:08  source
+
+	* qtmarvin/qmvform.cpp, qtmarvin/qmvform.h,
+	  qtmarvin/qmvrelationwidget.cpp, qtmarvin/version.cpp: merged
+	  from MARVIN_4_0_91
+
+2003-05-17 07:19  source
+
+	* pgmarvin/version.c: restored "current version"
+
+2003-05-14 08:35  source
+
+	* Makefile: add BUILDVERSION
+
+2003-05-02 11:30  source
+
+	* pixmaps/flag.xpm: *** empty log message ***
+
+2003-05-02 11:11  source
+
+	* qtmarvin/.imacros_debug, qtmarvin/Makefile,
+	  qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  Merged changes from MARVIN_4_0_80 to trunk
+
+2003-05-02 11:00  source
+
+	* qtmarvin/Doxyfile: add LaTeX
+
+2003-05-02 10:59  source
+
+	* qtmarvin/qmvtuple.cpp, qtmarvin/qmvtuple.h,
+	  qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h:
+	  extend userlabels
+
+2003-05-02 10:58  source
+
+	* qtmarvin/qmvtoolwindow.cpp, qtmarvin/qmvtoolwindow.h: minor
+
+2003-05-02 10:58  source
+
+	* qtmarvin/qmvselect.cpp, qtmarvin/qmvselect.h: remember current
+	  selection
+
+2003-05-02 10:57  source
+
+	* qtmarvin/qmvrelationwidget.cpp: minor doc
+
+2003-05-02 10:57  source
+
+	* qtmarvin/qmvmultilineedit.cpp, qtmarvin/qmvmultilineedit.h:
+	  prototype for popup foreign displays.
+
+2003-05-02 10:56  source
+
+	* qtmarvin/qmvformtool.cpp: move print icon
+
+2003-05-02 10:55  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: make conversion
+	  methods static.
+	  extend userlabels
+
+2003-05-02 10:54  source
+
+	* qtmarvin/qmvcanvasview.cpp: allow horizontal resizing.
+
+2003-05-02 10:53  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h:
+	  (getUserLabelByValue): new method.
+
+2003-05-02 10:51  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: ***
+	  empty log message ***
+
+2003-05-02 10:50  source
+
+	* qtmarvin/Makefile: add formtool
+
+2003-05-02 10:46  source
+
+	* qtkugar/Makefile: Merged changes from MARVIN_4_0_80 to trunk
+
+2003-04-27 23:01  source
+
+	* pixmaps/Makefile: Begin official release of 4.1
+
+2003-04-27 22:28  source
+
+	* pgmarvin/version.c: Begin official release of 4.1
+
+2003-04-27 22:17  source
+
+	* qtkugar/Makefile, qtkugar/version.cpp: Begin official release of
+	  4.1
+
+2003-04-27 22:09  source
+
+	* qtmarvin/version.cpp, trunk/medical/pracman/xpracman/version.h:
+	  Begin official release of 4.1
+
+2003-04-27 05:00  source
+
+	* qtmarvin/qmv_form_api.cpp, qtmarvin/qmv_form_api.h,
+	  qtmarvin/qmvformtool.cpp, qtmarvin/qmvformtool.h: First working
+	  version
+
+2003-04-23 02:04  source
+
+	* qtmarvin/qmvquerycondition.cpp: (sqlCondition): Bugfix - trimming
+	  whitespace and single-quotes
+
+2003-04-23 01:48  source
+
+	* pixmaps/spreadsheet.xpm: *** empty log message ***
+
+2003-04-19 01:04  source
+
+	* pgmarvin/version.c: typo
+
+2003-04-18 10:34  source
+
+	* schema/marvin/dbaudit.sh: port to NetBSD /bin/sh
+
+2003-04-18 06:38  source
+
+	* schema/marvin/dbdump.sh: revert to original dump function.
+	  (single table/CVS function moved to dbaudit.sh)
+
+2003-04-18 05:24  source
+
+	* schema/marvin/dbaudit.sh: remove debug
+
+2003-04-18 05:16  source
+
+	* schema/marvin/dbaudit.sh: minot doc change
+
+2003-04-18 05:12  source
+
+	* schema/marvin/dbaudit.sh: transferred from dbdump.sh
+
+2003-04-18 05:04  source
+
+	* schema/marvin/dbdump.sh: add Id
+
+2003-04-18 04:08  source
+
+	* schema/marvin/dbdump.sh: production version
+
+2003-04-17 23:45  source
+
+	* schema/marvin/dbdump.sh: first version - all-in-one
+
+2003-04-16 03:45  source
+
+	* schema/marvin/local.mk: add mttv
+
+2003-04-16 02:40  source
+
+	* schema/marvin/mtsv-crea.sql: add metadata
+
+2003-04-16 02:39  source
+
+	* schema/marvin/mttv-crea.sql: fix typo
+
+2003-04-16 02:38  source
+
+	* schema/marvin/mttv-crea.sql: dd metadata creation and standardise
+
+2003-04-16 02:36  source
+
+	* schema/marvin/dbdiff.sh: *** empty log message ***
+
+2003-04-16 01:01  source
+
+	* schema/marvin/mtsv-crea.sql,
+	  trunk/medical/pracman/schema/prac/cnrt-crea.sql: add history log
+
+2003-04-16 00:45  source
+
+	* schema/marvin/mttv-crea.sql: *** empty log message ***
+
+2003-04-15 08:57  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h:
+	  (QmvTableItem,createEditor,setContentFromEditor):
+	  Add datetime input handlers.
+	  (setDateTime): new method - datetime handlers
+
+2003-04-15 08:56  source
+
+	* qtmarvin/qmvtabbar.cpp: (addTab): set colour groups
+
+2003-04-15 08:54  source
+
+	* qtmarvin/qmvrelationwidget.cpp: (showMiniEditor): Add Escape and
+	  Ctl-W
+	  accelerators for closing window.
+	  (cellClicked): Ignore clicks if not on a valid row.
+	  (handleChildTabSelection): disable current child tab on second
+	  selection of tab.
+	  (QmvRelationWidget): move child tab select list to right
+	  (QmvRelationWidget): initialise queryset for top level relations.
+	  (setReadOnly): leave tabbar visible.
+
+2003-04-15 05:08  source
+
+	* qtmarvin/qmvclass.h: (class QmvClass): make datetime methods
+	  static.
+
+2003-04-15 05:07  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h:
+	  (setInputMethod): Add datetime input methods.
+
+2003-03-26 00:31  source
+
+	* qtmarvin/Makefile: (MARVINCLASSES): add qmvtswidget
+
+2003-03-26 00:30  source
+
+	* qtmarvin/qmvtswidget.cpp, qtmarvin/qmvtswidget.h: first cut
+
+2003-03-24 08:26  source
+
+	* qtmarvin/version.cpp: Many changes - ready for B-testing
+
+2003-03-24 08:25  source
+
+	* qtmarvin/qmvdb.cpp: increase panel count to 5
+
+2003-03-24 08:24  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: increase
+	  panel count
+
+2003-03-24 08:09  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvtabbar.cpp,
+	  qtmarvin/qmvtabbar.h: add tooltips
+
+2003-03-24 06:52  source
+
+	* qtmarvin/qmvtabbar.cpp, qtmarvin/qmvtabbar.h: cleanup and
+	  documentation
+
+2003-03-24 06:52  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  multiple changes to minimize parent display. cleanup logic
+
+2003-03-24 06:34  source
+
+	* pixmaps/maximize.xpm, pixmaps/minimize.xpm, pixmaps/restore.xpm,
+	  pixmaps/title_bg.xpm, pixmaps/title_bg_lt.xpm,
+	  pixmaps/title_bg_rt.xpm, pixmaps/title_chrome.xpm: *** empty log
+	  message ***
+
+2003-03-23 08:33  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  Change to using QmvTabBar.
+
+2003-03-23 08:31  source
+
+	* qtmarvin/qmvtabbar.cpp, qtmarvin/qmvtabbar.h: First cut
+
+2003-03-22 04:25  source
+
+	* qtmarvin/qmvtable.cpp: (eventFilter): Handle right and middle
+	  mouse button
+	  events which appear to be ignored by QTable.
+
+2003-03-22 04:24  source
+
+	* qtmarvin/qmvquerywidget.cpp: (initSimple): disable autoraise on
+	  GO button
+
+2003-03-22 04:23  source
+
+	* qtmarvin/Makefile: (MARVINCLASSES): add qmvtabbar
+
+2003-03-22 04:23  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  Many changes, to implement a smaller titlebar for each
+	  QmvTableRelation object. Improve the popup child menu
+	  functionality,
+	  makeing it accessible via the right mouse button. Offset child
+	  panels.
+
+2003-03-18 10:47  source
+
+	* qtmarvin/qmvmultilineedit.cpp: (save): add pointer test.
+
+2003-03-18 00:09  source
+
+	* qtmarvin/qmvtable.cpp: (activateNextCell): Handle updates in the
+	  last cell
+	  of table.
+
+2003-03-10 21:29  source
+
+	* qtmarvin/qmvcombobox.cpp, qtmarvin/qmvcombobox.h: Add
+	  QMVCOMBOBOX_DEBUG,
+	  (eventFilter, keyPressEvent, focusInEvent, focusOutEvent): Added
+	  for debugging, but not actively adding any filtering.
+	  (QmvComboBox): Install local event handler.
+
+2003-03-10 21:28  source
+
+	* qtmarvin/qmvmultilineedit.cpp, qtmarvin/qmvmultilineedit.h:
+	  (QmvMultiLineEdit): Install local event
+	  handler.
+	  (keyPressEvent): Detect the keystroke that initiated creation of
+	  QmvCombobox (cb_list) and pass the initiating keystroke into
+	  cb_list.
+
+2003-03-07 04:26  source
+
+	* qtmarvin/qmvroweditor.cpp: (load): Clear table - tuples may have
+	  changed
+	  since the last load.
+
+2003-03-07 04:25  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  (QmvRelationWidget,setHeaderAttributeList): Simplify mapping of
+	  attributes to column headers.
+
+2003-02-27 01:39  source
+
+	* qtmarvin/qmvselect.cpp: (highlighted): bugfix
+
+2003-02-26 10:17  source
+
+	* qtmarvin/qmvselect.cpp, qtmarvin/qmvselect.h: Complete rewrite
+	  to use a QListView.
+
+2003-02-26 06:31  source
+
+	* qtmarvin/qmvselect.cpp, qtmarvin/qmvselect.h: modify to
+	  optionally handle muli-attribute lists.
+
+2003-02-26 01:47  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  (setQueryWidgetVisible): new method
+
+2003-02-26 00:41  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qmvrelationwidget.cpp
+	  (refreshList): update main widget geometry
+	  after the table has updated.
+
+2003-02-26 00:39  source
+
+	* qtmarvin/qmvdb.cpp: * qmvdb.cpp (selectChild): update geometry
+	  as panel appears.
+
+2003-02-25 21:45  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qmvrelationwidget.cpp (hideColumn, hideRow)
+	  (setColumnStretchable, setRowStretchable): new methods.
+	  (refreshList): extend activity
+
+2003-02-25 20:32  source
+
+	* qtmarvin/qmvdb.cpp: (setRelationHierarchyByName): minor
+	  refinement to
+	  prevent reparenting.
+
+2003-02-25 20:31  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  (QmvRelationWidget): Widen to class
+	  visibility, the pointers to QHBox objects in header.
+	  Hide the childmenu button - this needs to be stripped nn(TODO)
+	  (setHeaderAttributeList): Set last column to stretch - TODO: make
+	  a method to set the stretch columns.
+	  (showTitleBar, showToolBar): new methods.
+	  (showTabBar): Hide the whole QHBox, not just the tabbar - this
+	  will shrink the header and may cause problems and have to be
+	  reversed.
+
+2003-02-25 20:23  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: Add enum
+	  for menus
+
+2003-02-23 21:11  source
+
+	* qtmarvin/Makefile: add qmvroweditor.
+
+2003-02-23 12:02  source
+
+	* qtmarvin/qmvselect.cpp: (refine): Remove the sort - should never
+	  have been
+	  here (longterm bug)
+
+2003-02-23 12:01  source
+
+	* qtmarvin/qmvroweditor.cpp, qtmarvin/qmvroweditor.h: many changes
+	  - this class is becoming usable.
+
+2003-02-23 12:00  source
+
+	* qtmarvin/qmvrelationwidget.cpp: (showMiniEditor): template for
+	  replacing
+	  minieditor with QmvRowEdito
+	  (emitClicked): bugfix
+
+2003-02-23 11:57  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: (sortedAttlist):
+	  overloaded method.
+	  (view_attlist): new method.
+
+2003-02-22 05:33  source
+
+	* qtmarvin/qmvattlist.cpp: (compareItems): Handle null index
+	  attributes, to
+	  allow for disabling the sort.
+
+2003-02-17 21:55  source
+
+	* qtmarvin/qmvtuple.cpp: (purge): Modify return value check to
+	  handle
+	  different returns from updates via views.
+
+2003-02-17 21:43  source
+
+	* qtmarvin/qmvtuple.cpp: (save): Modify return value check to
+	  handle
+	  different returns from updates via views.
+
+2003-02-16 07:10  source
+
+	* qtmarvin/qmvquerywidget.cpp: fix focus proxy
+
+2003-02-16 07:09  source
+
+	* qtmarvin/qmvmultilineedit.cpp, qtmarvin/qmvmultilineedit.h,
+	  qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: add no-save mode
+	  (default is save, so backwards compat.)
+
+2003-02-16 07:08  source
+
+	* qtmarvin/qmvroweditor.cpp, qtmarvin/qmvroweditor.h: First cut
+
+2003-02-16 02:35  source
+
+	* qtmarvin/qmvrelationwidget.cpp: set foxus proxy to QBE
+
+2003-02-16 02:15  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  Cleanup layouts
+
+2003-02-16 02:13  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: Replace QSplitter with
+	  QVBox
+
+2003-02-15 03:42  source
+
+	* Makefile: Add marvinlibs and xpracman/xmicro targets
+
+2003-02-15 02:13  source
+
+	* Makefile: misc uncommitted changes over long period
+
+2003-02-14 00:11  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  (QmvRelationWidget): Many small refinements to layout.
+	  (selectCurrentRow): Disable check on
+	  current selection (for testing)
+
+2003-02-13 09:34  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  Add browsable navigation
+
+2003-02-13 09:34  source
+
+	* qtmarvin/qmvtuple.cpp: (save): fix handling of % character
+
+2003-02-13 09:32  source
+
+	* qtmarvin/qmvquerywidget.cpp: * qmvquerywidget.cpp (initSimple):
+	  Use first viewable attribute
+	  for default query attribute.
+
+2003-02-13 09:31  source
+
+	* qtmarvin/qmvclass.cpp: * qmvclass.cpp (userLabelValue): Fix
+	  string formatting
+
+2003-02-13 04:44  source
+
+	* qtmarvin/qmvquerywidget.cpp: (initSimple): Cleanup and
+	  reintroduce the
+	  full widget.
+	  (initAdvanced): Avoid setting the first widget, as it may have
+	  been already reset to another attribute.
+
+2003-02-13 04:41  source
+
+	* qtmarvin/qmvqueryconditionwidget.cpp: (QmvQueryConditionWidget):
+	  Set
+	  maximum height of 22.
+
+2003-02-13 04:41  source
+
+	* qtmarvin/qmvquerycondition.cpp: (sqlCondition): No SQL clause
+	  from zero
+	  strings unless operator is "EQUAL"
+
+2003-02-13 04:34  source
+
+	* qtmarvin/qmvrelationwidget.cpp: (setTupleDisplay): Display full
+	  set of
+	  viewable attributes.
+	  (deleteFromSet): handle return for deletes.
+
+2003-02-13 04:31  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: (remove): Add return
+	  value
+
+2003-02-11 21:52  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  Major changes to layout - parent panels are read-only; Tab-bars
+	  are
+	  used for child selection. First release, more cosmetic attention
+	  required.
+
+2003-02-11 21:49  source
+
+	* qtmarvin/qmvdb.cpp: (setPanel): Hide tab-bar on lowest panel.
+	  (focusPanel): Minimize the parent, AFTER the panels are in final
+	  read/write state.
+
+2003-02-09 20:37  source
+
+	* qtmarvin/qmvquerywidget.cpp: (initSimple): Add pushbutton to
+	  start search.
+
+2003-02-09 20:37  source
+
+	* qtmarvin/qmvtoolwindow.cpp, qtmarvin/qmvtoolwindow.h:
+	  (QmvToolWindow): Extend constructor to handle
+	  initial geometry setup.
+	  (setCanvasSize): Change method to set canvas size according to
+	  current magstep.
+	  (slotSetZoom): New method
+
+2003-02-05 22:05  source
+
+	* qtmarvin/qmvselect.cpp: (refine): hardwire display rowcount.
+
+2003-02-04 22:08  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: (paint): hack to
+	  prevent accessing deleted
+	  QmvTupleAttribute object.
+
+2003-02-04 04:07  source
+
+	* qtmarvin/qmvtable.cpp: minor changes to colour handling
+
+2003-02-04 03:27  source
+
+	* qtmarvin/qmvtable.cpp: (paint): use alpha channel
+	  (setColor): use alpha channel
+
+2003-01-29 02:03  source
+
+	* qtmarvin/Makefile: (CC,CXX): allow imported values
+
+2003-01-29 01:59  source
+
+	* qtmarvin/qmvtoolwindow.cpp, qtmarvin/qmvtoolwindow.h:
+	  (slotSetBannerText): check that banner exists - make a guarded
+	  pointer
+
+2003-01-29 01:55  source
+
+	* qtmarvin/qmvexport.cpp: (writeXMLDeclaration, writeXMLData,
+	  writeCsvFile):
+	  Cleanup - provide return where expected.
+
+2003-01-29 01:54  source
+
+	* qtmarvin/qmvdb.h: (childTree,foreignTree): change function type
+	  to void.
+
+2003-01-29 01:53  source
+
+	* qtmarvin/qmvdb.cpp: (focusPanel): Set panel to read/write
+	  (childTree,foreignTree): change function type to void.
+
+2003-01-29 01:51  source
+
+	* qtmarvin/qmvclass.cpp: (loadForeignRelations, createTuple)
+	  (writeXMLDeclaration, writeXMLData): Cleanup - provide
+	  return where expected.
+
+2003-01-29 01:49  source
+
+	* qtmarvin/qmvattribute.cpp: (writeXMLDeclaration, writeXMLData):
+	  Cleanup -
+	  provide return where expected.
+
+2003-01-29 01:48  source
+
+	* qtmarvin/qmvapplication.cpp: (QmvApplication,toggleViewList):
+	  Change popup
+	  panel list to a QmvSelect of "data areas"
+	  (savePreferences, editPreferences, deletePreferences)
+	  (addPreferences, saveGeometry, restoreGeometry): Cleanup -
+	  provide
+	  return where expected.
+
+2003-01-10 11:18  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvquerywidget.cpp,
+	  qtmarvin/qmvquerywidget.h, qtmarvin/qmvrelationwidget.cpp,
+	  qtmarvin/qmvrelationwidget.h: changes to widget display: to make
+	  parents read-only and simplify
+	  query. This is first functioning commit - not ready for release.
+
+2003-01-08 08:30  source
+
+	* pgmarvin/sql.h: typo
+
+2003-01-08 08:29  source
+
+	* pgmarvin/dbi_pg.h, pgmarvin/misc.h, pgmarvin/sql.h: further
+	  isolate featuretest
+
+2003-01-08 08:29  source
+
+	* pgmarvin/Makefile: more linux conditionals
+
+2003-01-08 08:02  source
+
+	* qtkugar/Makefile, qtmarvin/Makefile,
+	  trunk/medical/pracman/xpracman/Makefile: more linux conditionals
+
+2003-01-08 04:29  source
+
+	* qtkugar/Makefile, trunk/medical/pracman/xpracman/Makefile: Some
+	  hacks for linux - untested on NetBSD
+
+2003-01-08 04:04  source
+
+	* qtmarvin/Makefile: Some hacks for linux - untested on NetBSD
+
+2003-01-08 03:40  source
+
+	* qtmarvin/qmvaccess.cpp, qtmarvin/qmvaccess.h: (QmvAccess):
+	  extend functionality to include host
+	  and port specification. Default host and port of database to that
+	  of access-database.
+
+2002-12-27 23:42  source
+
+	* qtmarvin/qmvwkspwindow.cpp: (dumpObjectTree): Fix repetition of
+	  default args.
+
+2002-12-27 23:42  source
+
+	* qtmarvin/qmvtoolwindow.cpp: (slotZoomIn,slotZoomOut): cast arg2
+	  to int
+
+2002-12-27 23:41  source
+
+	* qtmarvin/qmvquerywidget.cpp: (QmvQueryWidget): Fix repetition
+	  of default args.
+
+2002-12-27 23:41  source
+
+	* qtmarvin/qmvimage.cpp: (QmvImage): Fix repetition of default
+	  args.
+
+2002-12-27 23:41  source
+
+	* qtmarvin/qmvhelp.cpp: (QmvHelp): Fix repetition of default args.
+
+2002-12-27 23:41  source
+
+	* qtmarvin/qmvdb.cpp: (QmvSqlDBWidget): Fix repetition of default
+	  args.
+
+2002-12-27 23:41  source
+
+	* qtmarvin/qmvattribute.cpp: (getIndexByLabel): Tighten iterator
+	  definition.
+
+2002-12-27 22:57  source
+
+	* pgmarvin/dbi_pg.h, pgmarvin/misc.h, pgmarvin/sql.h: linux port -
+	  conditional include of featuretest.h
+
+2002-10-23 02:32  source
+
+	* qtmarvin/Makefile, qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: remove
+	  qmvedit
+
+2002-10-21 21:44  source
+
+	* qtmarvin/qmvtuple.cpp: (save): Recognise lone "null" as reserved
+	  word.
+
+2002-10-21 21:42  source
+
+	* qtmarvin/qmvtoolwindow.cpp, qtmarvin/qmvtoolwindow.h:
+	  (QmvToolWindow): Add Find button.
+	  (QmvToolWindow): Add stretch toolbar for spacing.
+	  (slotFind): new virtual method.
+
+2002-10-21 21:41  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: (timeToMinutes): new
+	  method
+
+2002-10-21 21:40  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h:
+	  (autoSortList, setAutoSortList)
+	  (setInputMethod): Disable sort for explicit fixed lists.
+	  (setList): load list-dicts locally.
+
+2002-10-21 21:37  source
+
+	* qtmarvin/qmcdatenav.cpp, qtmarvin/qmcdatenav.h:
+	  (mousePressEvent): add clicked() signal.
+
+2002-10-16 01:30  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h:
+	  (setInputMethod): Add COLOUR input method.
+
+2002-10-16 01:30  source
+
+	* qtmarvin/qmvtoolwindow.cpp: (QmvToolWindow): add 4th magstep
+
+2002-10-16 01:28  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h:
+	  (QmvTableItem,createEditor): add colour editor.
+	  (paint): Set colours.
+	  (setColor): New method
+
+2002-10-07 06:16  source
+
+	* qtmarvin/qmvclass.cpp: (open): Handle null queries.
+
+2002-10-07 06:15  source
+
+	* qtmarvin/qmvtoolwindow.cpp, qtmarvin/qmvtoolwindow.h: Add 4th
+	  navigation level
+
+2002-09-29 12:02  source
+
+	* qtmarvin/qmvrelationwidget.cpp: (setTitle): cleanup display logic
+
+2002-09-29 12:02  source
+
+	* qtmarvin/qmvdb.cpp: (setPanel): Fix nasty display bug.
+
+2002-09-29 10:45  source
+
+	* schema/marvin/mttb-crea.sql: firrst cut
+
+2002-09-26 08:52  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  (displayList): emit changed signal to
+	  close child panels.
+	  (refreshRowByAttribute): new method.
+
+2002-09-26 08:25  source
+
+	* schema/marvin/mtpt-crea.sql: fix primary key
+
+2002-09-26 05:43  source
+
+	* schema/marvin/mtpt-crea.sql: first cut
+
+2002-09-15 08:35  source
+
+	* qtmarvin/qmvicons.cpp: (makeTextPixmap): disable explicit font
+	  setting.
+
+2002-09-15 08:33  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: Cleanup
+	  methods of adding toolbuttons
+	  (setActionGroupColour): new method.
+	  (addToActionGroup): standardise interface.
+	  (toggleViewList, setViewList): New methods - control visibility
+	  of
+	  the panel selector.
+
+2002-08-14 00:54  source
+
+	* pixmaps/fileopen.xpm: *** empty log message ***
+
+2002-08-14 00:44  source
+
+	* qtmarvin/qmvtuple.cpp: (save): bugfix - escape percents
+
+2002-08-14 00:42  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  (QmvRelationWidget): reinstate the lower
+	  button box controls for child panel selection.
+	  (setTitle): use extended parent labels.
+
+2002-08-14 00:39  source
+
+	* qtmarvin/qmvdb.cpp: (setPanel): support labelling of panel with
+	  parent info.
+	  (focusPanel): lock size of parent panels
+	  (selectChild): maximise size of lowest child panel
+
+2002-08-14 00:35  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: (userLabel): allow
+	  for format string in primarykey.
+	  (userLabelList, userLabelValue): suport formatted lists for row
+	  labels.
+
+2002-05-22 00:48  source
+
+	* qtmarvin/qmvicons.cpp: bug fix
+
+2002-05-20 06:50  source
+
+	* qtmarvin/qmvrelationwidget.cpp: (popupChildMenu): fix double
+	  call to
+	  handleChildMenuSelection()
+
+2002-05-19 08:11  source
+
+	* pixmaps/editdelete.xpm, pixmaps/folder_new.xpm: *** empty log
+	  message ***
+
+2002-05-19 08:10  source
+
+	* pixmaps/print.xpm: cleanup transparency
+
+2002-05-19 08:09  source
+
+	* pixmaps/blankpage.xpm: change design
+
+2002-05-19 08:06  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvtoolwindow.cpp: change
+	  interface to qmvicons
+
+2002-05-19 08:05  source
+
+	* qtmarvin/qmvicons.cpp, qtmarvin/qmvicons.h: iinterface change
+
+2002-05-19 07:43  source
+
+	* qtmarvin/qmvapplication.cpp: (panelFocus): add call to relation
+	  popup menu.
+
+2002-05-19 07:39  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: (getRelationWidget): new
+	  method, returns
+	  relationwidget by panel-id
+	  (setRelationHierarchyByName): process event loop - experimental
+	  fix to ghosting.
+
+2002-05-19 07:37  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  Redesign interface to child relations
+
+2002-05-19 06:45  source
+
+	* qtmarvin/qmvtoolwindow.cpp: fix accel key typo
+
+2002-05-15 02:25  source
+
+	* qtmarvin/qmvapplication.h: cleanup layout - no functional change
+
+2002-05-15 02:24  source
+
+	* qtmarvin/Makefile: add qmvtoolwindow and qmvpopup
+
+2002-05-15 02:23  source
+
+	* qtmarvin/qmvtoolwindow.cpp, qtmarvin/qmvtoolwindow.h: First cut
+	  - base class generated from xpracapptool
+
+2002-05-15 02:22  source
+
+	* qtmarvin/qmvpopup.cpp, qtmarvin/qmvpopup.h: first cut -
+	  functioning
+
+2002-05-14 00:33  source
+
+	* qtmarvin/Makefile: fix tags target
+
+2002-05-12 07:04  source
+
+	* qtmarvin/version.cpp, trunk/medical/pracman/xpracman/version.h:
+	  *** empty log message ***
+
+2002-05-12 06:05  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  Add slot to refresh row
+
+2002-05-12 06:04  source
+
+	* qtmarvin/qmvform.cpp: Extend break variable to a list of break
+	  variables.
+
+2002-05-12 06:03  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: Centralise tuple
+	  creation and deletion.
+	  Connect QmvTuple tupleChanged signal to local tupleChanged signal
+
+2002-05-09 22:17  source
+
+	* qtmarvin/qmvcanvasview.h: enable autoscrolling during move
+
+2002-05-09 10:31  source
+
+	* qtmarvin/qmvcanvasview.cpp: enable autoscrolling during move
+
+2002-05-08 00:50  source
+
+	* qtmarvin/qmvcanvasview.cpp, qtmarvin/qmvcanvasview.h: add
+	  rubberban to resize
+
+2002-05-06 00:49  source
+
+	* qtmarvin/qmvcanvasview.cpp, qtmarvin/qmvcanvasview.h:
+	  (contentsMousePressEvent): store button and
+	  buttonstate from press event. In introduce resizing
+	  attribute. Change cursor type to indicate drag or resize.
+	  (contentsMouseReleaseEvent): Emit resizing signal.
+	  (contentsMouseMoveEvent): Only allow left button for drag or
+	  resize. Handle resizing (but no object resize on screen yet -
+	  just
+	  the changed cursor).
+
+2002-05-02 20:42  source
+
+	* pixmaps/agenda.xpm, pixmaps/today.xpm: *** empty log message ***
+
+2002-05-02 20:38  source
+
+	* qtmarvin/qmvcanvasview.cpp: (contentsMouseReleaseEvent): use
+	  global
+	  positions during drag, map back to widget positions for signal.
+
+2002-05-01 05:00  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvrelationwidget.cpp:
+	  (formSet): set parent of formviewer.
+
+2002-05-01 04:15  source
+
+	* qtmarvin/qmvapplication.cpp: cleanup handling of pointer
+	  "printer"
+
+2002-04-30 23:38  source
+
+	* schema/marvin/mtsv-crea.sql: minor doc change
+
+2002-04-30 23:38  source
+
+	* schema/marvin/constraints.sql, schema/marvin/ri_check.sh: ***
+	  empty log message ***
+
+2002-04-30 05:07  source
+
+	* schema/marvin/constraints.sql: add ri_check
+
+2002-04-30 05:07  source
+
+	* schema/marvin/ri_check.sh: fisrt cut
+
+2002-04-30 03:20  source
+
+	* schema/marvin/constraints.sql, schema/marvin/dev_ri-crea.sql,
+	  schema/marvin/drop_constraint.sh: fisrt cut
+
+2002-04-30 00:01  source
+
+	* schema/marvin/mtfn-addconstraints.sql,
+	  schema/marvin/mtfn-crea.sql,
+	  schema/marvin/mtrl-addconstraints.sql,
+	  schema/marvin/mtrl-crea.sql: move constraints to separate
+	  addconstraints script
+
+2002-04-29 23:52  source
+
+	* schema/marvin/fmdt-addconstraints.sql,
+	  schema/marvin/fmdt-crea.sql,
+	  schema/marvin/mtat-addconstraints.sql,
+	  schema/marvin/mtat-crea.sql,
+	  trunk/medical/pracman/schema/prac/patn-addconstraints.sql,
+	  trunk/medical/pracman/schema/prac/patn-crea.sql,
+	  trunk/medical/pracman/schema/prac/surg-addconstraints.sql,
+	  trunk/medical/pracman/schema/prac/surg-crea.sql: move
+	  constraints to separate addconstraints script
+
+2002-04-28 23:22  source
+
+	* pixmaps/days_1.xpm, pixmaps/days_5.xpm, pixmaps/days_7.xpm,
+	  pixmaps/month.xpm: copied from korganizer
+
+2002-04-28 23:16  source
+
+	* qtmarvin/qmvclass.cpp: (strToDateTime): fix bug.
+
+2002-04-28 23:12  source
+
+	* qtmarvin/qmvcanvasgrid.cpp, qtmarvin/qmvcanvasgrid.h: misc and
+	  varied changes over a long period ???
+
+2002-04-27 08:40  source
+
+	* qtmarvin/qmvcanvasview.cpp, qtmarvin/qmvcanvasview.h:
+	  (contentsMousePressEvent)
+	  (contentsMouseReleaseEvent, contentsMouseMoveEvent): correct
+	  faults in drag position reporting.
+
+2002-04-19 04:45  source
+
+	* qtmarvin/qmvform.cpp: * qmvform.cpp (printForm): set printer
+	  status = true
+
+2002-04-18 21:32  source
+
+	* qtmarvin/qmvform.h: *** empty log message ***
+
+2002-04-16 03:23  source
+
+	* qtmarvin/qmvapplication.cpp: * qmvapplication.cpp
+	  (QmvApplication): Add FAQ shortcut to help
+	  toolbar
+
+2002-04-16 03:08  source
+
+	* qtmarvin/qmvhelp.cpp, qtmarvin/qmvhelp.h: * qmvhelp.cpp
+	  (QmvHelp): Convert to standard QDialog like QmvForm.
+
+2002-04-15 22:05  source
+
+	* pixmaps/find.xpm: fix transparency
+
+2002-04-15 21:49  source
+
+	* qtmarvin/qmvquerywidget.cpp, qtmarvin/qmvquerywidget.h: *
+	  qmvquerywidget.cpp (QmvQueryWidget): change from QWidget to
+	  QFrame.
+	  (createWhereButton): Add icon.
+	  (initSimple): alter framestyle
+
+2002-04-14 07:30  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: Fix major memory
+	  leak - deleting tuples is too expensive, to reuse
+	  loaded_tuples QDict, with active_tuple_count indicating the
+	  high-water
+	  mark. Grow loaded_tuples as required - but it never shrinks.
+
+2002-04-14 07:27  source
+
+	* qtmarvin/qmvdb.cpp: * qmvdb.cpp (selectChild): test for relname
+	  - minor bugfix
+
+2002-04-14 07:27  source
+
+	* qtmarvin/qmvtuple.cpp, qtmarvin/qmvtuple.h: * qmvtuple.cpp
+	  (init): new method.
+
+2002-04-07 06:18  source
+
+	* qtmarvin/qmvquerycondition.cpp: * qmvquerycondition.cpp
+	  (sqlCondition): Allow for "like/matches"
+	  non-text.
+
+2002-04-07 04:55  source
+
+	* qtmarvin/qmvsqlquery.h: * qmvsqlquery.h (class QmvSqlQuery): use
+	  guarded pointer for
+	  controller.
+
+2002-04-07 04:55  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qmvrelationwidget.cpp (QmvRelationWidget): Change constructor
+	  interface.
+	  (formSet): change call method for QmvForm.
+
+2002-04-07 04:55  source
+
+	* qtmarvin/qmvquerywidget.cpp: * qmvquerywidget.cpp
+	  (noticeQueryStatus): delete and rebuild
+	  progress dialog.
+
+2002-04-07 04:55  source
+
+	* qtmarvin/qmvform.cpp: * qmvform.cpp (QmvForm): limit size of
+	  form to desktop
+
+2002-04-07 04:55  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: * qmvdb.cpp (setPanel):
+	  change interface to QmvRelationWidget.
+	  (userPreference): new method.
+
+2002-04-07 04:55  source
+
+	* qtmarvin/qmvclass.cpp: * qmvclass.cpp (open): reset the
+	  controller
+
+2002-04-03 23:52  source
+
+	* qtmarvin/qmvquerywidget.cpp: * qmvquerywidget.cpp
+	  (noticeQueryStatus): cancel progressdialog
+
+2002-04-02 06:07  source
+
+	* qtmarvin/qmvform.cpp, qtmarvin/qmvform.h: convert to qdialog
+	  from qmainwindow. Fix landscape sizing
+
+2002-04-01 09:31  source
+
+	* qtmarvin/Makefile: add imacros to handle debugging ifdefs
+
+2002-04-01 09:30  source
+
+	* qtmarvin/qmvform.cpp, qtmarvin/qmvform.h: * qmvform.cpp
+	  (QmvForm): make modal.
+
+2002-04-01 09:29  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: * qmvclass.cpp
+	  (strToDateTime,strToMinutes): new methods
+
+2002-04-01 08:06  source
+
+	* schema/marvin/local.mk: add quarter-date
+
+2002-04-01 00:23  source
+
+	* qtmarvin/qmvquerywidget.cpp: * qmvquerywidget.cpp (initSimple):
+	  change accelerator for advanced
+	  query
+
+2002-04-01 00:11  source
+
+	* qtmarvin/qmvtupleattribute.cpp: * qmvtupleattribute.cpp
+	  (formatTimestamp): refine timestamp
+	  display checks.
+
+2002-04-01 00:04  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qmvrelationwidget.cpp
+	  (QmvRelationWidget): Add accelerators for
+	  panel buttons.
+	  (setHeaderAttributeList): remove hide/show
+	  (displayList): Disable screen updates during list rebuild. Set
+	  row-adjust threshold to 200
+
+2002-03-31 22:42  source
+
+	* qtmarvin/qmvattribute.cpp: * qtmarvin/qmvattribute.cpp
+	  (addToList): bugfix - cleanup
+	  overlapping removal.
+
+2002-03-26 20:05  source
+
+	* qtmarvin/qmvapplication.cpp: add QMVAPPLICATION_DEBUG
+
+2002-03-19 08:46  source
+
+	* qtmarvin/qmvquerywidget.cpp: * qmvquerywidget.cpp
+	  (noticeQueryStatus): reset controller;
+
+2002-03-19 08:46  source
+
+	* qtmarvin/qmvsqlquery.cpp, qtmarvin/qmvsqlquery.h: *
+	  qmvsqlquery.cpp (getQueryStatus): renamed from queryStatus.
+
+2002-03-16 02:10  source
+
+	* tools/jailed.c: fix arg transfer
+
+2002-03-16 00:34  source
+
+	* tools/jailed.c: add ARGV
+
+2002-03-14 06:02  source
+
+	* tools/jailed.c: add ifdef DEBUG
+
+2002-03-10 19:33  source
+
+	* qtmarvin/qmvdb.cpp: qmvdb.cpp (registerSelectedTuple): Test for
+	  valid tuple.
+
+2002-03-07 20:02  source
+
+	* qtmarvin/qmvsqlquery.cpp: test for order-by before using it.
+
+2002-03-07 08:28  source
+
+	* qtmarvin/qmvrelationwidget.cpp: move copy button to end of list
+
+2002-03-07 04:58  source
+
+	* qtmarvin/qmvform.h: add local slots for page navigation, and
+	  page counter in banner.
+
+2002-03-07 04:39  source
+
+	* qtkugar/mreportviewer.cpp, qtkugar/mreportviewer.h: pageCount():
+	  new method
+
+2002-03-07 04:37  source
+
+	* qtmarvin/qmvform.cpp: add local slots for page navigation, and
+	  page counter in banner.
+
+2002-03-06 01:08  source
+
+	* qtmarvin/qmvsqlquery.cpp: * qmvsqlquery.cpp (setOrderby): fix
+	  arg test.
+
+2002-03-06 01:08  source
+
+	* qtmarvin/qmvquerywidget.cpp: * qmvquerywidget.cpp
+	  (createOrderByComboBox): add default option
+	  to orderby
+
+2002-03-05 22:19  source
+
+	* pixmaps/gear.xpm: *** empty log message ***
+
+2002-03-05 09:22  source
+
+	* qtmarvin/qmvurltransfer.cpp: * qmvurltransfer.cpp (load): bugfix
+	  = initialize op_status.
+
+2002-03-01 23:30  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  getQueryWidget: newmethod
+
+2002-03-01 23:29  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h,
+	  qtmarvin/qmvqueryconditionwidget.cpp,
+	  qtmarvin/qmvquerywidget.cpp: set focus proxies - directed
+	  torwards pattern entry in query.
+
+2002-02-28 06:21  source
+
+	* schema/marvin/mtsv-crea.sql: incorporate mtsv-functions
+
+2002-02-25 21:13  source
+
+	* pixmaps/editcopy.xpm: new
+
+2002-02-25 21:12  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qmvrelationwidget.cpp (QmvRelationWidget): Increase size of
+	  toolbar icons to 22 pixels.
+	  (copyToSet): New method - copy row.
+
+2002-02-25 21:02  source
+
+	* qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h: *
+	  qmvtupleattribute.cpp (QmvTupleAttribute): New (copy)
+	  constructor.
+
+2002-02-25 21:00  source
+
+	* qtmarvin/qmvtuple.cpp, qtmarvin/qmvtuple.h: * qmvtuple.cpp
+	  (QmvTuple): New (copy) constructor.
+
+2002-02-25 20:59  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: * qmvclass.cpp
+	  (copyTuple): new methods.
+	  (newTuple): check for object creation.
+
+2002-02-21 04:04  source
+
+	* qtmarvin/qmvmultilineedit.cpp: * qmvmultilineedit.cpp
+	  (QmvMultiLineEdit): Select all text by
+	  default .
+
+2002-02-20 08:59  source
+
+	* doc/xpracman, doc/xpracman/manual.ltx: first version
+
+2002-02-20 07:39  source
+
+	* qtmarvin/qmvurltransfer.cpp, qtmarvin/qmvurltransfer.h: *
+	  qmvurltransfer.cpp (load): add qtimer to handle timeout.
+	  (cancel): new method (slot) to handle cancel.
+
+2002-02-19 21:49  source
+
+	* qtmarvin/qmvurltransfer.cpp: * qmvurltransfer.cpp (load): Add
+	  timeout, limit processEvents to
+	  10 msec. Remove loop timer.
+
+2002-02-19 21:47  source
+
+	* qtmarvin/qmvapplication.h: remove virtual from newListPanel()
+
+2002-02-19 07:08  source
+
+	* qtmarvin/Makefile: * Makefile (MARVINCLASSES): Add new query
+	  classes.
+
+2002-02-19 07:07  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qmvrelationwidget.cpp
+	  (QmvRelationWidget): remove signal argument
+
+2002-02-19 07:05  source
+
+	* qtmarvin/qmvquerycondition.cpp, qtmarvin/qmvquerycondition.h,
+	  qtmarvin/qmvqueryconditionwidget.cpp,
+	  qtmarvin/qmvqueryconditionwidget.h, qtmarvin/qmvquerywidget.cpp,
+	  qtmarvin/qmvquerywidget.h, qtmarvin/qmvsqlquery.cpp,
+	  qtmarvin/qmvsqlquery.h: Reoganise Query module.
+
+2002-02-19 07:04  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: * qmvdb.cpp (setPanel):
+	  Notify parent of new listpanel.
+
+2002-02-19 07:03  source
+
+	* qtmarvin/qmvapplication.h: * qmvapplication.h (class
+	  QmvApplication): add new virtual method
+	  which is called when new panel is created - eg used for creating
+	  additional contol buttons on panel.
+
+2002-02-19 07:01  source
+
+	* qtmarvin/qmvapplication.cpp: * qmvapplication.cpp (closeEvent):
+	  Set default to OK.
+
+2002-02-14 20:54  source
+
+	* qtmarvin/qmvmultilineedit.cpp: * qmvmultilineedit.cpp
+	  (selectList): disable autocompletion.
+
+2002-02-13 02:44  source
+
+	* qtmarvin/qmvtable.cpp: * qmvtable.cpp (eventFilter): Key_Return
+	  moves to next cell.
+
+2002-02-11 08:32  source
+
+	* qtmarvin/qmvrelationwidget.cpp: add documentation
+
+2002-02-11 08:29  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qmvrelationwidget.cpp (addTupleButton): New method - add button
+	  to tuple button group.
+
+2002-02-11 05:54  source
+
+	* qtmarvin/qmvapplication.cpp: * qmvapplication.cpp (formSet):
+	  remove debugging
+	  (userPreference): documentation.
+
+2002-02-10 00:04  source
+
+	* qtmarvin/qmvmultilineedit.cpp: * qmvmultilineedit.cpp
+	  (QmvMultiLineEdit): Fix error in
+	  eventfilter tree. Add standard debug #ifdef's
+	  (keyPressEvent): add escape as revert key (with ctrl-Z)
+	  (selectList): position cursor at head of string in List editor.
+
+2002-02-10 00:01  source
+
+	* qtmarvin/qmvattribute.cpp: * qmvattribute.cpp (QmvAttribute):
+	  initialise access attribute.
+
+2002-02-07 05:36  source
+
+	* qtmarvin/qmvhttp.cpp, qtmarvin/qmvimage.cpp: disable debug by
+	  default.
+
+2002-02-07 05:20  source
+
+	* qtmarvin/qmvcanvasgrid.cpp: * qmvcanvasgrid.cpp (save): wrap in
+	  #ifdef
+
+2002-02-05 12:18  source
+
+	* qtmarvin/qmvhttp.cpp, qtmarvin/qmvhttp.h: * qmvhttp.cpp
+	  (processGetResponse): allow for header terminators
+	  other than CRLF (ie missing CR)
+	  (operationGet): handle query in request header.
+	  (readyRead): handle cases where no content-length (wait for
+	  close).
+	  (processGetResponse): Handle LF as well as CRLF. Pass pointer
+	  instead of bytearray.
+
+2002-02-04 21:04  source
+
+	* qtmarvin/Makefile: add qmvurltransfer and qmvhttp
+
+2002-02-04 21:02  source
+
+	* qtmarvin/qmvimage.cpp, qtmarvin/qmvimage.h: modify to use qurl
+
+2002-02-04 21:01  source
+
+	* qtmarvin/qmvurltransfer.cpp, qtmarvin/qmvurltransfer.h: first
+	  cut - "get" functional.
+
+2002-02-04 21:00  source
+
+	* qtmarvin/qmvhttp.cpp, qtmarvin/qmvhttp.h: first cut -
+	  functional, with persistent connections
+
+2002-01-27 00:11  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qtmarvin/qmvrelationwidget.cpp (cellClicked): Do not simulate
+	  keyclick - only select row.
+	  (rowClicked): Add rowAccessed() signal - this method is now the
+	  method to use for signalling row access.
+	  (selectRow): New method - selects the specified row. This method
+	  was forked from rowClicked().
+	  (addToSet,deleteFromSet): Maintain a currently selected row.
+
+2002-01-27 00:05  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: *
+	  qtmarvin/qmvclass.cpp (rowByPK): add sanity checks.
+	  (rowBySK): new method - serial-key search.
+
+2002-01-21 19:58  source
+
+	* qtmarvin/qmvcanvasview.cpp, qtmarvin/qmvcanvasview.h: *
+	  qtmarvin/qmvcanvasview.cpp (contentsMousePressEvent): Add
+	  detection of doubleclick.
+	  (contentsMouseReleaseEvent): Emit signal when doubleclick
+	  detected. .
+	  (contentsMouseDoubleClickEvent): Reimplemented.
+
+2002-01-21 19:56  source
+
+	* qtmarvin/qmvcanvasgrid.cpp, qtmarvin/qmvcanvasgrid.h: *
+	  qtmarvin/qmvcanvasgrid.cpp (QmvCanvasGrid): New variable -
+	  opaque factor.
+	  (setOpaqueFactor,opaqueFactor): New methods.
+	  (updateGridImage): Use opaque_factor.
+	  (save): New method - for debugging.
+
+2002-01-15 05:04  source
+
+	* qtmarvin/qmvcanvasgrid.cpp, qtmarvin/qmvcanvasgrid.h: *
+	  qtmarvin/qmvcanvasgrid.cpp (QmvCanvasGrid): set transparent in
+	  body. Initialise image_depth
+	  (clearGrid,fill): use stack pixmap.
+
+2002-01-13 04:09  source
+
+	* qtmarvin/qmvimage.cpp, qtmarvin/qmvimage.h: add new constructors
+	  - for non-null images
+
+2002-01-09 08:08  source
+
+	* qtmarvin/Makefile: move qmvimagetool and qmvdataset to xmicro
+
+2001-12-17 07:32  source
+
+	* schema/marvin/trigger_utils.sql: *** empty log message ***
+
+2001-12-16 06:03  source
+
+	* schema/marvin/fix-timestamp-length.sql: *** empty log message ***
+
+2001-12-16 04:03  source
+
+	* schema/marvin/create_links.sql, schema/marvin/mtsv-crea.sql:
+	  extend to handle compound keys
+
+2001-12-16 00:33  source
+
+	* qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h: *
+	  qtmarvin/qmvtupleattribute.cpp (formatTimestamp): new method to
+	  conditionally set timestamp display length.
+	  (load): set timestamp format.
+
+2001-12-11 23:20  source
+
+	* tools/jailed.c: maintain sh args
+
+2001-12-10 09:33  source
+
+	* tools/jailed.c: cleanup array termination
+
+2001-12-07 22:18  source
+
+	* tools/jailed.c: add documentation
+
+2001-12-07 22:08  source
+
+	* tools/jailed.c: *** empty log message ***
+
+2001-12-04 20:30  source
+
+	* qtmarvin/qmvapplication.cpp: * qtmarvin/qmvapplication.cpp
+	  (QmvApplication): remove resize - now in
+	  main.
+
+2001-12-04 20:28  source
+
+	* qtkugar/mlabelobject.cpp: * qtkugar/mlabelobject.cpp (draw): Add
+	  handler for <br> line break
+	  tags.
+
+2001-12-03 22:53  source
+
+	* qtmarvin/qmvselect.cpp, qtmarvin/qmvselect.h: *
+	  qtmarvin/qmvselect.cpp (QmvSelect): New constructor to accept
+	  QStringList input. Cleanup return codes to use -1 for cancel.
+
+2001-12-02 20:29  source
+
+	* tools/HP_local_noinit.c: *** empty log message ***
+
+2001-12-02 09:56  source
+
+	* qtmarvin/qmvform.cpp, qtmarvin/qmvform.h: * qtmarvin/qmvform.cpp
+	  (setPrinterName): new method.
+
+2001-12-02 09:55  source
+
+	* qtmarvin/qmvapplication.cpp: * qtmarvin/qmvapplication.cpp:
+	  complete userpreference handling -
+	  ready for beta testing.
+
+2001-12-02 09:53  source
+
+	* qtkugar/mreportviewer.cpp, qtkugar/mreportviewer.h: *
+	  qtkugar/mreportviewer.cpp (setPrinterName): new method.
+	  (printReport): prompt for printer if default (setable) is null.
+
+2001-12-02 04:24  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: *
+	  qtmarvin/qmvapplication.cpp (userPreference): test args for null
+	  (setUserLabel): Prepare menubar user-label.
+	  Complete preentation and selection of user preferences. Disable
+	  online editing of preferences (not available yet)
+
+2001-11-28 20:05  source
+
+	* qtkugar/mreportviewer.cpp: * qtkugar/mreportviewer.cpp
+	  (printReport): Always set page count.
+
+2001-11-28 09:44  source
+
+	* qtmarvin/qmvclass.cpp: * qtmarvin/qmvclass.cpp (printReport):
+	  Limit column counting to
+	  array bounds.
+
+2001-11-25 09:55  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: *
+	  qtmarvin/qmvapplication.cpp (loadPreferences): load user
+	  preferences from a system userpreferences file, then a user
+	  userpreferences file.
+	  (setDocRoot): Set the document root (eg from derived classes).
+
+2001-11-13 20:03  source
+
+	* qtmarvin/qmvcanvasgrid.cpp, qtmarvin/qmvcanvasgrid.h,
+	  trunk/pathology/microbiology/xmicro/xmicro.cpp: checkpoint
+
+2001-11-12 08:37  source
+
+	* pixmaps/anticlockwise.xpm, pixmaps/appearance.xpm,
+	  pixmaps/back.xpm, pixmaps/bottom.xpm, pixmaps/clockwise.xpm,
+	  pixmaps/down.xpm, pixmaps/forward.xpm, pixmaps/redo.xpm,
+	  pixmaps/top.xpm, pixmaps/up.xpm, pixmaps/up1arrow.xpm,
+	  pixmaps/up2arrow.xpm: new pixmaps
+
+2001-11-12 08:35  source
+
+	* qtmarvin/qmvcanvasgrid.cpp, qtmarvin/qmvcanvasgrid.h,
+	  trunk/pathology/microbiology/xmicro/xmicro.cpp,
+	  trunk/pathology/microbiology/xmicro/xmicro.h: checkpoint - grids
+	  are functioning (except manual data override), stable, and
+	  storable.
+
+2001-11-06 21:24  source
+
+	* pixmaps/analyse.xpm, pixmaps/create.xpm, pixmaps/find.xpm,
+	  pixmaps/left1arrow.xpm, pixmaps/left2arrow.xpm,
+	  pixmaps/print.xpm, pixmaps/right1arrow.xpm,
+	  pixmaps/right2arrow.xpm,
+	  trunk/pathology/microbiology/xmicro/images,
+	  trunk/pathology/microbiology/xmicro/images/xmicro_logo.xpm: ***
+	  empty log message ***
+
+2001-11-06 21:20  source
+
+	* pixmaps/down1arrow.xpm, pixmaps/down2arrow.xpm,
+	  pixmaps/ksmiletris.xpm, pixmaps/load.xpm, pixmaps/longer.xpm,
+	  pixmaps/reload.xpm, pixmaps/reset.xpm, pixmaps/save.xpm,
+	  pixmaps/shorter.xpm, pixmaps/zoomin.xpm, pixmaps/zoomout.xpm:
+	  new pixmaps
+
+2001-11-06 08:54  source
+
+	* qtmarvin/qmvcanvasgrid.cpp, qtmarvin/qmvcanvasgrid.h,
+	  qtmarvin/qmvcanvasview.cpp, qtmarvin/qmvcanvasview.h: checkpoint
+	  - analysis working, mouse click and move signals. Storage
+	  of grid parameters corrupted.
+
+2001-11-05 01:14  source
+
+	* qtmarvin/Makefile, qtmarvin/qmvcanvasgrid.cpp,
+	  qtmarvin/qmvcanvasgrid.h: checkpoint - grid parameters save and
+	  restore ok.
+
+2001-11-03 23:20  source
+
+	* qtmarvin/qmvcanvasgrid.cpp, qtmarvin/qmvcanvasgrid.h: checkpoint
+
+2001-11-02 05:26  source
+
+	* qtmarvin/qmvcanvasview.cpp, qtmarvin/qmvcanvasview.h,
+	  qtmarvin/qmvimage.cpp, qtmarvin/qmvimage.h: first working
+	  versions
+
+2001-10-28 07:23  source
+
+	* qtkugar/mreportviewer.cpp: * qtkugar/mreportviewer.cpp:
+	  initialise printer.
+	  (printReport()): maintain a persistant qprinter object.
+
+2001-10-28 07:15  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: *
+	  qtmarvin/qmvapplication.cpp (userPreference): New method.
+	  (loadPreferences): New method.
+	  (savePreferences): New method.
+
+2001-10-28 06:33  source
+
+	* qtmarvin/qmvform.cpp: Check for existing formname
+
+2001-10-22 01:57  source
+
+	* qtmarvin/version.cpp: * qtmarvin/version.cpp (qtmarvin_version):
+	  Bump to 3.0.9. (prior
+	  to worklist application upgrade)
+
+2001-10-21 08:04  source
+
+	* qtkugar/mutil.cpp, qtkugar/mutil.h: * qtkugar/mutil.cpp: Add
+	  mdy formats.
+	  
+	  * qtkugar/mutil.h: Add mdy formats.
+
+2001-10-21 07:41  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qtmarvin/qmvrelationwidget.cpp
+	  (formSet): Add conditional
+	  debugging output.
+
+2001-10-21 07:39  source
+
+	* schema/marvin/quarter-date.sql: *
+	  schema/marvin/quarter-date.sql: new function.
+
+2001-10-18 02:53  source
+
+	* qtmarvin/qmvtable.cpp: * qtmarvin/qmvtable.cpp (eventFilter):
+	  Parse event on - is
+	  required later.
+
+2001-10-18 02:53  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qtmarvin/qmvrelationwidget.cpp
+	  (refreshRow): Check for null pointer.
+	  (addToSet): Use refreshRow();
+
+2001-10-17 22:15  source
+
+	* qtmarvin/qmvtable.cpp: * qtmarvin/qmvtable.cpp (eventFilter):
+	  Handle rightbutton
+	  click(ignored by QTable handler).
+
+2001-10-17 21:14  source
+
+	* qtmarvin/qmvdb.cpp: typo
+
+2001-10-17 21:13  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qtmarvin/qmvrelationwidget.cpp
+	  (addToSet,deleteFromSet,cellClicked ): Emit signals for
+	  add/delete/access.
+
+2001-10-17 20:42  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: * qtmarvin/qmvdb.cpp
+	  (QmvDBWidget): Remember parent.
+	  (setPanel): Connect lists to add/delete/access triggers if parent
+	  is known.
+
+2001-10-17 20:40  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: *
+	  qtmarvin/qmvapplication.cpp
+	  (addRowToSetTrigger, deleteRowFromSetTrigger, accessRowTrigger):
+	  New methods.
+
+2001-10-17 06:46  source
+
+	* qtkugar/mreportviewer.cpp, qtkugar/mreportviewer.h: *
+	  qtkugar/mreportviewer.cpp: Slot interface to printReport().
+
+2001-10-17 06:45  source
+
+	* qtmarvin/qmvform.cpp: * qtmarvin/qmvform.cpp (QmvForm): Connect
+	  print directly to kugar.
+
+2001-10-17 02:13  source
+
+	* qtmarvin/qmvtable.cpp: * qtmarvin/qmvtable.cpp (itemHasChanged):
+	  Check for null pointers.
+
+2001-10-17 02:12  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qtmarvin/qmvrelationwidget.cpp
+	  (displayList): limit adjustment
+	  of rows to small sets.
+
+2001-10-17 02:11  source
+
+	* qtmarvin/qmvform.cpp: * qtmarvin/qmvform.cpp (initForm): Allow
+	  coma or space separators
+	  between includes (fix bug).
+
+2001-10-16 23:00  source
+
+	* qtmarvin/qmvform.cpp: * qtmarvin/qmvform.cpp (initForm): Allow
+	  coma or space separators
+	  between includes.
+
+2001-10-15 22:46  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qtmarvin/qmvrelationwidget.cpp (miniEditRefresh): new method.
+
+2001-10-15 05:09  source
+
+	* pgmarvin/version.c: * qtmarvin/version.cpp (qtmarvin_version):
+	  3.0.8
+
+2001-10-14 21:59  source
+
+	* pgmarvin/Makefile, pgmarvin/dbi_pg.c, pgmarvin/misc.c,
+	  pgmarvin/sql.c: add versioning variables
+
+2001-10-14 21:45  source
+
+	* qtmarvin/version.cpp: * qtmarvin/version.cpp (qtmarvin_version):
+	  3.0.8
+
+2001-10-14 20:53  source
+
+	* qtmarvin/qmvform.cpp: * qtmarvin/qmvform.cpp (initForm): Fix
+	  logic bug. If no forms,
+	  return FALSE.
+
+2001-10-14 09:54  source
+
+	* qtmarvin/version.cpp: Bump minor.
+
+2001-10-14 09:53  source
+
+	* qtmarvin/qmvform.cpp, qtmarvin/qmvform.h: * qtmarvin/qmvform.cpp
+	  (viewForm,printForm): Change to bool to
+	  return FALSE when no forms.
+
+2001-10-14 06:00  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: *
+	  qtmarvin/qmvtable.cpp (QmvTable): Handle cell clicking to get
+	  focus.
+	  (eventFilter): Keyboard row-select (ALT-Return)
+	  (cellClicked): New method to get cell focus on click.
+	  (editCompleted): Modify to allow edit clenup.
+	  (paintCell,paintFocus): Reimplement - no additinal function yet.
+	  (refreshText): New method
+	  (paint): Reimplement - no additinal function yet.
+
+2001-10-14 05:54  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qtmarvin/qmvrelationwidget.cpp (QmvRelationWidget): Set focus
+	  proxy to table. Cleanup signal/slot connects.
+	  (clearTable): Commit pending edits.
+	  (cellClicked,rowClicked): Set table focus on click.
+	  (refreshRow,refreshCell): New methods.
+	  (showMiniEditor): Uupdate row after field changes to copy with
+	  field interdependencies.
+
+2001-10-14 05:47  source
+
+	* qtmarvin/qmvmultilineedit.cpp, qtmarvin/qmvmultilineedit.h: *
+	  qtmarvin/qmvmultilineedit.cpp (resizeEvent): New method.
+	  (selectList): install evenfilter on combolist.
+	  (selectList): Use resize for combolist.
+
+2001-10-14 05:39  source
+
+	* qtmarvin/qmvapplication.cpp: * qtmarvin/qmvapplication.cpp
+	  (QmvApplication): remove unused
+	  accelerators.
+
+2001-10-11 02:22  source
+
+	* qtmarvin/qmvmultilineedit.cpp: * qtmarvin/qmvmultilineedit.cpp
+	  (QmvMultiLineEdit): Move label
+	  resolution from QmvTableItem::createEditor() which is a const.
+
+2001-10-11 02:22  source
+
+	* qtmarvin/qmvtable.cpp: * qtmarvin/qmvtable.cpp (createEditor):
+	  Move label
+	  resolution to QmvMultiLineEdit::QmvMultiLineEdit.
+
+2001-10-11 02:22  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qtmarvin/qmvrelationwidget.cpp
+	  (showMiniEditor): Add 20 pixels
+	  to minieditor width.
+
+2001-10-10 20:56  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qtmarvin/qmvrelationwidget.cpp (selectCurrentRow): Ensure that
+	  current row is visible - also check parent.
+	  (selectChild): Ensure that current row is visible.
+	  (currentMiniEditorCellChanged, updateFromMiniEditor,
+	  updateFromMainEditor): removed deprecated methods.
+	  (ensureCurrentRowVisible): new method.
+
+2001-10-10 01:35  source
+
+	* qtmarvin/qmvtable.cpp: * qtmarvin/qmvtable.cpp (QmvTableItem):
+	  disable fk resolution -
+	  confine to the editing phase.
+	  (createEditor): Resolve fk.
+
+2001-10-09 10:05  source
+
+	* qtmarvin/qmvtupleattribute.cpp: * qtmarvin/qmvtupleattribute.cpp
+	  (load): disable fk resolution -
+	  too slow at this position.
+
+2001-10-09 10:05  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qtmarvin/qmvrelationwidget.cpp
+	  (showMiniEditor): Redisplay main
+	  row when miniedit finishes.
+	  (currentMiniEditorCellChanged): deprecated
+
+2001-10-08 01:43  source
+
+	* schema/marvin/fix-status.sql: - alter defauls for X__status to A
+	  - disable FSL attribute for metadata.
+
+2001-10-08 01:42  source
+
+	* schema/marvin/local.mk: Add patv (view)
+
+2001-10-08 01:42  source
+
+	* schema/marvin/fmdt-crea.sql, schema/marvin/form-crea.sql,
+	  schema/marvin/mtat-crea.sql, schema/marvin/mtcl-crea.sql,
+	  schema/marvin/mtfn-crea.sql, schema/marvin/mtrl-crea.sql: Alter
+	  X__status default to A
+
+2001-10-07 11:40  source
+
+	* qtmarvin/qmvrelationwidget.cpp: *** empty log message ***
+
+2001-10-07 11:40  source
+
+	* qtmarvin/qmvclass.cpp: * qtmarvin/qmvclass.cpp (QmvSqlClass):
+	  sort child relations by
+	  title.
+
+2001-10-07 11:10  source
+
+	* qtmarvin/qmvmultilineedit.cpp: * qtmarvin/qmvmultilineedit.cpp
+	  (save): bugfix
+
+2001-10-07 11:09  source
+
+	* qtmarvin/qmvcombobox.cpp: * qtmarvin/qmvcombobox.cpp
+	  (updateList): minor logic change
+
+2001-10-07 11:08  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: *
+	  qtmarvin/qmvclass.cpp (loadForeignRelations): improve query
+	  limit interpretation.
+
+2001-10-07 11:07  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h: *
+	  qtmarvin/qmvattribute.cpp (listLimit,setListLimit): new methods
+
+2001-10-07 08:04  source
+
+	* qtmarvin/qmvmultilineedit.cpp: * qtmarvin/qmvmultilineedit.cpp
+	  (save): cleanup logic.
+
+2001-10-07 08:04  source
+
+	* qtmarvin/qmvcombobox.cpp: (updateList): Extend searching logic.
+
+2001-10-07 04:44  source
+
+	* qtmarvin/qmvaccess.cpp, qtmarvin/qmvapplwindow.cpp,
+	  qtmarvin/qmvattlist.cpp, qtmarvin/qmvattribute.cpp,
+	  qtmarvin/qmvclass.cpp, qtmarvin/qmvcombobox.cpp,
+	  qtmarvin/qmvdb.cpp, qtmarvin/qmvedit.cpp,
+	  qtmarvin/qmvexception.cpp, qtmarvin/qmvexport.cpp,
+	  qtmarvin/qmvform.cpp, qtmarvin/qmvhelp.cpp,
+	  qtmarvin/qmvicons.cpp, qtmarvin/qmvimport.cpp,
+	  qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvselect.cpp,
+	  qtmarvin/qmvsqlquery.cpp, qtmarvin/qmvtable.cpp,
+	  qtmarvin/qmvtuple.cpp, qtmarvin/qmvtupleattribute.cpp,
+	  qtmarvin/qmvwkspwindow.cpp, qtmarvin/qtmarvin.cpp: Added static
+	  ident variable.
+
+2001-10-07 04:43  source
+
+	* qtmarvin/qmvmultilineedit.cpp, qtmarvin/qmvmultilineedit.h:
+	  Reimplemented qmultilineedit
+
+2001-10-07 04:29  source
+
+	* qtmarvin/version.cpp: first cut
+
+2001-10-07 04:28  source
+
+	* qtmarvin/Makefile: add version.o
+
+2001-10-07 04:16  source
+
+	* qtmarvin/Makefile: * qtmarvin/Makefile (MARVINCLASSES): Add
+	  qmvmultilineedit.
+
+2001-10-07 04:14  source
+
+	* qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h:
+	  Update the shuttle methods.
+
+2001-10-07 04:13  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: *
+	  qtmarvin/qmvtable.cpp (eventFilter): Add eventfilter (for
+	  debugging).
+	  (keyPressEvent,focusOutEvent,focusInEvent): reimplement for
+	  debugging
+	  (QmvTableItem): Reoganise to use a single edit widget
+	  QmvMultiLineEdit, and move the smarts for switching to combolist
+	  into this widget. Swap label for value if List type is detected,
+	  so that the table cells display labels.
+
+2001-10-07 04:00  source
+
+	* qtmarvin/qmvselect.cpp: * qtmarvin/qmvselect.cpp (QmvSelect):
+	  Add cancel and OK buttons.
+
+2001-10-07 03:58  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qtmarvin/qmvrelationwidget.cpp: Make the minieditor modal and
+	  decouple it from main table editor.
+
+2001-10-07 03:55  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: * qtmarvin/qmvdb.cpp:
+	  Import inline functions from header file.
+	  (loadMetameta): Filter metadata selections by
+	  X__status[=A].
+	  (dbTree): New method (debugging)
+
+2001-10-07 03:52  source
+
+	* qtmarvin/qmvcombobox.cpp, qtmarvin/qmvcombobox.h: *
+	  qtmarvin/qmvcombobox.cpp: General cleanup. Extend
+	  comments.
+	  (updateList): Extend searching logic.
+
+2001-10-07 03:48  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: *
+	  qtmarvin/qmvclass.cpp (listForeignRelations): Bugfix - was
+	  reporting foreign keys names rather than foreign relation names.
+	  (foreignRelationAttribute): Return null where not found.
+	  (sortedAttlist,QmvSqlClass): Filter metadata selections by
+	  X__status[=A].
+	  (loadForeignRelations): Fix bug - index foreign relations by
+	  relation name, not foreign key name. Fix bug - call to
+	  setForeign() was too restrictive.
+	  (listForeignKeys): New method.
+
+2001-10-07 03:35  source
+
+	* qtmarvin/qmvattribute.h: * qtmarvin/qmvattribute.h: minor
+	  changes to getValueByLabel() and
+	  extendList().
+
+2001-10-07 03:34  source
+
+	* qtmarvin/qmvattribute.cpp: * qtmarvin/qmvattribute.cpp
+	  (getValueByLabel): return null if not
+	  found.
+	  (extendList): add extra argument to specify searching for
+	  substrings which may be matches as-is.
+	  (setInputMethod): FSL should not set type to List.
+	  (addToList): If pairs exist, then remove them and insert the new
+	  ones. Also rebuild the stringlist.
+	  (print): Extend the debugging information.
+
+2001-10-06 23:49  source
+
+	* schema/marvin/fix-status.sql: first
+
+2001-10-04 06:52  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h,
+	  qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h:
+	  Move inline methods to source file.
+
+2001-09-30 08:42  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: *
+	  qtmarvin/qmvtable.cpp (createEditor): bug fix in display size.
+	  (QmvTable): begin codin finer focus control (not yet functional)
+
+2001-09-30 08:41  source
+
+	* qtmarvin/qmvrelationwidget.cpp: *** empty log message ***
+
+2001-09-30 08:38  source
+
+	* schema/marvin/short_date.sql: schema/marvin/short_date.sql:
+	  transferred from
+	  schema/prac/conf-functions.
+
+2001-09-28 10:47  source
+
+	* qtmarvin/qmvselect.cpp, qtmarvin/qmvselect.h: cleanup. Handle
+	  escape
+
+2001-09-28 10:46  source
+
+	* qtmarvin/qmvrelationwidget.cpp: Remove debug
+
+2001-09-28 10:45  source
+
+	* qtmarvin/qmvform.cpp, qtmarvin/qmvform.h: Cleanup - consolidate
+	  to single method viewForm()
+
+2001-09-28 04:42  source
+
+	* schema/marvin/create_metadata.sql: *
+	  schema/marvin/create_metadata.sql: Extend function to add
+	  missing metadata, and to delete obsolete metatdata from existing
+	  relations
+
+2001-09-25 02:31  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: * qtmarvin/qmvdb.cpp
+	  (hierarchyVisibilityHandler,
+	  panelVisibilityHandler): Cover current-row selections when
+	  relation hierarchies, or relation panels become visible.
+
+2001-09-24 01:25  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: *
+	  qtmarvin/qmvtable.cpp (createEditor,setContentFromEditor):
+	  LineEdit - use QMultiLineEdit class inplace of qlinedit.
+
+2001-09-24 01:22  source
+
+	* qtmarvin/qmvsqlquery.cpp, qtmarvin/qmvsqlquery.h: *
+	  qtmarvin/qmvsqlquery.cpp (advancedQuery): New method. Creates
+	  dialog for advanced query options.
+
+2001-09-24 01:21  source
+
+	* qtmarvin/qmvrelationwidget.cpp: *
+	  qtmarvin/qmvrelationwidget.cpp (addToSet): Only set current
+	  column in parent panels.
+	  (miniEditRow): Do not adjust column width.
+	  (displayList): Do not adjust column width.
+	  (miniEditCell): change edit type to OnTyping - this fixes focus
+	  problems with arrow keys.
+	  (displayCell): change edit type to OnTyping - this fixes focus
+	  problems with arrow keys.
+
+2001-09-24 01:20  source
+
+	* qtmarvin/qmvform.cpp: qtmarvin/qmvform.cpp (initForm): Fix page
+	  count.
+
+2001-09-21 01:32  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qtmarvin/qmvrelationwidget.cpp
+	  (displayList): Reset minimum
+	  height of table - fixed at 60, but should be set to
+	  header+hscrolbar+row .
+
+2001-09-19 23:47  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qtmarvin/qmvrelationwidget.cpp
+	  (addToSet): Ensure new row is
+	  visible, and selected.
+
+2001-09-19 22:37  source
+
+	* qtmarvin/qmvapplication.cpp: * qtmarvin/qmvapplication.cpp
+	  (QmvApplication): Reduce size of
+	  logo from 20 to 16 pixels.
+	  (objectTree): Add geometry attributes to listing for widgets and
+	  layouts.
+
+2001-09-19 22:35  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qtmarvin/qmvrelationwidget.cpp
+	  (QmvRelationWidget): Hide query
+	  widgets in child panels. Reducesize of tuplle-function icons from
+	  20 to 16 pixels. Move mini-editor button into tuple-function
+	  group.
+
+2001-09-19 22:30  source
+
+	* qtmarvin/qmvsqlquery.cpp: * qtmarvin/qmvsqlquery.cpp
+	  (QmvQueryWidget): Hide limit and offset
+	  while testing tighter geometry control - TODO: parameterise.
+
+2001-09-19 22:29  source
+
+	* qtmarvin/qmvicons.cpp: * qtmarvin/qmvicons.cpp (makeTextPixmap):
+	  Reduce size of pixmaps
+	  to 14x16
+
+2001-09-11 01:49  source
+
+	* qtmarvin/qmvapplication.cpp: minor initialisation (debug)
+
+2001-09-11 01:42  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qtmarvin/qmvrelationwidget.cpp (QmvRelationWidget): Remove
+	  extraneous splitter.
+	  (hideEditPanel): new method
+	  (showEditPanel): new method
+
+2001-09-11 01:42  source
+
+	* qtmarvin/qmvexport.cpp: * qtmarvin/qmvexport.cpp
+	  (writePalmDBFiles): Write multiple view
+	  specification objects.
+
+2001-09-11 01:42  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: * qtmarvin/qmvdb.cpp
+	  (setRelationHierarchyByName): Opaque moves.
+	  (QmvDBWidget): Cleanup object names
+
+2001-09-11 01:41  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: *
+	  qtmarvin/qmvapplication.cpp (objectTree):
+	  (objectTree): Debug methods.
+	  
+	  * qtmarvin/qmvapplication.cpp (addDB): Add a layout manager for
+	  widgetstack.
+
+2001-09-01 03:53  source
+
+	* schema/marvin/mtfn-addconstraints.sql: transferred to
+	  mtfn-crea.sql
+
+2001-09-01 03:52  source
+
+	* schema/marvin/mtfn-crea.sql: Add contraints
+
+2001-09-01 03:50  source
+
+	* schema/marvin/mtat-addconstraints.sql: transferred to
+	  mtat-crea.sql
+
+2001-09-01 03:50  source
+
+	* schema/marvin/mtat-crea.sql: include cfk contraints
+
+2001-09-01 03:49  source
+
+	* schema/marvin/mtrl-addconstraints.sql: transferred to
+	  mtrl-crea.sql
+
+2001-09-01 03:40  source
+
+	* schema/marvin/mtrl-triggers.sql: minor
+
+2001-09-01 03:39  source
+
+	* schema/marvin/mtrl-crea.sql: simplify defaults
+	  include fk constraints from addconstraints.sql
+
+2001-09-01 03:38  source
+
+	* schema/marvin/local.mk: update GLOBALFUNCTIONS and VIEWS
+
+2001-09-01 03:38  source
+
+	* schema/marvin/create_metadata.sql: transfer from dbmarvin dir
+
+2001-09-01 03:33  source
+
+	* schema/marvin/create_links.sql: first cut - create entries for
+	  mtrl and mtfk
+
+2001-09-01 03:33  source
+
+	* Makefile: enable debugging messages
+
+2001-08-27 10:39  source
+
+	* qtmarvin/qmvexport.cpp, qtmarvin/qmvexport.h: *
+	  qtmarvin/qmvexport.cpp (writePalmDBFiles): New method to create
+	  palm DB files for the pilot-db package.
+	  (setInstaller): Set the install string which is used to transfer
+	  the PalmDB file to its destination.
+
+2001-08-27 10:36  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qtmarvin/qmvrelationwidget.cpp
+	  (addToSet): Force a set reload
+	  after insert if is a child relation. This allows full display of
+	  new rows in context. In some cases more than one row can be
+	  inserted ( eg via trigger), and this ensures that all rows are
+	  displayed.
+
+2001-08-26 08:12  source
+
+	* pixmaps/marvin_logo.xpm: first cut
+
+2001-08-26 08:11  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: *
+	  qtmarvin/qmvapplication.cpp (sessionFileName): new method
+	  (saveGeometry): new method
+	  (restoreGeometry): new method
+	  (closeEvent): modify to save main window geometry on exit.
+
+2001-08-26 01:59  source
+
+	* pgmarvin/Makefile, qtkugar/Makefile: Use ranlib separately from
+	  ar
+
+2001-08-24 03:38  source
+
+	* qtmarvin/Makefile: Use ranlib separately instead of from ar.
+
+2001-08-24 03:37  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: *
+	  qtmarvin/qmvapplication.cpp(qmvapplication_version): ident
+	  string. Add label/logo support. New methods to maintain
+	  apppath. New method to display schema graphic.
+
+2001-08-21 05:55  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: Convert panel hierachy to
+	  use an overall widget, with child
+	  panels. This allows multiple panel hierarchies to be maintained
+	  intact.
+
+2001-08-21 05:54  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvsqlquery.cpp: add exception.
+
+2001-08-21 05:52  source
+
+	* qtmarvin/qmvapplication.cpp: selectTopParent ->
+	  setRelationHierarchyByTitle
+
+2001-08-21 05:51  source
+
+	* qtmarvin/qmvaccess.cpp: minor cleanup
+
+2001-08-12 08:15  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qmvrelationwidget.cpp (selectChildRelationWidget): new method.
+	  Cleanup display handling in delete and add.
+	  
+	  * qmvrelationwidget.cpp (selectChildRelationWidget): new method -
+	  remotely select child relation
+
+2001-08-12 08:13  source
+
+	* qtmarvin/qmvclass.cpp: * qmvclass.cpp (open): test sql return
+	  value before proceeding in loop.
+
+2001-08-12 08:12  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h:
+	  displayQuerySet(),displayChildSet(),formSet(),formReport(): New
+	  methods.
+	  utilities: - newactiongroup etc
+
+2001-08-11 08:09  source
+
+	* schema/marvin/fmdt-addconstraints.sql,
+	  schema/marvin/fmdt-crea.sql: constraints moved to crea file
+
+2001-08-11 08:05  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qmvrelationwidget.cpp (relationQuery): new method - handle types
+	  of change to relation objects.
+
+2001-08-11 06:14  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: Multi-part keys
+
+2001-08-11 06:13  source
+
+	* qtmarvin/qmvtable.cpp: Cleanup erro rmessage
+
+2001-08-11 06:13  source
+
+	* qtmarvin/qmvsqlquery.cpp: Unify query signal
+
+2001-08-11 06:12  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  allow multi-key indexes
+
+2001-08-09 04:21  source
+
+	* schema/marvin/mtrl-triggers.sql: fisrt cut
+
+2001-08-06 11:39  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvtable.cpp,
+	  qtmarvin/qmvtable.h: debug table synchronisation
+
+2001-08-06 11:38  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: *
+	  qmvapplication.cpp (addToActionGroup): New method to encapsulate
+	  creation of QActions.
+
+2001-08-05 22:00  source
+
+	* qtmarvin/qmvaccess.cpp: * qmvaccess.cpp (QmvAccess): replace
+	  getlogin() with getpwuid().
+
+2001-08-05 05:53  source
+
+	* qtmarvin/Makefile, qtmarvin/qmvimport.cpp, qtmarvin/qmvimport.h:
+	  add qmvimport - not yet functional
+
+2001-08-05 05:30  source
+
+	* qtmarvin/qmvrelationwidget.cpp: bugfix: improve update display
+	  logic. Use QHeader for field labels in minieditor
+
+2001-08-04 03:18  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: cleanup to
+	  facilitate minieditor in qmvrelationwidget
+
+2001-08-04 03:05  source
+
+	* qtmarvin/qmvsqlquery.cpp: allow for no-label classes
+
+2001-08-04 03:02  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  Add mini-editor table for single-row vertical stack editing.
+
+2001-08-04 03:01  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: Refine access control
+
+2001-08-04 03:01  source
+
+	* qtmarvin/qmvclass.cpp: debug access control
+
+2001-08-04 02:30  source
+
+	* pgmarvin/sql.c: fix datatype typo
+
+2001-07-29 05:00  source
+
+	* schema/marvin/local.mk: add GLOBALFUNCTIONS
+
+2001-07-29 05:00  source
+
+	* schema/marvin/byteaparam.sql, schema/marvin/mtsv-crea.sql: first
+	  version
+
+2001-07-27 02:32  source
+
+	* ChangeLog: MARVIN_3_0_5
+	  PRAC_3_0_5
+
+2001-07-25 05:37  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: * qmvdb.cpp
+	  (getRelationWidget): New method, returns the display
+	  object (QmvRelationWidget class) assoicated with a relation
+	  object
+	  (Qmv*Class class).
+
+2001-07-25 05:36  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: *
+	  qmvapplication.cpp (displayQuerySet): New method to facilitate
+	  query access to relation display objects.
+
+2001-07-25 01:25  source
+
+	* qtmarvin/qmvform.cpp: minor layour change.
+
+2001-07-24 07:04  source
+
+	* schema/marvin/form-crea.sql: Add form_includes to allow merging
+	  of standard detail
+
+2001-07-24 07:03  source
+
+	* qtmarvin/qmvform.cpp: * qmvform.cpp (initForm): Add support for
+	  included form details (
+	  eg letterheads)
+
+2001-07-24 07:02  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvrelationwidget.cpp,
+	  qtmarvin/qmvsqlquery.cpp: cleanup whatsthis text
+
+2001-07-24 07:00  source
+
+	* pixmaps/print.xpm, pixmaps/quit.xpm: new version
+
+2001-07-24 06:59  source
+
+	* pixmaps/delete.xpm, pixmaps/export.xpm, pixmaps/import.xpm,
+	  pixmaps/left1arrow.xpm, pixmaps/left2arrow.xpm,
+	  pixmaps/newpage.xpm, pixmaps/redball.xpm,
+	  pixmaps/right1arrow.xpm, pixmaps/right2arrow.xpm: First cut
+
+2001-07-24 03:48  source
+
+	* Makefile: Standardise meta target names
+
+2001-07-22 23:05  source
+
+	* qtmarvin/qmvrelationwidget.cpp: typo
+
+2001-07-22 23:05  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qmvrelationwidget.cpp
+	  (QmvRelationWidget): Improve
+	  pixmaps. Consolidate print/form functions.
+
+2001-07-22 23:01  source
+
+	* qtmarvin/qmvsqlquery.cpp, qtmarvin/qmvsqlquery.h: Replace
+	  operator buttons with combolist.
+	  Add "go" button (select where)
+
+2001-07-22 23:00  source
+
+	* qtmarvin/qmvform.cpp: Standardise navigation icons
+
+2001-07-22 22:59  source
+
+	* qtmarvin/qmvicons.cpp, qtmarvin/qmvicons.h: extend icon list
+
+2001-07-22 22:58  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: add database close() method
+
+2001-07-22 22:57  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: *
+	  qmvapplication.cpp (restart): Add restart function.
+
+2001-07-16 05:48  source
+
+	* qtmarvin/qmvsqlquery.cpp, qtmarvin/qmvsqlquery.h: *
+	  qmvsqlquery.cpp (updateRelationSet): redefine as bool, to handle
+	  cancelled queries.
+
+2001-07-16 05:48  source
+
+	* qtmarvin/qmvform.cpp: * qmvform.cpp (initForm): Fix math error.
+
+2001-07-08 22:36  source
+
+	* qtmarvin/qmvapplication.cpp: Cleanup
+
+2001-07-08 06:33  source
+
+	* pgmarvin/Makefile: Fix cproto target
+
+2001-07-08 06:33  source
+
+	* pgmarvin/sql.c, pgmarvin/sql.h: * pgmarvin/sql.c: New functions
+	  for asynchronous queries.
+
+2001-07-08 06:33  source
+
+	* pgmarvin/dbi_pg.c, pgmarvin/dbi_pg.h: * pgmarvin/dbi_pg.c: New
+	  functions for asynchronous queries.
+
+2001-07-08 06:32  source
+
+	* qtmarvin/qmvsqlquery.cpp: * qmvsqlquery.cpp (updateRelationSet):
+	  Add a progress dialog.
+
+2001-07-08 06:32  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qmvrelationwidget.cpp (displayList): Add a progress dialog.
+
+2001-07-08 06:32  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: * qmvclass.cpp
+	  (open): Add optional progress-dialog. Convert to
+	  use asynchronous query methods.
+
+2001-07-07 01:00  source
+
+	* pgmarvin/sql.c: * pgmarvin/sql.c (r_sql_exec): Return -2 if
+	  non_fatal error.
+
+2001-07-06 07:04  source
+
+	* qtmarvin/qmvform.cpp, qtmarvin/qmvform.h: * qmvform.h (class
+	  QmvForm:parseRepeat,escapeXML,formatField): New methods
+	  
+	  * qmvform.cpp (initForm): Cleanup sub-sets. Add page numbers
+	  (_PAGE) for subsets (N of M). Add item numbers (_ITEM) for
+	  subset.
+
+2001-07-05 03:21  source
+
+	* qtmarvin/qmvform.cpp: Standardise detail section - use
+	  formatSelect()
+
+2001-07-04 22:11  source
+
+	* qtmarvin/qmvsqlquery.cpp: * qmvsqlquery.cpp (orderbyChanged):
+	  Update query set when order-by changes.
+
+2001-07-04 22:11  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qmvrelationwidget.cpp
+	  (formSet): the form table now has specific
+	  attribute for base-table - use this in search for forms.
+
+2001-07-04 22:09  source
+
+	* qtmarvin/qmvform.cpp: * qmvform.cpp (initForm): Add hack to pad
+	  pages if "break"
+	  attribute defined in form.
+
+2001-07-04 10:39  source
+
+	* schema/marvin/form-crea.sql: * schema/marvin/form-crea.sql: Add
+	  2 new fields - form_classname
+	  as underlying table/view, and form_page_attribute as the
+	  attribute
+	  to force a page-break.
+
+2001-07-04 07:00  source
+
+	* schema/marvin/fmdt-addconstraints.sql: cascade on delete
+
+2001-07-04 06:59  source
+
+	* schema/marvin/fmdt-crea.sql: alter default font size to 8
+
+2001-07-04 05:45  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qmvrelationwidget.cpp
+	  (formSet): Hide formviewer before display.
+
+2001-07-04 05:45  source
+
+	* qtmarvin/qmvform.cpp: * qmvform.cpp (initForm): Escape quoting.
+
+2001-07-04 03:02  source
+
+	* schema/marvin/fmdt-crea.sql: change misc defaults
+
+2001-07-04 02:17  source
+
+	* Makefile: * Makefile (PROGRAM_TARGET_LIST): Add dumpforms and
+	  loadforms
+	  (newprogram): Add qmvapplication
+
+2001-07-03 22:17  source
+
+	* qtkugar/Doxyfile, qtkugar/Makefile, qtkugar/main.cpp,
+	  qtkugar/qtkugar.cpp, qtkugar/qtkugar.h: First cut
+
+2001-07-03 22:15  source
+
+	* qtkugar/mreportviewer.cpp: * qtkugar/mreportviewer.cpp
+	  (slotRenderProgress): Temporary fix to
+	  core-dump in progress monitoring.
+
+2001-07-03 22:03  source
+
+	* qtkugar, qtkugar/Makefile.am, qtkugar/Makefile.in,
+	  qtkugar/kugar.h, qtkugar/mcalcobject.cpp, qtkugar/mcalcobject.h,
+	  qtkugar/mfieldobject.cpp, qtkugar/mfieldobject.h,
+	  qtkugar/mlabelobject.cpp, qtkugar/mlabelobject.h,
+	  qtkugar/mlineobject.cpp, qtkugar/mlineobject.h,
+	  qtkugar/mpagecollection.cpp, qtkugar/mpagecollection.h,
+	  qtkugar/mpagedisplay.cpp, qtkugar/mpagedisplay.h,
+	  qtkugar/mreportdetail.cpp, qtkugar/mreportdetail.h,
+	  qtkugar/mreportengine.cpp, qtkugar/mreportengine.h,
+	  qtkugar/mreportobject.cpp, qtkugar/mreportobject.h,
+	  qtkugar/mreportsection.cpp, qtkugar/mreportsection.h,
+	  qtkugar/mreportviewer.cpp, qtkugar/mreportviewer.h,
+	  qtkugar/mspecialobject.cpp, qtkugar/mspecialobject.h,
+	  qtkugar/mutil.cpp, qtkugar/mutil.h: Initial revision
+
+2001-07-03 21:51  source
+
+	* schema/marvin/mtfn-triggers.sql: first cut
+
+2001-07-03 21:51  source
+
+	* schema/marvin/local.mk: add form,fmdt
+
+2001-07-03 21:41  source
+
+	* qtmarvin/qmvtupleattribute.h: * qmvtupleattribute.cpp
+	  (writeXMLDeclaration): new method for schema export.
+	  (writeXMLData): new method for data export.
+
+2001-07-03 21:41  source
+
+	* qtmarvin/qmvtuple.cpp, qtmarvin/qmvtuple.h: * qmvtuple.cpp
+	  (writeXMLDeclaration): new method for schema export.
+	  (writeXMLData): new method for data export.
+
+2001-07-03 21:40  source
+
+	* qtmarvin/qmvsqlquery.cpp, qtmarvin/qmvsqlquery.h: *
+	  qmvsqlquery.cpp: Add selectors to set SQL limit and offset.
+
+2001-07-03 10:32  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qmvrelationwidget.cpp (deleteFromSet): Add warning if no row
+	  selected.
+	  (exportSet): Export to XMl via QmvExport.
+	  (formSet): Slot interface method.
+
+2001-07-03 10:29  source
+
+	* qtmarvin/qmvform.cpp, qtmarvin/qmvform.h: * qmvform.cpp
+	  (formatSelect): standardised type-selector interface.
+	  (formatCalculationType): New method implements aggregates.
+	  (formatSpecial): New method implements current date and page
+	  number.
+
+2001-07-03 10:27  source
+
+	* qtmarvin/qmvexport.cpp, qtmarvin/qmvexport.h: * qmvexport.cpp
+	  (writeXMLDeclaration): new method for schema export.
+	  (writeXMLData): new method for data export.
+
+2001-07-03 10:25  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: * qmvclass.cpp
+	  (writeXMLDeclaration): new method for schema export.
+	  (writeXMLData): new method for data export.
+	  (attribute): Modify interface - return pointer instead of
+	  reference.
+	  (attributeNamebyTitle): New method - return attribute name of
+	  attribute title (non-indexed)
+
+2001-07-03 10:22  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h: *
+	  qmvattribute.cpp (writeXMLDeclaration): new method for schema
+	  export.
+	  (writeXMLData): new method for data export.
+
+2001-06-26 05:06  source
+
+	* schema/marvin/fmdt-crea.sql: minor changes
+
+2001-06-26 05:05  source
+
+	* qtmarvin/Makefile, qtmarvin/qmvapplication.cpp,
+	  qtmarvin/qmvexport.cpp, qtmarvin/qmvexport.h,
+	  qtmarvin/qmvform.cpp, qtmarvin/qmvform.h,
+	  qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h,
+	  qtmarvin/qmvselect.cpp, qtmarvin/qmvselect.h: Add new classes
+	  qmvform,qmvselect,qmvexport.
+	  Add references to qtkugar( XML rendering report library)
+
+2001-06-26 05:00  source
+
+	* pixmaps/down_arrow.xpm, pixmaps/left_arrow.xpm,
+	  pixmaps/quit-up.xpm, pixmaps/right_arrow.xpm,
+	  pixmaps/up_arrow.xpm: Imported from emacs-21
+
+2001-06-23 00:15  source
+
+	* schema/marvin/fmdt-addconstraints.sql,
+	  schema/marvin/fmdt-crea.sql, schema/marvin/form-crea.sql,
+	  schema/marvin/form-triggers.sql: First version - transferred
+	  from prac
+
+2001-06-22 01:30  source
+
+	* schema/marvin/mtrl-crea.sql: * schema/marvin/mtrl-crea.sql:
+	  change default to harmless fk dummies.
+
+2001-06-20 07:47  source
+
+	* qtmarvin/Makefile: minor cleanup
+
+2001-06-20 05:42  source
+
+	* qtmarvin/Makefile: * Makefile (MARVINCLASSES): add
+	  QmvApplication.
+
+2001-06-20 05:41  source
+
+	* qtmarvin/qmvapplication.cpp, qtmarvin/qmvapplication.h: *
+	  qmvapplication.cpp (QmvApplication): Adjust visibility after
+	  subclassing XpracMan (the original source for this class).
+
+2001-06-19 09:14  source
+
+	* qtmarvin/qmvrelationwidget.cpp: (printSet): add wait-cursor
+
+2001-06-19 02:18  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qmvrelationwidget.cpp
+	  (selectCurrentRow): Always set current_row
+	  and emit tupleSelected() signal.
+
+2001-06-18 05:34  source
+
+	* qtmarvin/qmvtuple.cpp: * qmvtuple.cpp (save): Use explicit
+	  "null" where new string is
+	  null.
+
+2001-06-17 03:46  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qmvrelationwidget.cpp (importSet): new method - not implemented
+	  yet.
+	  (deleteFromSet): Check for current_row before deleting.
+
+2001-06-17 03:20  source
+
+	* qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h: *
+	  qmvtupleattribute.cpp (restore): new method to revert to
+	  previous value.
+
+2001-06-17 03:20  source
+
+	* qtmarvin/qmvtable.cpp: * qmvtable.cpp (setContentFromEditor):
+	  Check results of save, and
+	  popup messagebox and revert if error occurred.
+
+2001-06-17 02:48  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qmvrelationwidget.cpp (QmvRelationWidget): add "none" option
+	  button to child relations.
+	  (getCurrentSelection): new method to get list of parent keys for
+	  multi-selection.
+	  (selectChild, emitClicked): multiselection.
+	  (addToSet): Multi-add if multiselection in parent.
+
+2001-06-17 02:45  source
+
+	* qtmarvin/qmvdb.cpp: * qmvdb.cpp (selectChild): If null relname,
+	  then trigger focus to
+	  current pane.
+
+2001-06-17 02:44  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: * qmvclass.cpp
+	  (selectChildQuery): change from single value to
+	  stringlist, to allow mulitple parent selections.
+
+2001-06-16 08:22  source
+
+	* Makefile: Convert to dbmarvin dependency
+
+2001-06-15 10:17  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qmvrelationwidget.cpp (QmvRelationWidget): Add tuple-function
+	  buttons.
+
+2001-06-15 06:50  source
+
+	* qtmarvin/qmvsqlquery.cpp, qtmarvin/qmvsqlquery.h: *
+	  qmvsqlquery.cpp (QmvSqlQuery): getListPosition() new method,
+	  returns combolist position of argument in attribute title list.
+	  (sqlCondition): Refine comparisons for timestamps.
+	  (QmvConditionWidget): Set initial attribute to the userLabel
+	  attribute.
+	  (QmvConditionWidget): Disable query activate on attribute change.
+
+2001-06-15 00:57  source
+
+	* qtmarvin/qmvtuple.cpp: * qmvtuple.cpp (save): Cleanup insert
+	  logic. First try is via
+	  TABLE_insert_row() function (to allow for views), then via
+	  "default values"; any preset values are then entered via an
+	  "update".
+
+2001-06-15 00:56  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qmvrelationwidget.cpp
+	  (addToSet): Delay persistent insertion
+	  until parent data is added.
+
+2001-06-15 00:56  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: * qmvclass.cpp
+	  (newTuple): Add boolean argument to autosave by default.
+
+2001-06-12 02:12  source
+
+	* qtmarvin/qmvtuple.cpp: * qmvtuple.cpp (save): Escape the single
+	  quote in input strings.
+
+2001-06-12 02:11  source
+
+	* qtmarvin/qmvsqlquery.cpp: * qmvsqlquery.cpp (sqlCondition):
+	  escape single quote in query string.
+
+2001-06-09 01:53  source
+
+	* qtmarvin/qmvsqlquery.cpp: * qmvsqlquery.cpp (sqlCondition):
+	  Strip whitespace from query
+	  string.
+
+2001-06-07 05:51  source
+
+	* qtmarvin/qmvclass.cpp: * qmvclass.cpp (save): fix cursor
+	  restoration;
+
+2001-06-06 05:09  source
+
+	* qtmarvin/qmvsqlquery.cpp: * qmvsqlquery.cpp (sqlCondition):
+	  allow for null searching.
+
+2001-06-06 05:09  source
+
+	* qtmarvin/qmvtuple.cpp: * qmvtuple.cpp (save): User serialKey()
+	  for updates.
+
+2001-06-06 05:08  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: * qmvclass.cpp
+	  (serialKey): method accesssing CLASS__sequence attribute.
+	  
+	  * qmvclass.cpp (save): add wait-cursor.
+
+2001-06-05 23:25  source
+
+	* schema/marvin, schema/marvin/local.mk,
+	  schema/marvin/mtat-addconstraints.sql,
+	  schema/marvin/mtat-crea.sql, schema/marvin/mtat-functions.sql,
+	  schema/marvin/mtcl-crea.sql, schema/marvin/mtcl-functions.sql,
+	  schema/marvin/mtfn-addconstraints.sql,
+	  schema/marvin/mtfn-crea.sql,
+	  schema/marvin/mtrl-addconstraints.sql,
+	  schema/marvin/mtrl-crea.sql: * schema/marvin/mtat-crea.sql:
+	  transferred from prac schema to this
+	  central location.
+
+2001-06-03 06:01  source
+
+	* qtmarvin/qmvattlist.cpp, qtmarvin/qmvattribute.cpp,
+	  qtmarvin/qmvattribute.h, qtmarvin/qmvclass.cpp,
+	  qtmarvin/qmvclass.h, qtmarvin/qmvdb.cpp, qtmarvin/qmvedit.cpp,
+	  qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvsqlquery.cpp,
+	  qtmarvin/qmvtuple.cpp: Convert meta_CLASS references to
+	  mt{cl,at,fn,rl} references, as the
+	  naming of meta classes has been normalised.
+
+2001-05-31 21:59  source
+
+	* qtmarvin/qmvtupleattribute.h: * qmvtupleattribute.h (class
+	  QmvTupleAttribute::accessMethod()):
+	  new method.
+
+2001-05-31 21:59  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qmvrelationwidget.cpp
+	  (displayRow): Incorporate accessMethod().
+	  
+	  * qmvrelationwidget.cpp (clearTable): Add clearCellWidget() -
+	  fixes persistent edit widget bug.
+
+2001-05-31 21:59  source
+
+	* qtmarvin/qmvclass.cpp: * qmvclass.cpp (QmvSqlClass): set access
+	  method.
+
+2001-05-31 21:24  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: * qmvdb.cpp (focusPanel):
+	  new method for remote panel selection.
+
+2001-05-31 21:22  source
+
+	* qtmarvin/qmvclass.cpp: * qmvclass.cpp (open): add wait cursor.
+
+2001-05-31 21:15  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h: *
+	  qmvattribute.cpp (setInputMethod): Split off access attributes
+	  to separate method. Add MULTILINE.
+	  (setAccessMethod): New method.
+
+2001-05-27 23:01  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: * qmvtable.cpp
+	  (setContentFromEditor): call for row redisplay
+	  after update.
+	  (redisplayRow,reloadRequest): interface method and signal for
+	  reload of row.
+
+2001-05-27 23:01  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qmvrelationwidget.cpp (displayRow): method (slot) to load single
+	  row of table.
+
+2001-05-27 21:59  source
+
+	* qtmarvin/qmvtable.cpp: * qmvtable.cpp (createEditor): disable
+	  qmvcombobox, on edit move
+	  cursor to beginning of field, and select-all.
+
+2001-05-27 21:59  source
+
+	* qtmarvin/qmvrelationwidget.cpp: * qmvrelationwidget.cpp
+	  (displayList): change edit style to
+	  "WhenCurrent".
+
+2001-05-27 13:10  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h: *
+	  qmvrelationwidget.h,qmvrelationwidget.cpp (QmvRelationWidget):
+	  New signal - tupleSelected().
+
+2001-05-27 13:09  source
+
+	* qtmarvin/qmvdb.h: * qmvdb.h (class QmvDBWidget): New methods
+	  registerSelectedTuple(), getSelectedTuple().
+
+2001-05-27 13:08  source
+
+	* qtmarvin/qmvdb.cpp: * qmvdb.cpp (registerSelectedTuple): new
+	  method. Register selected
+	  tuples in visible panes.
+	  (getSelectedTuple): locate a registered tuple by relation name.
+
+2001-05-25 02:31  source
+
+	* qtmarvin/qmvtuple.cpp: qmvtuple.cpp (save): Allow for SQL
+	  functions (TABLE_insert_row() )
+	  to handle inserts ) eg into VIEWS.
+
+2001-05-23 21:39  source
+
+	* qtmarvin/qmvtuple.cpp: save(): change logic to include "default
+	  values" inserts
+
+2001-05-23 21:38  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: change save strategy
+	  - via parent relation
+
+2001-05-23 21:37  source
+
+	* qtmarvin/qmvrelationwidget.cpp: add message if new insert fails
+
+2001-05-23 21:37  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: limit fk queries to 100
+	  silence missing-child popup.
+
+2001-05-23 21:36  source
+
+	* qtmarvin/qmvcombobox.cpp: suppress auto-popup of list after query
+
+2001-05-23 21:35  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: limit fk queries to
+	  100
+
+2001-05-23 21:34  source
+
+	* qtmarvin/qmvattribute.cpp: extendList(): limit fk queries to 100
+
+2001-05-23 21:20  source
+
+	* Makefile: loadmetameta: new target for loading the meta-meta data
+
+2001-05-22 22:49  source
+
+	* qtmarvin/qmvsqlquery.cpp: Strip clauses after WHERE clause in
+	  base_query, to allow append of subqueries.
+
+2001-05-22 22:49  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  Modify mouse button flow - rightbutton-> menu.
+	  Add delete
+
+2001-05-20 07:19  source
+
+	* qtmarvin/qmvsqlquery.cpp, qtmarvin/qmvsqlquery.h:
+	  QmvSqlQuery::getLimit(),setLimit(),getOffset(),setOffset(): new
+	  methods to control query. - not user-settable yet, default to
+	  200,0
+	  
+	  QmvQueryWidget::atActivated(),ptActivated(),opActivated(); new
+	  methods
+	  to control flow of query construction.
+
+2001-05-20 07:13  source
+
+	* qtmarvin/Makefile: change include order
+
+2001-05-16 23:24  source
+
+	* Makefile: add DBTITLE
+
+2001-05-16 21:18  source
+
+	* qtmarvin/qmvclass.cpp: add order-by to child query
+
+2001-05-16 06:55  source
+
+	* qtmarvin/qmvtupleattribute.h: extendList(): add option to
+	  replace list.
+
+2001-05-16 06:55  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: tune widget focus
+	  flow
+
+2001-05-16 06:54  source
+
+	* qtmarvin/qmvsqlquery.cpp, qtmarvin/qmvsqlquery.h: extend
+	  parent-child interaction
+	  introduce base query.
+
+2001-05-16 06:52  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvrelationwidget.cpp,
+	  qtmarvin/qmvrelationwidget.h: extend parent-child interaction
+
+2001-05-16 06:50  source
+
+	* qtmarvin/qmvcombobox.cpp, qtmarvin/qmvcombobox.h: updateList(),
+	  inputCompleted(): new methods
+
+2001-05-16 06:49  source
+
+	* qtmarvin/qmvclass.cpp: debug - sql error status
+
+2001-05-16 06:49  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h: minor
+	  cleanup of list maintenance methods
+
+2001-05-15 21:50  source
+
+	* pgmarvin/test_dbi.c: upgrade interface to dbi_connect()
+
+2001-05-15 21:45  source
+
+	* pgmarvin/sql.c: fix default connection indicator - is now
+	  dynamic, no longer 0
+
+2001-05-12 10:27  source
+
+	* pgmarvin/sql.c: sql_error(): bugfix
+
+2001-05-12 06:07  source
+
+	* qtmarvin/qmvtuple.cpp, qtmarvin/qmvtupleattribute.h: rearrange
+	  includes
+	  cleanup debugs
+
+2001-05-12 06:07  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: activate saves to
+	  persistent storage
+
+2001-05-12 06:03  source
+
+	* qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  addToSet(): new method- on utilities menu
+	  remove QmvEditor widget.
+	  load child relations.
+	  catch exceptions thrown from QmvClass::selectChildQuery().
+
+2001-05-12 05:59  source
+
+	* qtmarvin/qmvcombobox.cpp, qtmarvin/qmvcombobox.h,
+	  qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h: rearrange includes
+
+2001-05-12 05:58  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: loadForeignRelations():
+	  new method
+
+2001-05-12 05:56  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: Modify methods to
+	  facilitate handling child relations.
+
+2001-05-12 05:55  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h: add
+	  reference to parent relation.
+	  rearrange includes. Modify methods to facilitate handling
+	  foreign relations.
+
+2001-05-12 05:52  source
+
+	* qtmarvin/qmvaccess.cpp, qtmarvin/qmvaccess.h: rearrange includes
+
+2001-05-07 04:25  source
+
+	* qtmarvin/qmvtupleattribute.h:
+	  getLabelList(),getValueByLabel(),getIndexByLabel(),getLabelByValue(),addToList():
+	  shuttle methods to qmvattribute class.
+
+2001-05-07 04:22  source
+
+	* qtmarvin/qmvtable.cpp: createEditor(), setContentFromEditor():
+	  complete implementation
+
+2001-05-07 04:20  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvrelationwidget.cpp: fix layout
+	  maintenance.
+
+2001-05-07 04:17  source
+
+	* qtmarvin/qmvclass.cpp: loadForeignRelations(): implement lists
+	  for qmcombobox objects.
+
+2001-05-07 04:14  source
+
+	* qtmarvin/qmvcombobox.cpp, qtmarvin/qmvcombobox.h:
+	  setCurrentLabel(): new method
+	  implement throws, establish connection through
+	  qmvtupleattribute->qmvattribute chain.
+
+2001-05-07 04:06  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h:
+	  getLabelList(), getValueByLabel(), getIndexByLabel()
+	  setList(),addToList(): new functions
+
+2001-04-29 23:44  source
+
+	* pgmarvin/sql.c: r_sql_dbconnect(): do not use ENV as default.
+
+2001-04-29 23:38  source
+
+	* qtmarvin/Makefile, qtmarvin/qmv.h, qtmarvin/qmvaccess.cpp,
+	  qtmarvin/qmvaccess.h, qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h,
+	  qtmarvin/qmvwkspwindow.cpp, qtmarvin/qmvwkspwindow.h: Refine
+	  Access API
+
+2001-04-29 23:37  source
+
+	* qtmarvin/qmvexception.cpp, qtmarvin/qmvexception.h: first cut
+
+2001-04-25 22:55  source
+
+	* Makefile: add PGINC and PGLIB
+
+2001-04-25 22:54  source
+
+	* pgmarvin/dbi_pg.c, pgmarvin/dbi_pg.h, pgmarvin/sql.c,
+	  pgmarvin/sql.h, qtmarvin/qmvaccess.cpp, qtmarvin/qmvaccess.h,
+	  qtmarvin/qmvcombobox.h, qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h,
+	  qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h,
+	  qtmarvin/qmvsqlquery.h, qtmarvin/qmvtable.h,
+	  qtmarvin/qmvwkspwindow.cpp, qtmarvin/qmvwkspwindow.h: Allow
+	  multiple db connections.
+	  Extend arglist for db connection to include user and password.
+
+2001-04-25 22:53  source
+
+	* pgmarvin/Makefile: Add target for cproto
+
+2001-04-22 04:31  source
+
+	* qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h:
+	  use guarded pointer
+
+2001-04-22 04:30  source
+
+	* qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: begin integration
+	  with input methods.
+
+2001-04-22 04:28  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: cleanup sql interface -
+	  now multi-connection is available in sql.o.
+	  Integrate qmvaccess
+
+2001-04-22 04:27  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h,
+	  qtmarvin/qmvcombobox.cpp, qtmarvin/qmvcombobox.h: cleanup
+	  foreign-relation methods.
+
+2001-04-22 04:25  source
+
+	* qtmarvin/qmvattribute.cpp: set input method for foreign keys
+
+2001-04-22 04:22  source
+
+	* qtmarvin/Makefile, qtmarvin/qmv.h: qmvaccess, qmvrelationwidget
+	  : new classes
+
+2001-04-22 04:21  source
+
+	* qtmarvin/qmvaccess.cpp, qtmarvin/qmvaccess.h,
+	  qtmarvin/qmvrelationwidget.cpp, qtmarvin/qmvrelationwidget.h:
+	  first cut
+
+2001-04-13 06:58  source
+
+	* qtmarvin/qmvcombobox.cpp, qtmarvin/qmvcombobox.h,
+	  qtmarvin/qmvtable.cpp, qtmarvin/qmvtable.h: first cut
+
+2001-04-13 06:57  source
+
+	* qtmarvin/qmvtupleattribute.h: const adjust
+
+2001-04-13 06:57  source
+
+	* qtmarvin/qmvsqlquery.cpp: minor
+
+2001-04-13 06:56  source
+
+	* qtmarvin/qmvedit.cpp: minor const adjustment
+
+2001-04-13 06:56  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: dbRelation(): new method
+
+2001-04-13 06:54  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: new methods for
+	  handling foreign and child relations
+
+2001-04-13 06:53  source
+
+	* qtmarvin/qmvattribute.h: minor adjust const - to inlines
+
+2001-04-13 06:52  source
+
+	* qtmarvin/qmvattribute.cpp: minor adjust const
+
+2001-04-13 06:52  source
+
+	* qtmarvin/Makefile, qtmarvin/qmv.h: add qmvtable and qmvcombobox
+
+2001-04-10 01:02  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: selectChildQuery():
+	  listChildRelations(): new methods.
+	  sortedAttlist(): add NoZero, NoNeg, NoPos to filters
+
+2001-04-10 00:59  source
+
+	* qtmarvin/qmvattlist.cpp, qtmarvin/qmvattlist.h: print(): new
+	  method
+
+2001-04-01 21:12  source
+
+	* qtmarvin/qmvsqlquery.cpp: typo
+
+2001-03-26 03:57  source
+
+	* qtmarvin/qmvattlist.cpp: fix bug in sort order for integers
+
+2001-03-25 21:50  source
+
+	* qtmarvin/qmvsqlquery.cpp, qtmarvin/qmvsqlquery.h: build query
+	  widget for integration with QmvEdit widget.
+	  Has multi-condition capability, but this is not yet
+	  user-accessible
+	  (needs a widget)
+
+2001-03-25 21:42  source
+
+	* qtmarvin/qmvicons.cpp, qtmarvin/qmvicons.h: add new pixmap from
+	  file (close.xpm)
+	  makeTextButton(): new method
+
+2001-03-25 21:40  source
+
+	* qtmarvin/qmvedit.cpp: add comments
+	  minor layout-management changes
+
+2001-03-25 21:39  source
+
+	* qtmarvin/qmvdb.cpp: add sql query widget
+
+2001-03-25 21:36  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: add debugs
+	  add methods for reading meta_class attributes
+
+2001-03-25 21:31  source
+
+	* qtmarvin/qmvattlist.h: minor
+
+2001-03-25 21:29  source
+
+	* qtmarvin/Doxyfile: break docs into html hierarchy
+
+2001-03-25 20:16  source
+
+	* pixmaps/close.xpm: first cut
+
+2001-03-20 11:19  source
+
+	* pixmaps/book.xpm, pixmaps/quit.xpm, pixmaps/right_arrow.xpm,
+	  pixmaps/whatsthis.xpm: first cut
+
+2001-03-20 11:09  source
+
+	* qtmarvin/qmvhelp.cpp: fix path
+
+2001-03-20 11:08  source
+
+	* qtmarvin/Makefile: add documentation targets
+
+2001-03-19 03:55  source
+
+	* qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h: minor - tooltip
+
+2001-03-19 03:52  source
+
+	* qtmarvin/qmvhelp.cpp, qtmarvin/qmvhelp.h, qtmarvin/qmvicons.cpp,
+	  qtmarvin/qmvicons.h: first cut
+
+2001-03-19 03:45  source
+
+	* qtmarvin/Makefile, qtmarvin/qmv.h: add qmvicons and qmvhelp
+
+2001-03-19 03:39  source
+
+	* pixmaps/blankpage.xpm, pixmaps/home.xpm, pixmaps/left.xpm,
+	  pixmaps/quit-up.xpm, pixmaps/right.xpm, pixmaps/textpage.xpm:
+	  new base pixmaps
+
+2001-03-14 05:29  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h,
+	  qtmarvin/qmvedit.cpp: cleanup printer interface
+
+2001-03-13 04:45  source
+
+	* qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h:
+	  online all the meta-attribute attribute methods.
+
+2001-03-13 04:44  source
+
+	* qtmarvin/qmvedit.h: relation menu (print and export)
+
+2001-03-13 04:19  source
+
+	* qtmarvin/qmvdb.h: minor enum - should perhaps be removed
+
+2001-03-13 04:19  source
+
+	* qtmarvin/qmvedit.cpp: relation menu (print and export)
+
+2001-03-13 04:15  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h:
+	  printReport(),tupleAttribute(),attributeList(),sortedAttlist():
+	  new methods.
+	  enums for attribute filters
+
+2001-03-13 04:05  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h: online all
+	  the meta-attribute attribute methods.
+
+2001-03-13 04:03  source
+
+	* qtmarvin/qmvattlist.cpp, qtmarvin/qmvattlist.h: extend data
+	  types for sort
+
+2001-03-13 04:02  source
+
+	* qtmarvin/Makefile: debug flag
+
+2001-03-05 10:15  source
+
+	* pixmaps/bkpt.xpm: *** empty log message ***
+
+2001-03-05 08:11  source
+
+	* qtmarvin/qmvtuple.cpp, qtmarvin/qmvtuple.h: emit signal when
+	  change
+
+2001-03-05 08:10  source
+
+	* qtmarvin/qmvedit.cpp, qtmarvin/qmvsqlquery.cpp,
+	  qtmarvin/qmvsqlquery.h: minor
+
+2001-03-05 08:08  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: relationChanged():
+	  signals changes
+
+2001-03-01 21:34  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: lastError(): new
+	  function
+
+2001-02-25 05:51  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvdb.cpp: conditionally load
+	  relations and foreigns
+
+2001-02-24 02:51  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: QmvDBWidget: optional
+	  display of class list and query widgets.
+
+2001-02-24 02:31  source
+
+	* pixmaps/abmr.xpm: *** empty log message ***
+
+2001-02-23 23:03  source
+
+	* pgmarvin/sql.c: error text when query-slots depleted.
+
+2001-02-23 02:00  source
+
+	* INSTALL: cleanup
+
+2001-02-14 03:52  source
+
+	* qtmarvin/qmvclass.cpp: Remove comented-out code
+
+2001-02-14 00:38  source
+
+	* qtmarvin/qmvsqlquery.cpp, qtmarvin/qmvsqlquery.h: begin to
+	  activate interface to main relations.
+	  Add internal attribute specification.
+	  Alter inheritance.
+
+2001-02-14 00:35  source
+
+	* qtmarvin/qmvdb.cpp: begin integration of query class
+
+2001-02-14 00:33  source
+
+	* qtmarvin/qmvclass.cpp: minor cosmetic
+
+2001-02-13 20:34  source
+
+	* qtmarvin/qmvwkspwindow.cpp: rename method call
+
+2001-02-13 20:34  source
+
+	* qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h:
+	  metaForeign(): new method
+	  foreigntuple: new list
+
+2001-02-13 20:30  source
+
+	* qtmarvin/qmvtuple.cpp, qtmarvin/qmvtuple.h: minor scope change
+
+2001-02-13 20:29  source
+
+	* qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h: work on qmvlistitem
+	  class
+
+2001-02-13 20:28  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: extend handling of child
+	  and foreign relations.
+
+2001-02-13 20:26  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: new methods for
+	  handling foreign relations.
+	  move loadrelations() from constructor.
+
+2001-02-13 20:24  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h:
+	  setinputmethod(): new function
+
+2001-02-11 00:08  source
+
+	* qtmarvin/qmvwkspwindow.cpp: add wait cursor
+
+2001-02-11 00:06  source
+
+	* qtmarvin/qmvtuple.cpp, qtmarvin/qmvtuple.h: reload(): new method
+
+2001-02-11 00:05  source
+
+	* qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h: QmvListItem,
+	  QmvBoolItem: new classes - not fully functional yet
+
+2001-02-11 00:02  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: findchildRelation(),
+	  findchildTitle(): new functions
+	  classEditor(): change index of dict_classeditors to class pointer
+	  (previously class name)
+	  
+	  Put wait cursors in place.
+
+2001-02-10 23:59  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: add copy constructor.
+	  Configure for mulitple instantiates of same class - in root,
+	  child and
+	  foreign modes.
+
+2001-02-10 23:55  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h:
+	  setdataType(): new function
+
+2001-02-06 03:03  source
+
+	* qtmarvin/qmvsqlquery.cpp: *** empty log message ***
+
+2001-02-06 03:02  source
+
+	* qtmarvin/qmvwkspwindow.cpp, qtmarvin/qmvwkspwindow.h: change
+	  references to use derived Sql* classes
+
+2001-02-06 03:01  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h, qtmarvin/qmvdb.cpp,
+	  qtmarvin/qmvdb.h, qtmarvin/qmvtuple.cpp, qtmarvin/qmvtuple.h:
+	  add derived Sql* classes
+
+2001-02-06 03:00  source
+
+	* qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h: abstract the
+	  references to storage
+
+2001-02-03 07:46  source
+
+	* qtmarvin/qmvdb.cpp: minor doc revision
+
+2001-02-03 02:03  source
+
+	* qtmarvin/qmvtuple.cpp, qtmarvin/qmvtuple.h: sqlDelete(): new
+	  method
+	  debug: stop auto-delete of persistent data in destructor
+
+2001-02-03 02:01  source
+
+	* qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h: updateHeading(): new
+	  method
+
+2001-02-03 01:59  source
+
+	* qtmarvin/qmvwkspwindow.cpp, qtmarvin/qmvwkspwindow.h:
+	  default_reln_level: new data attribute. set to 10
+
+2001-02-03 01:27  source
+
+	* qtmarvin/Makefile: fix LIB depend
+
+2001-02-03 01:26  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: childRelation(): new
+	  function
+
+2001-02-03 01:19  source
+
+	* qtmarvin/qmvclass.h: constructor: autoload relation classes
+	  (with recursion limit as new arg)
+	  loadRelations(), classRelations(): new functions
+
+2001-02-03 01:18  source
+
+	* qtmarvin/qmvclass.cpp: constructor: autoload relation classes
+	  (with recursion limit as new arg)
+	  cleanup:
+	  attAttValue(),edit_attlist(),tupleAt(),attributeValue(),
+	  save(),update(),remove(),print(): more error checking.
+	  loadRelations(): new function
+
+2001-01-31 08:02  source
+
+	* pixmaps, pixmaps/abpt.xpm, pixmaps/anti.xpm,
+	  pixmaps/filenew.xpm, pixmaps/growth.xpm,
+	  pixmaps/mastascan_in.xpm, pixmaps/nogrowth.xpm,
+	  pixmaps/orgs.xpm, pixmaps/print.xpm, pixmaps/publish.xpm,
+	  pixmaps/resetproperty.xpm, pixmaps/spec.xpm,
+	  pixmaps/ukgrowth.xpm, pixmaps/unreported.xpm,
+	  pixmaps/untested.xpm: *** empty log message ***
+
+2001-01-31 07:56  source
+
+	* qtmarvin/qmvtuple.h, qtmarvin/qmvtupleattribute.h: inherit from
+	  QObject
+
+2001-01-31 07:55  source
+
+	* qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: QmvDBWidget, QmvDBList:
+	  new classes
+
+2001-01-31 07:53  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: cosmetic
+
+2001-01-31 07:52  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h:
+	  attributeAttribute(): new function
+
+2001-01-31 07:50  source
+
+	* qtmarvin/qmvapplwindow.cpp, qtmarvin/qmvapplwindow.h,
+	  qtmarvin/qmvwkspwindow.cpp, qtmarvin/qmvwkspwindow.h,
+	  qtmarvin/qtmarvin.cpp: first cut - functioning well.
+
+2001-01-31 07:50  source
+
+	* qtmarvin/qmvsqlquery.cpp, qtmarvin/qmvsqlquery.h: first cut -
+	  compile, but not tested.
+
+2001-01-31 07:48  source
+
+	* qtmarvin/qmv.h: Add new classes
+
+2001-01-31 07:46  source
+
+	* qtmarvin/Makefile: add pixmaps;
+	  qmvapplwindow, qmvwkspwindow, qmvsqlquery: new classes
+
+2001-01-31 07:40  source
+
+	* qtmarvin/Doxyfile, qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h:
+	  include qmc
+
+2001-01-29 21:34  source
+
+	* qtmarvin/qmvtuple.cpp, qtmarvin/qmvtuple.h,
+	  qtmarvin/qmvtupleattribute.cpp, qtmarvin/qmvtupleattribute.h:
+	  renamed from misspelt tupple versions
+
+2001-01-28 09:10  source
+
+	* pgmarvin/sql.c, pgmarvin/sql.h: sql_dbconnect(),
+	  r_sql_getlastoid(), sql_getlastoid(): new functions.
+
+2001-01-28 09:09  source
+
+	* pgmarvin/Makefile: Add HDR to lib dependencies
+
+2001-01-27 22:58  source
+
+	* qtmarvin/qmvclass.cpp: fix: nulls in dict find
+
+2001-01-26 10:57  source
+
+	* qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h: insert/delete/copy
+	  tupple functions: Added and debugged.
+
+2001-01-26 10:55  source
+
+	* qtmarvin/qmvclass.h: cleanup
+
+2001-01-26 10:54  source
+
+	* qtmarvin/qmvclass.cpp: documentation and cleanup.
+
+2001-01-26 10:50  source
+
+	* qtmarvin/Makefile: fix PGINC
+
+2001-01-26 00:20  source
+
+	* pgmarvin/dbi_pg.c: typo
+
+2001-01-26 00:20  source
+
+	* pgmarvin/Makefile: stdze paths
+
+2001-01-25 23:59  source
+
+	* pgmarvin/Makefile, pgmarvin/dbi_pg.c, pgmarvin/sql.c,
+	  pgmarvin/test_dbi.c: replace dbi_proto.h with dbi_pg.h
+
+2001-01-25 23:56  source
+
+	* pgmarvin/dbi_pg.h: PGSQL version copied from dpi_proto.h.
+
+2001-01-25 20:31  source
+
+	* pgmarvin/sql.c: echo query if DEBU set.
+
+2001-01-25 08:07  source
+
+	* qtmarvin/qmvclass.h: *** empty log message ***
+
+2001-01-25 08:06  source
+
+	* qtmarvin/qmvclass.cpp: remove(tup): new method; remove by tupple
+	  pointer
+
+2001-01-25 07:14  source
+
+	* qtmarvin/qmvclass.cpp: attributeMetadata(), foreignMetadata(),
+	  relationMetadata(), remote():
+	  new methods
+	  Constructor(): add the tuppleattributes to tupple. (was in
+	  QmvClass)
+
+2001-01-24 04:20  source
+
+	* qtmarvin/qmvedit.cpp: do not cache the current class in editor
+
+2001-01-24 04:20  source
+
+	* qtmarvin/qmvclass.cpp: *** empty log message ***
+
+2001-01-23 21:50  source
+
+	* qtmarvin/asciivalidator.cpp, qtmarvin/asciivalidator.h,
+	  qtmarvin/resetproperty.xpm: imported from qdesigner
+
+2001-01-23 21:34  source
+
+	* qtmarvin/qmvedit.cpp: set colum headings to class title and
+	  count,
+	  limit index to 20
+
+2001-01-23 21:32  source
+
+	* pgmarvin/Makefile, qtmarvin/Makefile: parameterize more of the
+	  build env to cope with lib/include positioning,
+
+2001-01-22 08:19  source
+
+	* qtmarvin/qmvedit.cpp: reset attributes after save.
+	  Fix lineedit focus
+
+2001-01-21 21:21  source
+
+	* qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h: Data persistence
+	  indication now accurate.
+
+2001-01-21 20:21  source
+
+	* qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h: editing working,
+	  editstate not fully clean wrt tuppleattribute object
+
+2001-01-20 06:48  source
+
+	* qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h: datavalues now
+	  appearing in line editor, but resetbutton not
+	  functioning as expected.
+
+2001-01-19 23:08  source
+
+	* qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h: major rewrite: now
+	  displaying tupples and expanding to tupple attributes.
+
+2001-01-19 23:07  source
+
+	* qtmarvin/qmvclass.cpp: *** empty log message ***
+
+2001-01-19 22:26  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h:
+	  attributeName(),attributeTitle(): new methods.
+
+2001-01-19 08:18  source
+
+	* qtmarvin/qmvclass.cpp: default userlabel and userkey to
+	  primarykey
+
+2001-01-19 07:44  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: tuppleAt(): new
+	  function
+
+2001-01-19 00:28  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: add reference to new
+	  meta_class attributes - userkey and userlabel
+
+2001-01-09 08:37  source
+
+	* qtmarvin/qmv.h, qtmarvin/qmvattlist.h, qtmarvin/qmvclass.cpp,
+	  qtmarvin/qmvclass.h, qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h:
+	  standardise function args and return values
+
+2001-01-08 03:13  source
+
+	* qtmarvin/qmvedit.cpp, qtmarvin/qmvedit.h: first cut - separate
+	  main window object
+
+2000-12-10 03:48  source
+
+	* qtmarvin/qmvattlist.cpp, qtmarvin/qmvattlist.h: functioning
+	  reimplementation of QList
+
+2000-11-24 02:26  source
+
+	* qtmarvin/qmvclass.cpp, qtmarvin/qmvclass.h: extend documentation.
+	  bugfixes
+
+2000-11-24 02:24  source
+
+	* qtmarvin/qmvattribute.cpp, qtmarvin/qmvattribute.h: add print
+	  functions for metadata
+
+2000-11-24 01:54  source
+
+	* pgmarvin/sql.h: sql_error(): new function
+
+2000-11-24 01:53  source
+
+	* pgmarvin/sql.c: cleanup error reporting, documentation.
+	  sql_error(): new function
+
+2000-11-24 01:51  source
+
+	* pgmarvin/Makefile: add tags
+
+2000-11-05 21:32  source
+
+	* qtmarvin/Makefile: separate qmv files
+
+2000-11-05 21:31  source
+
+	* qtmarvin/qmv.h, qtmarvin/qmvattribute.cpp,
+	  qtmarvin/qmvattribute.h, qtmarvin/qmvclass.cpp,
+	  qtmarvin/qmvclass.h, qtmarvin/qmvdb.cpp, qtmarvin/qmvdb.h: Qmv
+	  Classes - separated from marvinclass
+
+2000-11-05 07:53  source
+
+	* pgmarvin/sql.c, pgmarvin/sql.h: r_*(): new functions to access
+	  result indexes
+
+2000-11-05 07:51  source
+
+	* pgmarvin/misc.c, pgmarvin/misc.h: message_control_id(),
+	  timestamp(): transfer to hl7tool::hl7:
+
+2000-11-02 09:52  source
+
+	* qtmarvin/Doxyfile: first cut
+
+2000-11-02 09:51  source
+
+	* qtmarvin/Makefile: add doc
+
+2000-10-26 22:45  source
+
+	* pgmarvin/Makefile, qtmarvin/Makefile: change from makedepend to
+	  mkdep
+
+2000-10-26 21:06  source
+
+	* pgmarvin/sql.c: load PG env vars.
+
+2000-10-26 05:07  source
+
+	* qtmarvin/marvin-test.cpp: cleanup
+
+2000-10-26 05:06  source
+
+	* qtmarvin/Makefile: cleanup to use library
+
+2000-10-23 04:44  source
+
+	* qtmarvin/qmcdatenav.cpp, qtmarvin/qmcdatenav.h: first cut
+
+2000-10-23 04:18  source
+
+	* qtmarvin, qtmarvin/Makefile, qtmarvin/marvin-test.cpp,
+	  qtmarvin/qmcdatenav.cpp, qtmarvin/qmcdatenav.h: first cut
+
+2000-10-23 03:38  source
+
+	* pgmarvin, pgmarvin/Makefile, pgmarvin/dbi_pg.c, pgmarvin/misc.c,
+	  pgmarvin/misc.h, pgmarvin/sql.c, pgmarvin/sql.h,
+	  pgmarvin/test_dbi.c: Version transferred from hl7tool
+
+2000-10-04 22:54  source
+
+	* ChangeLog: MARVIN_3_0_3
+
+2000-10-04 22:52  source
+
+	* ChangeLog: update create_database.sql tag
+
+2000-10-02 08:40  source
+
+	* ChangeLog: *** empty log message ***
+
+2000-10-02 02:46  source
+
+	* Makefile: LOCAL: new variable to locate local dir (eg for
+	  local.mk). defaults to
+	  local
+	  class_extras.inc: add this to links target
+
+2000-08-06 22:46  source
+
+	* INSTALL: cleanup - new targets, demo
+
+2000-08-06 22:42  source
+
+	* Makefile: *** empty log message ***
+
+2000-08-06 22:41  source
+
+	* Makefile: demoprogram - no install
+
+2000-08-06 22:27  source
+
+	* Makefile: add PROGRAM_TARGET_LIST and PHP_TARGET_LIST to PHONY
+
+2000-08-06 08:33  source
+
+	* Makefile: typo
+
+2000-08-06 08:14  source
+
+	* Makefile: target demo->demoprogram
+
+2000-08-06 08:07  source
+
+	* Makefile: cleaniup
+
+2000-08-06 06:54  source
+
+	* Makefile: change default to demo (PROGRAM,SCHEMA, DBNAME)
+
+2000-08-06 06:49  source
+
+	* README: *** empty log message ***
+
+2000-08-06 06:43  source
+
+	* Makefile: extend PROGRAM_TARGET_LIST, add PHP_TARGET_LIST
+
+2000-08-06 06:35  source
+
+	* Makefile: Add PROGRAM_TARGET_LIST
+
+2000-08-06 06:32  source
+
+	* Makefile: add classes: target
+
+2000-08-06 06:16  source
+
+	* doc/README.hooks: first cut
+
+2000-08-05 02:32  source
+
+	* doc/README: *** empty log message ***
+
+2000-08-05 02:29  source
+
+	* Makefile: include local/local.mk
+
+2000-08-04 09:05  source
+
+	* Makefile: *** empty log message ***
+
+2000-08-04 07:57  source
+
+	* Makefile: move schema to separate dir
+
+2000-08-04 07:39  source
+
+	* schema, schema/README: *** empty log message ***
+
+2000-08-04 06:54  source
+
+	* doc, doc/README: *** empty log message ***
+
+2000-07-30 08:19  source
+
+	* Makefile: links: new target
+
+2000-07-25 23:01  source
+
+	* Makefile: pracsrcdir: new var
+
+2000-07-18 12:46  source
+
+	* Makefile: only save meta-data if database (DBNAME) exists
+
+2000-07-09 04:04  source
+
+	* Makefile: add tmpdir
+
+2000-06-29 08:12  source
+
+	* INSTALL: update new demo/Makefile targets.
+
+2000-06-25 08:08  source
+
+	* INSTALL: typo
+
+2000-06-25 08:07  source
+
+	* Makefile: php-target,program-target: allow multivalue
+
+2000-06-12 00:16  source
+
+	* Makefile: link index to class_view
+
+2000-06-03 06:05  source
+
+	* EXTENSION: *** empty log message ***
+
+2000-05-21 21:28  source
+
+	* INSTALL: *** empty log message ***
+
+2000-05-08 23:53  source
+
+	* Makefile: fix all target for non-existant PROGRAM
+
+2000-05-05 22:47  source
+
+	* INSTALL: typo
+
+2000-05-03 04:17  source
+
+	* INSTALL, Makefile: New target - newprogram for creating new
+	  program directories
+
+2000-05-01 09:30  source
+
+	* INSTALL: alter namespace to match demo/Makefile
+
+2000-04-30 06:59  source
+
+	* INSTALL: add to sub-target descriptions
+
+2000-04-29 05:51  source
+
+	* Makefile: add php-target and program-target
+
+2000-04-29 05:51  source
+
+	* INSTALL: *** empty log message ***
+
+2000-04-29 05:50  source
+
+	* AUTHORS, COPYING, NEWS, README: first cut
+
+2000-04-26 23:28  source
+
+	* Makefile: classes target: convert to dump/drop/build/load cycle
+
+2000-04-26 05:43  source
+
+	* Makefile: new target - save-metadata (moved from php/Makefile
+
+2000-04-26 04:58  source
+
+	* Makefile: remove MAKEFLAGS - to stdz on gmake
+
+2000-04-25 08:08  source
+
+	* Makefile: split database target into
+	  - create-database
+	  - build-database
+
+2000-04-24 05:20  source
+
+	* Makefile: pass PSQL to demo
+
+2000-04-24 03:14  source
+
+	* Makefile: pass PSQL to php/
+
+2000-04-24 01:07  source
+
+	* Makefile: link create_matrix.php3 to index.php3 on install
+
+2000-04-23 09:51  source
+
+	* Makefile: fix install flags
+
+2000-04-23 07:26  source
+
+	* Makefile: First cut in new format
+
+2000-02-02 23:13  source
+
+	* tools/HP_local.c: add indent handling
+
+2000-01-10 22:00  source
+
+	* tools/IJ_local.c: first version of Inkjet filter
+
+1998-12-22 03:58  source
+
+	* tools/HP_local.c: * HP_local.c: Set line spacing in small-font,
+	  portrait
+
+1998-12-21 04:27  source
+
+	* tools/HP_local.c: Add 3rd width-based format
+
+1998-06-01 03:52  source
+
+	* tools/HP_local.c: * HP_local.c: Bug fix in PS detection.
+
+1998-05-30 03:57  source
+
+	* ., tools, tools/HP_local.c, tools/dvifilter, tools/psfilter:
+	  Initial revision
+

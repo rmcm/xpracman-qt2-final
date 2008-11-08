@@ -1,0 +1,109 @@
+PreferenceLabel = lptest
+ViewFormFirst	= yes
+PrinterName	= lptest
+PrinterNameInvoice = lptest
+PrinterNameStatement = lptest
+PrinterNameForm	= lptest
+PrinterNameEvents = lptest
+#ExternalLabels = Referrer ; Patient 
+UseFormsForLabels = yes
+# Debtor or Patient statements?
+AlwaysUseDebtorStatement = no
+## Appointments
+XpracAppTool.hr_start = 8
+XpracAppTool.hr_end = 17
+XpracAppTool.granularity = 30
+XpracAppTool.granularity = 30
+XpracAppTool.labcount = 2
+XpracAppTool.am_pm = 1
+XpracAppTool.duration = 15
+
+## ----------------------------------------
+# Fax options
+## ----------------------------------------
+FaxProgramName = /usr/local/src/marvin/tools/faxit
+FaxProgramFormat = %1 "%2" "%3"
+FaxFileName = faxit.ps
+
+## ----------------------------------------
+# Email options
+## ----------------------------------------
+EmailProgramName = /usr/local/src/marvin/tools/emailit
+EmailProgramFormat = %1 "%2" "%3"
+EmailFileName = emailit.ps
+
+
+## ----------------------------------------
+# Template display
+## ----------------------------------------
+# preferred width in pixels of a template object
+XpracAppTool.w_template_pref = 16
+# Percentage of total width for templates
+XpracAppTool.w_template_pctg = 30
+# Width of blocked object
+XpracAppTool.w_blocked_pref = 100
+
+## ----------------------------------------
+# Include defaults in selections"
+#    comma separated list of provider
+#     codes to include  "-" in selections
+#    Default is empty
+## ----------------------------------------
+XpracAppTool.def_prov_in_select =
+
+## ----------------------------------------
+# Appointment canvas zooming
+## ----------------------------------------
+XpracAppTool.magmin = 1.0
+XpracAppTool.magmax = 3.0
+XpracAppTool.magstep = 4
+
+## ----------------------------------------
+# Fonts for display labels
+#  - default is helvetica 8
+## ----------------------------------------
+XpracAppTool.label_font_family = helvetica
+XpracAppTool.label_font_pointsize = 8
+
+## ----------------------------------------
+# 15  minute shading
+#       yes or no (default)
+## ----------------------------------------
+XpracAppTool.shaded = yes
+
+## ----------------------------------------
+# Initial magnification
+#         0-3   Default = 0
+## ----------------------------------------
+XpracAppTool.magstart = 3
+
+## ----------------------------------------
+## Initial colour display
+#   0 Provider   (default)
+#   1 Location
+#   2 Type
+#   3 Status
+## ----------------------------------------
+XpracAppTool.displaycolours = 3
+
+#
+# Is the patient appointment panel linked to the appointment tool
+# Values: yes/no (default no)
+# if yes, then the appointment book changes as appointments are
+# selected in the patient appointment panel
+XpracAppTool.linked = yes
+
+## ----------------------------------------
+## MD2 interface
+## ----------------------------------------
+## - the export file
+# XpracMD2PATIENTS_IN = /export/pc-clients/public/wp/mdw2/PATIENTS.IN
+## - number of seconds between exports.
+# XpracMD2TimerSecs = 120
+## - number of seconds before retry after success (multiclients)
+#XpracMD2WaitSecs = 30
+#
+## ----------------------------------------
+## Reporting methods
+## ----------------------------------------
+ReportByRealDate = yes

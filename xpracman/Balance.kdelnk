@@ -1,0 +1,16 @@
+[Desktop Entry]
+Comment[C]=
+Exec=balance
+Icon=package_editors
+MimeType=
+Name=Application
+Name[C]=Balance
+Path=
+ServiceTypes=
+SwallowExec=
+SwallowTitle=Balance Medical Accounting
+Terminal=true
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

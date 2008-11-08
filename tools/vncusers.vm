@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# A example of local vncusers script - executed when /etc/rc.d/vncusers is executed
+#   - "u" is set to the user
+#   - "action" = start|stop|restart
+#
+#  This example halts the user's virtual machine "vndpdbs"
+#  - install this as ~USER/.vnc/vncusers  
+#    /etc/rc.d/vncusers -> /usr/local/sbin/vncusers -> ~USER/.vnc/vncusers
+
+    case "$action" in
+        start)    ;;
+        stop|restart)   # first try to shutdown
+                        su - $u -c 'ssh root@vmdpdbs /sbin/poweroff' 2>&1 | logger -t vncusers:$u:$action
+                        _t=1
+                        while test "`/usr/bin/vmrun list | awk 'NR==1{print $NF;exit}'`" -ne 0 ; do
+                          if test $_t -gt 3 ; then
+                            echo "Failed to stop vmdpdbs with 3 tries" | logger -t vncusers
+                            break
+                          fi
+                          sleep 5
+                          _t=$((_t+1))
+                        done
+                        ;;
+    esac

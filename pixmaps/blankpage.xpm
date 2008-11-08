@@ -1,0 +1,33 @@
+/* XPM */
+const char *blankpage_xpm[] = {
+/* width height ncolors chars_per_pixel */
+"22 22 4 1",
+/* colors */
+"  c #000000",
+". c #808080",
+"X c none",
+"o c #FFFFFF",
+/* pixels */
+"XXXXXXXXXXXXXXXXXXXXXX",
+"X                  XXX",
+"X oooooooooooooooo XXX",
+"X oooooooooooooooo XXX",
+"X oooooooooooooooo ..X",
+"X oooooooooooooooo ..X",
+"X oooooooooooooooo ..X",
+"X oooooooooooooooo ..X",
+"X oooooooooooooooo ..X",
+"X oooooooooooooooo ..X",
+"X oooooooooooooooo ..X",
+"X oooooooooooooooo ..X",
+"X oooooooooooooooo ..X",
+"X oooooooooooooooo ..X",
+"X oooooooooooooooo ..X",
+"X oooooooooooooooo ..X",
+"X oooooooooooooooo ..X",
+"X oooooooooooooooo ..X",
+"X                  ..X",
+"XXXX.................X",
+"XXXX.................X",
+"XXXXXXXXXXXXXXXXXXXXXX"
+};

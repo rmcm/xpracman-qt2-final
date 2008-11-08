@@ -1,0 +1,21 @@
+/* XPM */
+const char *redball_xpm[]={
+"12 12 6 1",
+". c None",
+"a c #000000",
+"# c #708090",
+"b c #ff0000",
+"c c #ffa500",
+"d c #ffffff",
+"..#aaaa#....",
+".aabbbbaa...",
+"#acdbbbba#..",
+"abdcbbbbba..",
+"abbbbbbbba..",
+"abbbbbbcba#.",
+"abbbbbccba#.",
+"#abbbccba##.",
+".aabbbbaa###",
+"..#aaaa####.",
+".....######.",
+"........#..."};

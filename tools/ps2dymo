@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+## Filter PS to raw dymo raster
+##
+_BINPATH=/usr/local/sbin
+
+# Note that width and height are in printer coords not rotated label coords
+DPI=${DPI:-"300"}
+
+# for 1.125x3.5 in (28x89 mm) address labels
+let w=DPI+DPI/8
+let h=DPI*3+DPI/2
+
+# for 2.125x4 in (54x102 mm) shipping labels
+#let w=DPI*2+DPI/8
+#let h=DPI*4
+WIDTH=${WIDTH:-"$w"}
+HEIGHT=${HEIGHT:-"$h"}
+#echo "HEIGHT=$HEIGHT"
+#echo "WIDTH=$WIDTH"
+
+gs -sDEVICE=pbm -sOutputFile=- -q -dNOPAUSE -r${DPI}x${DPI} -g${HEIGHT}x${WIDTH} -dSAFER - -c quit \
+    | pnmflip -cw | pnmnoraw | ${_BINPATH}/pbm2lwxl $WIDTH $HEIGHT

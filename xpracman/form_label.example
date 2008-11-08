@@ -1,0 +1,19 @@
+#OUTPUT=|less
+                          |patn__sequence|
+                          |patn_psnam| |patn_title| |patn_fsnam|
+                          |patn_address|
+                          |patn_suburb| |patn_postcode|
+                          |patn_phone|  |patn_dob|
+
+                          |rfdr_name|
+                          |rfdr_street| |rfdr_suburb|
+                          |rfdr_provider|  |patn_rfdr_date|
+
+                          |patn_healthfund|    
+
+                          |dbtr_name|
+                          |dbtr_address|
+                          |dbtr_suburb|
+
+
+

@@ -1,0 +1,81 @@
+#!/bin/sh
+#       -*-sh-*-#
+#
+#     PRAC   Medical Practice Management Software
+# 
+#     $Id: print_form 2892 2006-06-11 12:16:11Z source $
+#
+#
+#  Copyright 1994 X=X Computer Software Trust
+#                 Kangaroo Ground Australia 3097
+#
+#  This file is part of PRAC.
+#
+# PRAC is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public Licensepublished by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+# 
+# PRAC is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with PRAC; see the file COPYING.  If not, write to
+# the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+# 
+# Report problems and direct all questions to:
+# 
+#     Rex McMaster, rmcm@ariel.ucs.unimelb.edu.au
+# 
+#
+# Imported from PRAC-v1
+
+#
+# Format patient data for form letters and labels
+#
+# Requires: form_sql.awk  ( data extraction )
+#           format_${PRAC_PRFMT_LABEL}.awk      (printer language functions)
+#           form.awk      ( format and output )
+
+# patient sequence number, and layout name
+[ $# = 2 ] || exit 1
+patn__sequence=$1 export patn__sequence
+layout_name="$2"    export layout_name
+
+# the conf directory and an rc file
+PRAC_DIR=${PRAC_DIR:-$INSTALL_PATH}
+[ -f ${PRAC_DIR}/xpracmanrc ] && . ${PRAC_DIR}/xpracmanrc
+[ -f ${HOME}/.xpracmanrc ] && . ${HOME}/.xpracmanrc
+
+
+## If layout not in currdir, then assume in shared dir
+if test "`dirname \"${layout_name}\"`" = "." -a ! -f "${layout_name}" ; then
+    layout_name=${PRAC_DIR}/${layout_name};
+    # if not found, that use Standard
+    if test ! -f "${layout_name}" ; then
+      layout_name="Standard"; \
+      if test ! -f "${layout_name}" ; then
+        layout_name=${PRAC_DIR}/${layout_name};
+        if test ! -f "${layout_name}" ; then
+          exit 1;
+        fi
+      fi
+    fi
+fi
+
+# Have some defaults
+DBNAME=${DBNAME:-prac}                  export DBNAME
+PRAC_PRFMT_LABEL=${PRAC_PRFMT_LABEL:-plain}            export PRAC_PRFMT_LABEL
+## no letterhad on forms by default
+PRAC_LH=/dev/null                       export PRAC_LH
+LPR=${LPR:-lpr}
+
+## run the show
+awk -f ${PRAC_DIR}/format_${PRAC_PRFMT_LABEL}.awk \
+    -f ${PRAC_DIR}/form_sql.awk \
+    -f ${PRAC_DIR}/form.awk | ${LPR}
+
+
+

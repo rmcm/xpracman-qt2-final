@@ -1,0 +1,36 @@
+## $Id: xpracmanrc 2195 2004-03-16 08:29:30Z source $
+## RC file for xpracman
+
+## Exta xprcman arguments -eg geometry
+#EXTRAARGS="-geometry 800x600+0+0"  export EXTRAARGS
+EXTRAARGS="--maximize" export EXTRAARGS
+
+### The database name
+#DBNAME=prac            export DBNAME
+
+### The date style
+PGDATESTYLE=SQL,European         export PGDATESTYLE
+
+### Printer language - pcl/ps/plain
+#PRAC_PRFMT=ps
+#PRAC_PRFMT_LABEL=plain
+#PRAC_PRFMT_BANK=lj
+#PRAC_PRFMT_INVOICE=lj
+
+### The letterhead file
+#PRAC_LH=letterhead
+
+### The bank Letterhead
+#PRAC_BANK_LH=bank_letterhead
+### Brief format
+#BRIEF_RECONCILIATION=1         export BRIEF_RECONCILIATION
+#PRAC_BANK_LPR                  export PRAC_BANK_LPR
+
+### Document Interface
+export PRAC_DOCROOT PRAC_DOCSUFFIX PRAC_DOCTEMPLATEDIR PRAC_DOCTEMPLATE PRAC_DOCEDITOR
+PRAC_DOCROOT=/export/pc-clients/public/wp/DOCUMENTS
+PRAC_DOCSUFFIX=rtf
+PRAC_DOCTEMPLATEDIR=${PRAC_DOCROOT}/TEMPLATES
+PRAC_DOCTEMPLATE=xpracman
+PRAC_DOCEDITOR=pcedit
+

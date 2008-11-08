@@ -1,0 +1,133 @@
+#!/bin/sh
+#    $Id: xdump 2918 2006-07-10 07:42:05Z source $
+#
+#  Copyright 2001 X=X Computer Software Trust
+#                  Kangaroo Ground Australia 3097
+#
+#
+# This is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+# 
+# This software is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this software; see the file COPYING.  If not, write to
+# the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+# 
+# Report problems and direct all questions to:
+# 
+#     Rex McMaster, rmcm@compsoft.com.au
+# 
+#
+#
+#	Controlling script for dump
+
+ARGS="$*"
+PROG=`basename $0`
+MT=/usr/bin/mt
+_TS="`date +%Y%m%d%H%M`"
+_LOGDIR=/var/log/xdump
+mkdir -p ${_LOGDIR}
+
+#*****************************************
+# exerr function - exit with error message
+#*****************************************
+exerr() {	# exit with error message
+
+date
+echo "Message from ${PROGRAM} ..."
+case $# in
+	0)	echo "Exit due to error"
+		;;
+	*)	echo "$*"
+		;;
+esac
+exit 1
+}
+
+LEVEL=0
+REWIND=0
+DEVICE="/dev/st0"
+FS_LIST=$*
+
+${MT} -f ${DEVICE} reten
+sleep 60
+${MT} -f ${DEVICE} rewind
+case $? in
+	0)	echo "   TAPE REWIND WAS SUCCESSFUL"
+		;;
+	*)	echo "   TAPE REWIND WAS SUCCESSFUL"
+		;;
+esac
+
+## The on-dist backup folder
+BACKDIR="/export/.backuptmp"
+mkdir -p ${BACKDIR} || {
+    echo "Failed to create backup holding area - ${BACKDIR}"
+    exit 1
+}
+
+## Make sure there is an exclude list file
+_EXCLUDE_LIST=${BACKDIR}/xdump_exclude.list
+if ! test -f ${_EXCLUDE_LIST} ; then
+    touch ${_EXCLUDE_LIST}
+fi
+
+## Check that essentials are in exclude list
+for e in "${BACKDIR}/*" '/proc/*' '/media/*' ; do
+    if ! grep -q "$e" ${_EXCLUDE_LIST} ; then
+        echo "$e" >> ${_EXCLUDE_LIST}
+    fi
+done
+
+echo "Host:`hostname`	`date`
+============================================================================="
+printf "%-68.68s Lvl Stat\n" "`/bin/df | head -1`"
+printf '#----------------------------------------------------------------------------\n'
+for FILESYS in ${FS_LIST}
+	do	
+		DFSIZE=" `/bin/df | awk -vfs="${FILESYS}" '$NF==fs{print}'`"
+		BACKNAME="root_`echo ${FILESYS} | sed 's,/,_,g'`.tgz"
+		tar -C / --exclude-from=${_EXCLUDE_LIST} \
+                    --one-file-system \
+                    -zcf ${BACKDIR}/${BACKNAME} ${FILESYS}
+		case $? in
+			0)	STATUS="  OK"
+				;;
+			*)	STATUS="FAIL"
+				;;
+		esac
+                printf "%-68.68s ${STATUS}\n" "${DFSIZE}"
+		(cd ${BACKDIR} && md5sum ${BACKNAME} > ${BACKNAME}.md5)
+done
+
+echo "============================================================================="
+echo "Copying new archives in ${BACKDIR} to ${DEVICE}"
+tar -C / --label="${_TS}" -vcf ${DEVICE} -b 20 ${BACKDIR}
+case $? in
+	0)    echo "... COPY SUCCESSFUL";;
+	*)    echo "... COPY FAILED";;
+esac
+
+echo "============================================================================="
+echo "Reading new archive titles from  ${DEVICE}"
+tar -vtf ${DEVICE} -b 20 | tee ${_LOGDIR}/tapelist.${_TS}
+case $? in
+	0)    echo "... TAPE-READ SUCCESSFUL";;
+	*)    echo "... TAPE-READ FAILED";;
+esac
+echo "============================================================================="
+
+echo "============================================================================="
+echo "The following entities were excluded from the backup"
+cat ${_EXCLUDE_LIST}
+echo "============================================================================="
+
+sleep 120
+${MT} -f ${DEVICE} status
+

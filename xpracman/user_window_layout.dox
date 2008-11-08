@@ -1,0 +1,290 @@
+/*
+ *     $Id: user_window_layout.dox 1272 2002-04-24 23:08:01Z source $
+ * 
+ *   Copyright 2001 X=X Computer Software Trust
+ *    		  Kangaroo Ground Australia 3097
+ * 
+ * 
+ *  This is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License published by
+ *  the Free Software Foundation; either version 2, or (at your option)
+ *  any later version.
+ *  
+ *  This software is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this software; see the file COPYING.  If not, write to
+ *  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ *  
+ *  Report problems and direct all questions to:
+ *  
+ *      Rex McMaster, rmcm@compsoft.com.au
+ *  
+ * 
+
+ */
+
+/*
+ * ======================================================================
+ * DESCRIPTION: 
+ *
+ * ======================================================================
+ */
+
+/*
+ * ======================================================================
+ * INCLUDES:
+ * ======================================================================
+ */
+
+
+
+/*! \page window_layout Window Layout
+
+
+
+  <ol>
+  <li> \ref WL_WORKSPACE
+  <li> \ref WL_TOOLBARS
+  <ol>
+  <li> \ref WL_FILE_TOOLBAR
+  <li> \ref WL_VIEW_TOOLBAR
+  <li> \ref WL_PRINT_TOOLBAR
+  <li> \ref WL_HELP_TOOLBAR
+  <li> \ref WL_QUERY_TOOLBAR
+  <li> \ref WL_DATASET_TOOLBAR
+  </ol>
+  <li> \ref WL_PATN_SVPF_CRED
+  <li> \ref WL_AGED_DEBT
+  <li> \ref WL_INVOICE
+  <li> \ref WL_STATEMENT
+  </ol>
+
+  <hr>
+  
+  <!--  ------------------------------------------------------------ -->
+  
+  \section WL_WORKSPACE XPracMan Workspace
+  
+  \image html workspace.jpg "Xpracman Workspace"
+  \image latex workspace.jpg "Xpracman Workspace"
+  
+  (\ref window_layout)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \section WL_TOOLBARS The Toolbars
+
+  The workspace window has a number of tool bars which contain buttons
+  and list-selectors (comboboxes). These buttons are used to initiate actions
+  like printing or selection of an area of interest ( eg patient records or
+  referrers).
+  
+  (\ref window_layout)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \subsection WL_FILE_TOOLBAR File Toolbar
+
+  \image html select_database.jpg "The File Toolbar - Select Database"
+  \image latex select_database.jpg "The File Toolbar - Select Database"
+
+  The file toolbar contains a single \em Select-List which is used to
+  select the current database - usually associated with an individual doctor's
+  patient set.
+  
+  <ul>
+  <li> Multiple databases
+  <li> Individual access specification
+  <li> Individual schema design.
+  </ul>
+  
+  (\ref window_layout)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \subsection WL_VIEW_TOOLBAR The View ToolBar
+
+  \image html view_toolbar.jpg "The View Toolbar"
+  \image latex view_toolbar.jpg "The View Toolbar"
+  
+  <ul>
+  <li> \b P     Patients
+  <li> \b D     Debtors
+  <li> \b I     Invoices
+  <li> \b U     Unpaid Invoices
+  <li> \b $     Payments
+  <li> \b B     Banking
+  <li> \b W     Patients on waiting list
+  <li> \b R     Recent patients.
+  </ul>
+  
+  
+  (\ref window_layout)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \subsection WL_PRINT_TOOLBAR The Print ToolBar
+
+  \image html print_toolbar.jpg "The Print Toolbar"
+  \image latex print_toolbar.jpg "The Print Toolbar"
+  
+  <ul>
+  <li> \b I     Invoice
+  <li> \b S     Statement
+  <li> \b L     Label (history envelope, pathology etc)
+  <li> \b B     Bank deposit list.
+  <li> \b C     Post Contract Installments.
+  </ul>
+  
+  
+  (\ref window_layout)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \subsection WL_HELP_TOOLBAR The Help ToolBar
+
+  \image html help_toolbar.jpg "The Help Toolbar"
+  \image latex help_toolbar.jpg "The Help Toolbar"
+  
+  <ul>
+  <li> \b ?     What is this?
+  <li> \b F     FAQ
+  </ul>
+  And on the help menu.
+  <ul>
+  <li> \b O     Overview
+  <li> \b U     User Guide
+  <li> \b K     Key Bindings
+  <li> \b A     Administrator Guide
+  <li> \b P     Programmer Guide
+  </ul>
+  
+  
+  (\ref window_layout)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \subsection WL_QUERY_TOOLBAR The Query ToolBar
+
+  \image html query_toolbar.jpg "The Query Toolbar"
+  \image latex query_toolbar.jpg "The Query Toolbar"
+
+  <ul>
+  <li> By attributes
+  <li> Operators - matches, like, contains, equals, GT, LT, Not
+  <li> Regular expression matching
+  </ul>
+  
+  \image html query_orderby.jpg "Query orderby"
+  \image latex query_orderby.jpg "Query orderby"
+
+  <ul>
+  <li> On screen sorting
+  <li> Limits and offsets
+  <li> Multiple Attribute searching (Advanced)
+  </ul>
+  
+  (\ref window_layout)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \subsection WL_DATASET_TOOLBAR The Dataset ToolBar
+
+  \image html dataset_toolbar.jpg "The Dataset Toolbar"
+  \image latex dataset_toolbar.jpg "The Dataset Toolbar"
+
+  <ul> 
+  <li> Add new row
+  <li> Delete exiting row
+  <li> Minieditor
+  <li> Print dataset
+  <li> Import dataset from external source.
+  <li> Export dataset to external source.
+  <li> Copy row
+  </ul>
+  
+  (\ref window_layout)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \subsection WL_PATN_SVPF_CRED Patients, Services and Payments
+
+  \image html patn_svpf_cred.jpg "Patients, Services and Payments"
+  \image latex patient_services_credits_small.jpg "Patients, Services and Payments"
+
+  <ul>
+  <li> 3-level hierarchical view.
+  <li> Multilevel feebook
+  <li> GST calculation.
+  <li> Percentage reductions
+  <li> Multi-debtor
+  <li> Distributed payments.
+  </ul>
+  
+  (\ref window_layout)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \subsection WL_AGED_DEBT Aged Debt Reports
+
+  \image html aged_reports.jpg "Aged Reports"
+  \image latex aged_reports.jpg "Aged Reports"
+
+  <ul>
+  <li> By debtor.
+  <li> By fee type.
+  <li> by invoice.
+  <li> by period.
+  </ul>
+  
+  (\ref window_layout)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \subsection WL_INVOICE Debtor Invoice 
+  
+  \image html invoice.png "Debtor Invoice"
+  \image latex invoice.png "Debtor Invoice"
+
+  
+  (\ref window_layout)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \subsection WL_STATEMENT  Debtor Statement
+  
+  \image html statement.jpg "Debtor Statement"
+  \image latex statement.jpg "Debtor Statement"
+  
+  (\ref window_layout)
+  
+*/
+// Local Variables:
+// mode:C++
+// End:

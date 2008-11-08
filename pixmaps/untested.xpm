@@ -1,0 +1,34 @@
+/* XPM */
+const char * untested_xpm[] = {
+/* width height ncolors chars_per_pixel */
+"20 22 5 1",
+/* colors */
+"  c #000000",
+". c #2F4F4F",
+"X c #FFFFFF",
+"o c #708090",
+"O c #BFBFBF",
+/* pixels */
+".............OOOOOOO",
+".XXXXXXXXXX.X.OOOOOO",
+".XXXXXXXXXX.XX.OOOOO",
+".XXXoo     .XXX.OOOO",
+".XXo       .XXXX.OOO",
+".XXo        . . . OO",
+".XX    oXo        OO",
+".XX    XXX    ooo OO",
+".XXXXXXXXo    ooo OO",
+".XXXXXXo      XXo OO",
+".XXXXXo      oXXo OO",
+".XXXXX      oXXXo OO",
+".XXXXX    oXXXXXo OO",
+".XXXXX    XXXXXXo OO",
+".XXXXXXXXXXXXXXXo OO",
+".XXXXX    XXXXXXo OO",
+".XXXXX    XXXXXXo OO",
+".XXXXX    XXXXXXo OO",
+".XXXXXXXXXXXXXXXo OO",
+".XXXXXXXXXXXXXXXo OO",
+"..oooooooooooooo. OO",
+"OO                OO"
+};

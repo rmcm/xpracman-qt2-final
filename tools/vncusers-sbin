@@ -1,0 +1,136 @@
+#!/bin/bash
+#
+#    $Id: vncusers-sbin 2935 2006-07-16 13:38:47Z source $
+#
+#  Copyright 2001 X=X Computer Software Trust
+#                  Kangaroo Ground Australia 3097
+#
+#
+# This is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+# 
+# This software is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this software; see the file COPYING.  If not, write to
+# the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+# 
+# Report problems and direct all questions to:
+# 
+#     Rex McMaster, rmcm@compsoft.com.au
+# 
+# control vnc software
+# usage: start|stop|restart user-list
+#
+
+usage="usage: start|stop|stop-clean|restart|restart-clean user-list"
+
+VNCSERVER=${VNCSERVER:-vncserver}
+
+case "$1" in
+    start|stop|stop-clean|restart|restart-clean)   action=$1;;
+       *)                 echo $usage
+                          exit 1
+                          ;;
+esac
+
+# Strip the command
+shift
+
+case $# in
+       0)   echo $usage
+            exit 1
+            ;;
+esac
+
+## start function
+function start-vnc() {
+    [ -z "$1" ] && return 1
+    user=$1
+    su - $user -c "$VNCSERVER ${DEPTH} ${GEOMETRY} :$SCREEN"
+}
+
+## stop function
+function stop-vnc() {
+    [ -z "$1" ] && return 1
+    user=$1
+    su - $user -c "$VNCSERVER -kill :$SCREEN"
+    sleep 5
+    rm -f /tmp/.X11-unix/X${SCREEN} /tmp/.X${SCREEN}-lock
+    return 0
+}
+
+## stop and clean function
+##  - stop all processes for user 
+function stop-vnc-clean() {
+    [ -z "$1" ] && return 1
+    user=$1
+    stop-vnc $user
+    ## kill all process for this user
+    _PROCS="`ps -U $user -o pid=`"
+    echo "killing [$user] ... ${_PROCS}"
+    for proc in ${_PROCS} ; do
+        kill $proc
+        sleep 1
+        kill -9 $proc
+    done
+    _PROCS="`ps -U $user -o pid=`"
+    echo "still running [$user] ... ${_PROCS}"
+}
+
+## Loop over the users 
+for u in $* ; do
+ (
+    _VNC_HOME="`eval echo ~$u`/.vnc"
+    _VNCUSERS="${_VNC_HOME}/vncusers"
+
+    # Create and populate .vnc if it does not exist.
+    if ! test -d ${_VNC_HOME} ; then
+        mkdir -p ${_VNC_HOME}
+        printf "#/bin/bash\nexec startkde\n" > ${_VNC_HOME}/xstartup
+        chmod 755 ${_VNC_HOME}/xstartup
+        /usr/X11R6/bin/vncpasswd.arg ${_VNC_HOME}/passwd vncvnc
+        chown -R $u ${_VNC_HOME}
+    fi
+        
+    ## Load user prefs.
+    if test -f ${_VNCUSERS} ; then
+        . ${_VNCUSERS}
+    fi
+
+    ## System defaults
+    OFFSET=${VNCUSERS_OFFSET:-300}
+    GEOMETRY=${VNCUSERS_GEOMETRY:-"-geometry 1016x700"}
+    DEPTH=${VNCUSERS_DEPTH:-"-depth 24"}
+
+    SCREEN=$((`id -u $u` - ${OFFSET}))
+
+    echo "$u on screen :${SCREEN} with ${GEOMETRY}";
+    case "$action" in
+        start)
+            start-vnc $u
+            ;;
+        stop)
+            stop-vnc $u
+            ;;
+        stop-clean)
+            stop-vnc-clean $u
+            ;;
+        restart)
+            stop-vnc $u
+            sleep 5
+            start-vnc $u
+            ;;
+        restart-clean)
+            stop-vnc-clean $u
+            sleep 5
+            start-vnc $u
+            ;;
+    esac
+ )                
+done

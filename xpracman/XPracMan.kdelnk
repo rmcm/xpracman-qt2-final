@@ -1,0 +1,16 @@
+[Desktop Entry]
+Comment[C]=
+Exec=$INSTALL_PATH/xpracman.sh --database $${DBNAME:-prac}
+Icon=$INSTALL_PATH/logo_xpracman_light.png
+MimeType=
+Name=Application
+Name[C]=XPracMan
+Path=
+ServiceTypes=
+SwallowExec=
+SwallowTitle=XPracMan Medical Practice Management
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

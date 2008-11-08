@@ -1,0 +1,6 @@
+#!/bin/bash
+_BINPATH=/usr/local/sbin
+# good for 6 lines of 29 characters
+#mpage -1 -o -m720t0lrb -L6 | /usr/local/bin/ps2lwxl
+# Add arguments like  "-f courierbold14"
+enscript $* --margins=0:0:715:0 -B -q -a 1 -L6 -p - | ${_BINPATH}/ps2dymo

@@ -1,0 +1,33 @@
+/* XPM */
+const char * mastascan_in_xpm[] = {
+/* width height ncolors chars_per_pixel */
+"20 22 4 1",
+/* colors */
+"  c #000000",
+". c #2F4F4F",
+"X c #708090",
+"o c #BFBFBF",
+/* pixels */
+"oooooooooooooooooooo",
+"oooooooX..XXoooooooo",
+"ooooX....X.Xoooooooo",
+"ooX.......XXoooooooo",
+"oX.......X.Xoooooooo",
+"X.........XXoooooooo",
+".........X.Xoooooooo",
+" o........XXoooooooo",
+"  oo.....Xoooooooooo",
+"   .Xoo.oooooooooooo",
+"      .Xoooooo ooooo",
+"         .Xooo  oooo",
+"                 ooo",
+".                 oo",
+"X                  o",
+"oX                  ",
+"ooX.               o",
+"oooooX.           oo",
+"oooooooooX.      ooo",
+"oooooooooooooo  oooo",
+"oooooooooooooo ooooo",
+"oooooooooooooooooooo"
+};

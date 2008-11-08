@@ -1,0 +1,142 @@
+/*
+ *     $Id: user_overview.dox 1272 2002-04-24 23:08:01Z source $
+ * 
+ *   Copyright 2001 X=X Computer Software Trust
+ *    		  Kangaroo Ground Australia 3097
+ * 
+ * 
+ *  This is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License published by
+ *  the Free Software Foundation; either version 2, or (at your option)
+ *  any later version.
+ *  
+ *  This software is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this software; see the file COPYING.  If not, write to
+ *  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ *  
+ *  Report problems and direct all questions to:
+ *  
+ *      Rex McMaster, rmcm@compsoft.com.au
+ *  
+ * 
+
+ */
+
+/*
+ * ======================================================================
+ * DESCRIPTION: 
+ *
+ * ======================================================================
+ */
+
+/*
+ * ======================================================================
+ * INCLUDES:
+ * ======================================================================
+ */
+
+
+
+/*! \page overview Overview
+
+  <ol>
+  <li> \ref OV_FEATURE_LIST
+  <ol>
+  <li> \ref OV_MULTI_DB
+  <li> \ref OV_CLASS_LIST
+  </ol>
+
+  <li> \ref OV_CONFIGURATION
+  <li> \ref OV_DATA_MIGRATION
+  </ol>
+
+  <hr>
+  
+  <!--  ------------------------------------------------------------ -->
+  
+
+  \section OV_FEATURE_LIST Feature List
+
+
+  \subsection OV_MULTI_DB Multiple Patient Databases
+  
+  <ul>
+
+  <li> Multiple patient databases - individual doctors may have
+  separate patient databases and/or share common patient databases.
+  
+  <li> Each database can be individually configured - database schema,
+  report layouts, invoices and statements,  user access.
+
+  <li> Access specification is configurable by user and user-group,
+  and includes read, write and configuration access rights.
+
+  </ul>
+  
+  (\ref overview)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \subsection OV_CLASS_LIST Interlinked Data Storage Areas
+
+  <ul>
+  
+  <li> Patients
+  <li> Debtors
+  <li> Invoices
+  <li> Payments
+  <li> Banking
+  <li> Patients on waiting list
+  <li> Referrors
+  <li> Documents
+  <li> Appointments
+  <li> Services
+  <li> Feebook
+  <li> Diagnostic Coding
+  <li> Contracts
+  </ul>
+  
+  (\ref overview)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+
+  \section OV_CONFIGURATION Configuration
+
+  All configuration data is stored in database tables, accessible
+  (within security limitations) via data forms. Configuration data
+  includes form layouts, report formats, letterheads.
+  
+  (\ref overview)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+
+  \section OV_DATA_MIGRATION Data Migration
+
+  All data may be exporting and imported in standard \b CSV or \b XML
+  format. Data can also be interchanged with \b PDA's in \b pilotDB format.
+  
+  (\ref overview)
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+
+  
+  
+*/
+// Local Variables:
+// mode:C++
+// End:

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project default="_generation_" name="Packaging Generator">
+	<!-- define an IzPack tast -->
+	<taskdef name="izpack" classpath="/usr/local/java/IzPack/lib/standalone-compiler.jar" 
+		classname="com.izforge.izpack.ant.IzPackTask">
+	</taskdef>
+	<property name="packdir" value="${basedir}" />
+        <property name="rev" value="43RC1"/>
+        <property name="dbname" value="prac"/>
+        <property name="proto" value="prac_43R4"/>
+	<target name="_generation_" depends="installer" />
+	<!-- common functions -->
+	<target name="init">
+		<tstamp />
+	</target>
+	<!-- IsPack target - build the installer -->
+	<target name="installer" description="izpack" depends="init">
+		<!-- We call IzPack -->
+		<echo message="Makes the installer using IzPack" />
+		<izpack input="${packdir}/install.xml"
+                        output="xpracman_${rev}-install.jar" 
+			basedir="${packdir}" />
+	</target>
+        <!-- Create the SQL file -->
+        <target name="prac_init.sql" description="PRAC Initialisation SQL Script">
+		<property name="sql" location="schema"/>
+		<exec dir="${sql}" executable="${basedir}/schema/builddb">
+			<arg line="${dbname} ${proto}"/>
+		</exec>
+		<exec dir="${sql}" executable="cp">
+			<arg line="-p ${dbname}-${proto}.sql ../prac_init.sql"/>
+		</exec>
+	</target>
+	<!-- Source tar file -->
+	<target name="src">
+		<property name="src" location="tmp-src"/>
+		<delete dir="${src}"/>
+		<mkdir dir="${src}"/>
+		<exec dir="${src}" executable="cvs">
+			<arg line="-d :ext:cvs.compsoft.com.au:/home/cvsroot co -r XPRACMAN_${rev} xpracman"/>
+		</exec>
+		<exec dir="${src}" executable="tar">
+			<arg line="-zcf ../xpracman_${rev}-src.tgz src"/>
+		</exec>
+		<exec executable="ln">
+			<arg line="-fs xpracman_${rev}-src.tgz	xpracman-src.tgz"/>
+		</exec>
+		<delete dir="${src}"/>
+	</target>
+	<!-- Documentation -->
+	<target name="docs_tarball">
+		<property name="docs" location="tmp-docs"/>
+		<property name="docstar" location="xpracman_${rev}-doc.tgz"/>
+		<exec dir="${docs}" executable="tar">
+			<arg line="-C ${docs} -zxpf ${docstar}"/>
+		</exec>
+	</target>
+</project>

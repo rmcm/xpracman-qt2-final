@@ -1,0 +1,599 @@
+# $Id: fvwm2rc 805 2001-09-21 03:11:00Z source $
+#
+# Based on code from Chris Rode (crode@iastate.edu)
+#
+
+ModulePath /usr/local/libexec/fvwm/2.2
+PixmapPath /usr/X11R6/include/X11/pixmaps/
+IconPath   /usr/X11R6/include/X11/bitmaps/
+
+#==============================================================================
+# set up the colors
+#==============================================================================
+#
+#
+#------------------------------------------------------------------------------
+# this is used for all windows not explicitly defined later
+# (inactive windows)
+#-----------------------------------------------------------
+
+Style		"*"		Color		#000000/#c0c0c0
+
+#------------------------------------------------------------------------------
+# this is used for the selected window
+#--------------------------------------
+#
+#				Text		Background
+#				--------------- -------------------------------
+HilightColor			#ffffff		SteelBlue3
+
+#==============================================================================
+# set up the menu style
+#==============================================================================
+#
+# The syntax here is: MenuStyle forecolor backcolor shadecolor font style
+# where
+#
+#	forecolor	==	Selectable Text Color
+#	backcolor	==	Background Color
+#	shadecolor	==	Unselectable Text Color
+#	font		==	Font (*DUH!*)
+#	style		==	MWM or FVWM Menu Style
+#
+ClickTime 750
+MenuStyle 	#000000 #c0c0c0 #808080 \
+		-*-helvetica-medium-r-*-*-12-*-*-*-*-*-*-* fvwm
+
+#==============================================================================
+# set up fonts: one for window titles, another for icons
+#==============================================================================
+#
+WindowFont	-*-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
+IconFont	-*-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
+
+#------------------------------------------------------------------------------
+# If you uncomment this, make sure that the WindowList is bound to
+# something, it works pretty much like an icon manager.
+#------------------------------------------------------------------
+#
+Style "*" NoIcon
+
+#==============================================================================
+# miscellaney style stuff
+#==============================================================================
+#------------------------------------------------------------------------------
+# OpaqueMoveSize tells FVWM the maximum size window with which opaque
+# window movement shoud be used.  It has attached to it a percentage,
+# which is percent of the total screen area.  With "OpaqueMoveSize 0," all
+# windows will be moved using the traditional rubber-band outline.  With
+# "OpaqueMoveSize 100" all windows will be moved as solid windows.  The
+# default is "OpaqueMoveSize 5".
+#--------------------------------------------------------------------------
+#
+OpaqueMoveSize 25
+
+#------------------------------------------------------------------------------
+# This changes the value with which bits are XOR'ed when doing
+# rubber-band window moving or resizing.  Whatever is used by default
+# doesn't work with my (mostly) black background...
+#---------------------------------------------------------------------
+#
+XORvalue 1
+
+#------------------------------------------------------------------------------
+# EdgeScroll specifies the percentage of a page to scroll when the
+# cursor hits the edge of a page.
+#------------------------------------------------------------------
+#
+EdgeScroll 100 100
+
+#------------------------------------------------------------------------------
+# EdgeResistance tells how hard it should be to change the desktop
+# viewport by moving the mouse over the edge of the screen and how hard it
+# should be to move a window over the edge of the screen.
+#
+# The first parameter tells how many milliseconds the pointer must spend
+# on the screen edge before fvwm will move the viewport.
+#
+# The second parameter tells how many pixels over the edge of the screen
+# a window's edge must move before it actually moves partially off the
+# screen.
+#--------------------------------------------------------------------------
+#
+EdgeResistance 250 100
+
+#==============================================================================
+# window placement style stuff
+#==============================================================================
+#------------------------------------------------------------------------------
+# RandomPlacement causes windows which would normally require user
+# placement to be automatically placed in ever-so-slightly random
+# locations.
+#
+# SmartPlacement causes windows which would normally require user
+# placement to be automatically placed in a smart location - a location in
+# which they do not overlap any other windows on the screen.
+#
+# SmartPlacementIsReallySmart does something (can't remember what offhand)
+# to make SmartPlacement better
+#
+# MouseFocusClickRaises makes a click in the window raise that window, but
+# also passes clicks on to the underlying application (i think)
+#--------------------------------------------------------------------------
+#
+Style "*" SmartPlacement, ActivePlacement
+# GlobalOpts SmartPlacementIsReallySmart, ClickToFocusDoesntPassClick, MouseFocusClickRaises
+GlobalOpts SmartPlacementIsReallySmart
+
+#------------------------------------------------------------------------------
+# decorate transient windows
+#----------------------------
+#
+Style "*" DecorateTransient
+
+#------------------------------------------------------------------------------
+# title bar setup
+#-----------------
+TitleStyle	LeftJustified	-- Flat
+AddTitleStyle	Inactive	HGradient 64 LightGray DimGray
+AddTitleStyle	ActiveUp	HGradient 64 NavyBlue SteelBlue3
+AddTitleStyle	ActiveDown	HGradient 64 NavyBlue SteelBlue3
+BorderStyle	-- HiddenHandles NoInset
+#==============================================================================
+# set up the virtual desktop
+#==============================================================================
+#
+DeskTopSize 1x1
+#
+
+#==============================================================================
+# stuff to do at startup
+#
+#	FvwmButtons (formerly GoodStuff) is FVWM's button bar module
+#	FvwmAuto causes windows with the input focus to autoraise
+#==============================================================================
+#
+DestroyFunc	InitFunction
+AddToFunc	InitFunction
++	I 	exec xsetroot -solid blue4
+#+	I	Module	FvwmTaskBar
++	I	exec xpracman
+
+DestroyFunc	RestartFunction
+AddToFunc	RestartFunction
++	I 	exec xsetroot -solid blue4
+#+	I	Module	FvwmTaskBar
+
+DestroyFunc	LogoutFunction
+AddToFunc	LogoutFunction
++	I	Quit
+
+#==============================================================================
+# set the decoration styles and window options
+#==============================================================================
+#
+Style "*"		BorderWidth 5, HandleWidth 5, SloppyFocus
+Style "Fvwm*"		NoTitle, NoHandles, Sticky, WindowListSkip, \
+			BorderWidth 0
+Style "FvwmButtons"	NoTitle, NoHandles, Sticky, WindowListSkip, \
+			ClickToFocus, BorderWidth 1, StaysOnTop
+Style "FvwmPager"	NoTitle, NoHandles, Sticky, WindowListSkip, \
+			ClickToFocus, BorderWidth 3, StaysOnTop
+Style "FvwmTalk"	Sticky, WindowListSkip, BorderWidth 3
+Style "xlogout"		NoTitle, NoHandles, Sticky, WindowListSkip, \
+			FvwmBorder, BorderWidth 4, BackColor brown4
+Style "Netscape"	ClickToFocus, NoPPosition
+Style "Console"		NoHandles, NoIcon
+#Style "XTerm"		MiniIcon mini.xterm.xpm
+Style "XpracMan"	NoTitle, NoHandles, Sticky, WindowListSkip, \
+                        ClickToFocus, BorderWidth 0
+
+#==============================================================================
+# some handy complex functions
+#==============================================================================
+#------------------------------------------------------------------------------
+# This one moves and then raises the window if you drag the mouse, only
+# raises the window if you click, or does a RaiseLowqer if you double
+# click
+#-----------------------------------------------------------------------
+#
+DestroyFunc	Move-or-Raise
+AddToFunc	Move-or-Raise
++	M	Move
++	M	Raise
++	C	Raise
++	D	WindowShade
+
+#------------------------------------------------------------------------------
+# This one gives the system menu on a single click, deletes the window on a
+# double click
+#--------------
+DestroyFunc	SystemButton
+AddToFunc	SystemButton
+#+	I	Popup Window-Ops2
++	C	Popup Window-Ops2
++	M	Popup Window-Ops2
++	D	Close
+
+#------------------------------------------------------------------------------
+# This one maximizes vertically if you click (leaving room for the
+# FvwmButtons bar at the bottom, or does a full maximization if you double
+# click, or a true full vertical maximizationi if you just hold the mouse
+# button down.
+#--------------------------------------------------------------------------
+#
+DestroyFunc	maximize_func
+AddToFunc	maximize_func
++	M	Maximize 0 100
++	C	Maximize 0 93
++	D	Maximize 100 100
+
+#------------------------------------------------------------------------------
+# This one moves and then lowers the window if you drag the mouse, only
+# lowers the window if you click, or does a RaiseLower if you double click
+#--------------------------------------------------------------------------
+#
+DestroyFunc	Move-or-Lower
+AddToFunc	Move-or-Lower
++	M	Move
++	M	Lower
++	C	Lower
++	D	RaiseLower
+
+#------------------------------------------------------------------------------
+# This one moves or (de)iconifies
+#---------------------------------
+#
+DestroyFunc	Move-or-Iconify
+AddToFunc	Move-or-Iconify
++	M	Move
++	D	Iconify
+
+#------------------------------------------------------------------------------
+# This one resizes and then raises the window if you drag the mouse,
+# only rasies the window if you click, or does a RaiseLower if you double
+# click
+#-------------------------------------------------------------------------
+#
+DestroyFunc	Resize-or-Raise
+AddToFunc	Resize-or-Raise	
++	M	Resize
++	M	Raise
++	C	Raise
++	D	RaiseLower
+
+# DestroyFunc	LogoutFunc
+# AddToFunc	LogoutFunc
+# +	I	Quit
+
+DestroyFunc	warp-or-run
+AddToFunc	warp-or-run	
++	I	Next [$0 CirculateHit] Iconify -1
++	I	Next [$0 CirculateHit] Focus
++	I	None [$0] $1
+
+DestroyFunc	warp-current-desk-or-run
+AddToFunc 	warp-current-desk-or-run
++ 	I	Next [$0 CirculateHit CurrentDesk] Iconify -1
++	I	Next [$0 CirculateHit CurrentDesk] Focus
++	I	None [$0 CirculateHit CurrentDesk] $1
+
+#==============================================================================
+# some handy-dandy menus (the order on this is severely hap-hazard)
+#==============================================================================
+#
+#------------------------------------------------------------------------------
+# Some fvwm2 Modules
+#------------------------------------------------------------------------------
+DestroyMenu	Module-Popup
+AddToMenu	Module-Popup	"Modules"	Title
++	"FvwmButtons"		Module		FvwmButtons
++	""			Nop
++	"Kill FvwmButtons"	KillModule	FvwmButtons
++	""			Nop
++       "IconMan"       	Module  	FvwmIconMan
++       "Kill IconMan"       	KillModule  	FvwmIconMan
++	""			Nop
++	"Identify Window"	Module		FvwmIdent
++	"FvwmWinList"		Module		FvwmWinList
++	"Command Line"		Module		FvwmTalk
+
+#------------------------------------------------------------------------------
+# Top-Level Menu for different programs
+#
+# SOME SITE SPECIFIC STUFF FOLLOWS!
+#------------------------------------------------------------------------------
+DestroyMenu	Applications
+AddToMenu	Applications	"Programs"	Title
++	"Calculator"		Exec	exec	xcalc &
++	"Netscape"		Exec	exec	netscape &
+
+#------------------------------------------------------------------------------
+# A Few Root Window Backgrounds
+#------------------------------------------------------------------------------
+DestroyMenu	Backgrounds
+AddToMenu	Backgrounds	"Backgrounds"		Title
++	"Blue"			Exec	exec	xsetroot -solid blue4&
++	"Black"			Exec	exec	xsetroot -solid black&
++	"Gray"			Exec	exec	xsetroot -gray&
++	"Messy"			Exec	exec	xsetroot -def&
++	"Green"			Exec	exec	xsetroot -solid green3&
+
+#------------------------------------------------------------------------------
+# A Few Bell Settings
+#------------------------------------------------------------------------------
+DestroyMenu	Bell-Settings
+AddToMenu	Bell-Settings	"Bell Settings"		Title
++	"Bell Check"		Beep
++	""			Nop
++	"Bell Loud"		Exec	exec	xset b 100&
++	"Bell Normal"		Exec	exec	xset b 50&
++	"Bell Soft"		Exec	exec	xset b 25&
++	""			Nop
++	"Bell Off"		Exec	exec	xset b 0&
+
+#------------------------------------------------------------------------------
+# A Few Keyboard Click Settings
+#------------------------------------------------------------------------------
+DestroyMenu	Click-Settings
+AddToMenu	Click-Settings	"Click Settings"	Title
++	"Click Loud"		Exec	exec	xset c 100&
++	"Click Normal"		Exec	exec	xset c 50&
++	"Click Soft"		Exec	exec	xset c 25&
++	""			Nop
++	"Click Off"		Exec	exec	xset c 0&
+
+#------------------------------------------------------------------------------
+# A Few Mouse Speed Settings
+#------------------------------------------------------------------------------
+DestroyMenu	Mouse-Settings
+AddToMenu	Mouse-Settings	"Mouse Settings"	Title
++	"Mouse Slow"		Exec	exec	xset m 1 1&
++	"Mouse Default"		Exec	exec	xset m default&
++	"Mouse Fast"		Exec	exec	xset m 4 2&
++	"Speedy Gonzales"	Exec	exec	xset m 10 2&
+
+#------------------------------------------------------------------------------
+# Top-Level Settings Menu
+#------------------------------------------------------------------------------
+DestroyMenu	Setups
+AddToMenu	Setups		"Settings"		Title
++	"Backgrounds"		Popup	Backgrounds
++	"Bell Settings"		Popup	Bell-Settings
++	"Click Settings"	Popup	Click-Settings
++	"Mouse Settings"	Popup	Mouse-Settings
+
+#------------------------------------------------------------------------------
+DestroyMenu	Window-Ops
+AddToMenu	Window-Ops	"Window Ops"	Title
++	"Identity"				Module		FvwmIdent
++	""					Nop
++	"Move"					Move
++	"Resize"				Resize
++	"Raise"					Raise
++	"Lower"					Lower
++	"(De)Iconify"				Iconify
++	"(Un)Stick"				Stick
++	"(Un)Maximize"				Function	maximize_func
++	"(Un)Maximize Vertical"			Maximize 	0 100
++	""					Nop
++	"Destroy"				Destroy
++	"Delete"				Delete
+
+#------------------------------------------------------------------------------
+DestroyMenu	Window-Ops2
+AddToMenu	Window-Ops2
++	"Identity"				Module		FvwmIdent
++	""					Nop
++	"Move"					Move
++	"Resize"				Resize
++	"Raise"					Raise
++	"Lower"					Lower
++	"(De)Iconify"				Iconify
++	"(Un)Stick"				Stick
++	"(Un)Maximize"				Maximize
++	"(Un)Maximize Vertical"			Maximize	0 100
++	""					Nop
++	"Destroy"				Destroy
++	"Delete"				Delete
++	""					Nop
++	"Scroll Bar"				Module		FvwmScroll 2 2
+
+#------------------------------------------------------------------------------
+# Start Menu
+#------------------------------------------------------------------------------
+DestroyMenu	StartMenu
+AddToMenu	StartMenu	"Main Menu"	Title
++	"XPracMan"		Exec exec xpracman &
++       "Balance" 		Exec exec xterm -geometry 80x24+10+10 -ls -title "Balance" &
++	""			Nop
++	"Restart"		Restart	fvwm2
++	"Logout"		Function	LogoutFunction
+
+#==============================================================================
+# WHEW!  one more complex function now
+#==============================================================================
+#------------------------------------------------------------------------------
+# This creates a motif-ish sticky menu for the title-bar window-ops
+# popup.  Menu acts like normal twm menu if you just hold the button down,
+# but if you click instead, the menu stays up, motif style
+#--------------------------------------------------------------------------
+#
+DestroyFunc	window_ops_func
+AddToFunc	window_ops_func
++	C	Menu	Window-Ops2
++	M	Menu	Window-Ops2
+
+#==============================================================================
+# Mouse and button bindings...
+#==============================================================================
+#-----------------------------------------------------------------------------
+# Call me a loser if you want, but i quite like the Windows 95 title bar
+# buttons, so let's define the right hand title bar buttons to be a
+# little like those
+#------------------------------------------------------------------------
+#
+# ButtonStyle 2 (Solid SteelBlue3 -- Flat)
+ButtonStyle 2 (Solid SteelBlue3 -- Raised)
+AddButtonStyle 2 Inactive (Solid DimGray)
+AddButtonStyle 2 (Pixmap close-up.xpm)
+AddButtonStyle 2 ActiveDown (Pixmap close-down.xpm)
+ButtonStyle 4 (Solid SteelBlue3 -- Flat)
+# ButtonStyle 4 (Solid SteelBlue3 -- Raised)
+AddButtonStyle 4 Inactive (Solid DimGray)
+AddButtonStyle 4 (Pixmap maximize-up.xpm -- Left)
+AddButtonStyle 4 ActiveDown (Pixmap maximize-down.xpm -- Left)
+ButtonStyle 6 (Solid SteelBlue3 -- Flat)
+# ButtonStyle 6 (Solid SteelBlue3 -- Raised)
+AddButtonStyle 6 Inactive (Solid DimGray)
+AddButtonStyle 6 (Pixmap minimize-up.xpm -- Right)
+AddButtonStyle 6 ActiveDown (Pixmap minimize-down.xpm -- Right)
+
+#-----------------------------------------------------------------------------
+# For the left side, we'll have a "system" button, then we'll define two
+# more: a lower (down arrow) and an "identity" (I)
+#--------------------------------------------------
+#
+
+ButtonStyle 1 (Solid NavyBlue -- Flat)
+AddButtonStyle 1 Inactive (Solid LightGray)
+AddButtonStyle 1 (Pixmap mini.x.xpm -- Left)
+
+#-----------------------------------------------------------------------------
+# First, for the mouse in the root window
+#
+# Button 1 gives the Utilities menu
+# Button 2 gives the Window Ops menu
+# Button 3 gives the WindowList (like TwmWindows)
+#-------------------------------------------------
+#
+#     Button	Context Modifi 	Function
+Mouse 1		R   	A       Menu StartMenu
+Mouse 2		R    	A      	Menu Window-Ops
+Mouse 3		R    	A      	WindowList
+
+#-----------------------------------------------------------------------------
+# Now the title bar buttons
+#
+# Button	Context		Modifiers	Function
+Mouse 0		1    		A      		Function SystemButton
+Mouse 0		2		A		Close
+Mouse 0		4    		A     		Function maximize_func
+Mouse 0		6    		A     		Iconify
+
+#-----------------------------------------------------------------------------
+# Now the rest of the frame
+#---------------------------
+#
+#--------------------------------------------------------------------------
+# Button 1 in the corner pieces, with any modifiers, gives resize or raise
+#
+Mouse 1		FS	A	Function Resize-or-Raise
+
+#------------------------------------------------------------------------
+# Button 1 in the title, or sides, w/ any modifiers, gives move or raise
+Mouse 1		T	A	Function Move-or-Raise
+
+#----------------------------------------------------------------------------
+# Button 1 in an icons gives move for a drag, de-iconify for a double-click,
+# nothing for a single click
+#
+Mouse 1		I	A	Function Move-or-Iconify
+
+#---------------------------------------------------------
+# Button 2 in an icon, w/ any modifiers, gives de-iconify
+#
+Mouse 2		I	A	Iconify
+
+#------------------------------------------------------------------------
+# Button 2 in the corners or sides gives the window ops menu
+# Button 2 in the title bar toggles between sticky/slippery
+
+Mouse 2		FS	A	Function window_ops_func
+
+#--------------------------------------------------------------------
+# Button 3 anywhere in the decoration (except the title-bar buttons)
+# does a raise-lower
+#
+Mouse 3		TSIF	A	RaiseLower
+
+#==============================================================================
+# keyboard shortcuts are here
+#==============================================================================
+#-----------------------------------------------------------------------------
+# Arrow Keys
+# press arrow + meta anywhere, and scroll by 1 page
+#---------------------------------------------------
+#
+Key Left	A	M	Scroll -100 0
+Key Right	A	M	Scroll +100 +0
+Key Up		A	M	Scroll +0   -100
+Key Down	A	M	Scroll +0   +100
+
+#-----------------------------------------------------------------------------
+# press arrow + control key, and scroll by 1/10 of a page
+#---------------------------------------------------------
+#
+Key Left	A	C	Scroll -10  +0
+Key Right	A	C	Scroll +10  +0
+Key Up		A	C	Scroll +0   -10
+Key Down	A	C	Scroll +0   +10
+
+#==============================================================================
+# Definitions used by the modules
+#==============================================================================
+
+#------------------------------------------------------------------------------
+# Window Identifier
+#-------------------
+#
+*FvwmIdentFore		black
+*FvwmIdentBack		LightGray
+*FvwmIdentFont		-adobe-helvetica-medium-r-normal-*-*-100-*-*-*-*-*-*
+
+#------------------------------------------------------------------------------
+# FvwmWinList
+#-------------
+#
+*FvwmWinListGeometry	+0-1
+*FvwmWinListFont	-*-helvetica-medium-r-normal-*-*-100-*-*-*-*-*-*
+*FvwmWinListFore	black
+*FvwmWinListBack	LightGray
+*FvwmWinListIconFore	black
+*FvwmWinListAction	Click1	Iconify -1,Focus
+*FvwmWinListAction	Click2	Iconify
+*FvwmWinListAction	Click3	Module	"FvwmIdent"	FvwmIdent
+*FvwmWinListUseSkipList
+*FvwmWinListLeftJustify
+
+#------------------------------------------------------------------------------
+# FvwmTaskBar
+#-------------
+Style "FvwmTaskBar" NoTitle,BorderWidth 4, HandleWidth 4,Sticky,StaysOnTop,WindowListSkip,CirculateSkip
+*FvwmTaskBarBack #c3c3c3
+*FvwmTaskBarFore black
+*FvwmTaskBarTipsBack bisque
+*FvwmTaskBarTipsFore black
+*FvwmTaskBarGeometry +0-1
+*FvwmTaskBarFont -adobe-helvetica-medium-r-*-*-14-*-*-*-*-*-*-*
+*FvwmTaskBarSelFont -adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*
+*FvwmTaskBarStatusFont fixed
+
+*FvwmTaskBarAction Click1 Iconify -1, Raise
+*FvwmTaskBarAction Click2 Iconify +1, Lower
+*FvwmTaskBarAction Click3 Iconify -1, Raise
+
+*FvwmTaskBarUseSkipList
+*FvwmTaskBarUseIconNames
+*FvwmTaskBarAutoStick
+*FvwmTaskBarShowTips
+
+*FvwmTaskBarButtonWidth 180
+*FvwmTaskBarBellVolume 20
+*FvwmTaskBarMailBox /var/mail/
+#*FvwmTaskBarMailCommand Exec netscape -mail
+*FvwmTaskBarClockFormat %I:%M %p
+
+*FvwmTaskBarStartName Start
+*FvwmTaskBarStartMenu StartMenu
+*FvwmTaskBarStartIcon mini-turn.xpm

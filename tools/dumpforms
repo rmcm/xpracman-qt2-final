@@ -1,0 +1,24 @@
+#!/bin/sh
+
+while [ $# -gt 0 ] ; do
+
+  case $1 in
+	--database)	shift 1
+			DBNAME=$1
+			;;
+	*)		ARGS="${ARGS} $1"
+			;;
+  esac
+  shift 1
+done
+
+php/dump_form.php --database ${DBNAME} \
+		--skip-attribute form__sequence \
+		--skip-attribute form__timestamp \
+		--skip-attribute form__user_entry \
+		--skip-attribute form__status \
+		--skip-attribute fmdt__sequence \
+		--skip-attribute fmdt__timestamp \
+		--skip-attribute fmdt__user_entry \
+		--skip-attribute fmdt__status \
+		$ARGS

@@ -1,0 +1,12 @@
+MARVIN is a library for viewing and maintaining data in a PostgreSQL
+database. It requires
+
+          - GNU make 
+          - postgresql
+          - QT2
+
+XPracMan is an application based on MARVIN. It is a Medical Practice
+Management tool.
+
+See INSTALL for information about installing PRAC
+

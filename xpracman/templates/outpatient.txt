@@ -1,0 +1,19 @@
+today 
+
+To Whom It May Concern:
+
+
+Can you please send an appointment to the following patient:
+
+
+Name:		patv_title patv_fsnam patv_psnam
+Address:	patv_address
+                patv_suburb patv_postcode
+DOB:		patv_dob
+Home Ph:	patv_phone 
+
+
+Please make appointment ASAP.
+
+
+Thank you. 

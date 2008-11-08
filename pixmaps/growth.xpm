@@ -1,0 +1,22 @@
+/* XPM */
+const char * growth_xpm[] = {
+/* width height ncolors chars_per_pixel */
+"16 14 4 1",
+" 	c None s None",
+".	c green",
+"X	c gray50",
+"o	c black",
+"                ",
+"              . ",
+"            ...o",
+"          ....o ",
+"        ....oo  ",
+".X     ....o    ",
+"..X   ....o     ",
+" ...X...oo      ",
+" ......o        ",
+"  . ..o         ",
+"  ...o          ",
+"  ..o           ",
+"   o            ",
+"                "};

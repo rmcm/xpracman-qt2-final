@@ -1,0 +1,28 @@
+today
+
+
+
+
+patv_title patv_fsnam patv_psnam
+patv_address
+patv_suburb patv_postcode
+
+
+
+Dear patv_title patv_psnam,   
+
+
+Re:	Your Surgery
+
+
+Your surgery has been approved by your insurer and I would be grateful
+if you would contact our rooms on 9945 3452 to arrange a suitable date.
+
+
+Yours sincerely,
+
+
+
+
+
+Secretary to Mr Surgeon

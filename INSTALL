@@ -1,0 +1,73 @@
+-*-text-*-
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Installation notes for Marvin/XPracMan
+======================================
+
+CONTENTS:
+=========
+
+    1. Installation
+    2. Problems
+    3. Examples
+       3.1 Building a new application and database
+       3.2 Updating an existing application
+       3.3 Building a new program from an existing database
+
+
+1. Installation
+===============
+  1. Requirements:
+  
+          - GNU make 
+          - postgresql 7.X+
+          - QT2 libs (tar -C /usr/local -zxpf qt-2.3.1-gcc3.2.tgz)
+  
+  2. Get the source either from
+
+       a) CVS
+
+          mkdir xpracman-VERSION
+          cd xpracman-VERSION
+          cvs -d :ext:anoncvs@woody.mcmaster.wattle.id.au:/cvs co xpracman
+          cd src
+
+    or b) the source archive.
+
+          tar -zxpf xpracman-VERSION.tgz
+
+  3. Build and install the application
+
+          cd xpracman-VERSION
+          make all
+  
+  4. create database
+  
+          make database     (will make default db named "prac")
+          or
+          make database DBNAME=myname
+
+
+2. Problems
+===========
+
+        TODO
+
+3. Examples
+===========
+
+  3.1 Building a new application and database
+  ===========================================
+
+        TODO
+
+  3.2 Rebuilding a database table with an extra attribute
+  =======================================================
+
+        TODO
+
+  3.3 Building a new program from an existing database
+  ====================================================
+
+        TODO

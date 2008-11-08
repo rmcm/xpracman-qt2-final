@@ -1,0 +1,218 @@
+/*
+ *     $Id: user_features.dox 1272 2002-04-24 23:08:01Z source $
+ * 
+ *   Copyright 2001 X=X Computer Software Trust
+ *    		  Kangaroo Ground Australia 3097
+ * 
+ * 
+ *  This is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License published by
+ *  the Free Software Foundation; either version 2, or (at your option)
+ *  any later version.
+ *  
+ *  This software is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this software; see the file COPYING.  If not, write to
+ *  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ *  
+ *  Report problems and direct all questions to:
+ *  
+ *      Rex McMaster, rmcm@compsoft.com.au
+ *  
+ * 
+
+ */
+
+/*
+ * ======================================================================
+ * DESCRIPTION: 
+ *
+ * ======================================================================
+ */
+
+/*
+ * ======================================================================
+ * INCLUDES:
+ * ======================================================================
+ */
+
+
+
+/*! \page features Using Particular Features
+  This section will describe how to use particular XPracMan features.
+
+
+  <ol>
+       <li> \ref adding_patient
+       <li> \ref finding_patient
+       <li> \ref editing_patient
+       <li> \ref adding_service
+       <li> \ref adding_payment
+       <li> \ref adding_fee
+       <li> \ref editing_fee
+       <li> \ref adding_referrer
+       <li> \ref printing_invoice
+  </ol>
+  
+\subsection adding_patient Adding a Patient
+
+To add a patient to the database, use a shortcut button or pull-down
+menu to view Patient Demographics. Mouse-click on the <b>Add Row</b>
+button, which is the first of the six coloured buttons located above
+the Surname column.
+
+The details of the new patient, beginning with the surname, can now be
+entered. Press <b>Return</b> to move across the row after the data
+of each field has been inserted.
+
+<b>Summary:</b>
+
+<ol>
+
+<li> Mouse-click in <b>Add Row</b>.
+
+<li> Enter patient details in appropriate fields, pressing
+  <b>Return</b> to move across fields.
+
+</ol>
+
+\subsection finding_patient Locating a Record
+
+To locate a particular record first select the view which is
+appropriate to the record, i.e. to locate an invoice, view the invoice
+display (not clear??). 
+
+Using the pull-dowm menu in the first search field, chose the field
+that will be searched. 
+
+Use the drop-down menu in the second search field to direct the way in
+which the search will be conducted. Data within the chosen field can,
+for example, either match, be like, contain or equal the results. 
+
+Use the third search field to enter the data being searched for. This
+field is not case-sensitive.
+
+From the pull-down menu located on the fourth search menu, select the
+order by which the results will be displayed. 
+
+Press the button marked ``Select Where''.
+
+<b>Summary:</b>
+
+-Select the appropriate display.
+
+-Chose the field to be searched.
+
+-Enter the search data. 
+
+-Select the order that the search results will take.
+
+-Press the button marked ``Select Where''.
+
+\subsection editing_patient Editing Patient Details
+
+To update a patient's details, first locate the patient's file (see section
+\ref finding_patient). Mouse click in the field that requires updating,
+and enter the new information.
+
+<b>Summary:</b>
+
+-Locate the patient's file (see section \ref finding_patient).
+
+-Mouse click on the field that requires updating.
+
+-Enter the new information.
+
+\subsection adding_service Adding a Service to a Patient
+
+To add a service to a patient's record, first locate the patient's
+file (see section \ref finding_patient). Mouse-click on the check-button
+titled ``Services Performed''. Within the lower window that appears, titled
+``Services Performed'', mouse-click on the ``Add Row'' button. Enter
+the details of the service. 
+
+<b>Summary:</b>
+
+-Locate the patient's file (see section \ref finding_patient).
+
+-Mouse-click on the check-button titled ``Services Performed''
+
+-Mouse-click on ``Add Row'' button in lower window.
+
+-Enter the details of the service.
+
+
+\subsection adding_payment Adding a Payment
+
+To record a payment that a patient has made, first locate the patient's
+file (see section \ref finding_patient}).
+
+<b>NB: I am not sure how to do this section.</b>
+
+\subsection adding_fee Adding a Fee
+
+To add a fee to the database, use the pull-down menu to display
+``?????''.  Mouse-click on the <b>Add Row</b> button, which is the
+first of the six coloured buttons located below the search fields.
+Enter the details of the new fee.
+
+<b>NB: I am not sure which fee option is supposed to be displayed.</b>
+
+\subsection editing_fee Editing a Fee
+
+
+To edit an existing fee, first locate the fee (see section
+\ref finding_patient).  Mouse click in the field that requires updating,
+and enter the new information.
+
+<b>Summary:</b>
+
+-Locate the existing fee (see section \ref finding_patient).
+
+-Mouse click on the field that requires updating.
+
+-Enter the new information.
+
+
+\subsection adding_referrer Adding a Referring Doctor
+
+
+To add a referring doctor, use the pull-down menu, or the short-cut
+button marked <b>R</b>, to display the referrers. Mouse-click on the
+<b>Add Row</b> button, which is the first of the six coloured
+buttons located below the search fields. Enter the details of the new
+referring doctor. 
+
+<b>Summary:</b>
+
+-Use the pull-down menu or short-cut button to display the referrers. 
+
+-Mouse-click on the <b>Add Row</b> button.
+
+-Enter the referring doctor's details. 
+
+\subsection printing_invoice Printing an Invoice
+
+
+To print an invoice, first locate the patient's file (see section
+\ref finding_patient}). Mouse-click on the check-button
+titled ``Invoices''. Within the lower window that appears, titled
+``Invoices'', mouse-click on the ``Print Set'' button.
+
+<b>Summary:</b>
+
+-Locate the patient's file (see section \ref finding_patient).
+
+-Mouse-click on the check-button titled ``Invoices''
+
+-Mouse-click on ``Print Set'' button in the lower window.
+
+  
+*/
+// Local Variables:
+// mode:C++
+// End:

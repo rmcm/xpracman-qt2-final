@@ -1,0 +1,7 @@
+#!/bin/sh
+# DVI Filter
+# $Id: dvifilter 2 1998-05-30 03:57:33Z source $
+umask 0077
+cat > /tmp/dvifile.$$
+/usr/local/bin/dvilj -e- -s26 -q /tmp/dvifile.$$
+/bin/rm /tmp/dvifile.$$

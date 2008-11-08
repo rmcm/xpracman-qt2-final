@@ -1,0 +1,84 @@
+-*-text-*-
+
+- Hooks can be used to modify the standard function of an application.
+
+- Hooks are called at a number of places in the page generation
+  process in class_view.php3
+
+  - HOOK_PRE_HTML       - prior to <HTML> tag
+  - HOOK_HEAD           - after <HEAD> tag
+  - HOOK_BODY           - after <BODY> tag
+  - HOOK_POST_ACTION    - after ACTION code has been executed
+  - HOOK_PRE_DISPLAY    - before the HTML code has been sent to browser
+  - HOOK_CLOSE          - before to close (which saves persistent data)
+
+- hooks are registered with the prac_add_hook() function:
+
+        prac_add_hook(cons list, string php_code);
+
+                   list is one of
+                        - HOOK_PRE_HTML
+                        - HOOK_HEAD
+                        - HOOK_BODY
+                        - HOOK_POST_ACTION
+                        - HOOK_PRE_DISPLAY
+                        - HOOK_CLOSE
+
+                   string is a valid php code (including trailing
+                   ";");
+
+        examples; 
+
+            1. prac_add_hook(HOOK_BODY,
+                  sprintf("isset(\$GLOBALS[\"meta_class_class\"])&& \$GLOBALS[\"meta_class_class\"]->class_form_columns = 1;"));
+
+               if the global variable $meta_class_class exists (an object), 
+               then set member variable "class_form_columns" to 1. Execute this at the beginning
+               of the BODY section.
+
+            2. prac_add_hook(HOOK_POST_ACTION, "add_invc_print_options();");
+
+               Run the global function add_invc_print_options(), after the "ACTION" function has been run.
+               Note: the ACTION function is defined as the GET variable "prac_action", and has a value from the following
+               list;
+
+                     - QUERY
+                     - BROWSE
+                     - INSERT
+                     - UPDATE
+                     - DELETE
+                     - PRINT
+
+
+- hooks can be registered in;
+
+        1. the $(PROGRAM)/class_extras.inc file, which is included after pg_prac.inc before any output is generated.
+
+        2. in a file defined in meta_class:class_extras, which is included after class_extras.inc, for the class defined
+           in the GET variable "prac_classname"
+
+
+Flow in class_view.php3
+=======================
+
+        - include "pg_prac.inc"
+        - initialize hook arrays;
+        - include "class_extras.inc"
+        - load metadata for $prac_classname && include "select meta_class.class_extras where class_name = $prac_classname"
+        - run HOOK_PRE_HTML hooks
+        - print HTML document type
+        - print "<HTML><HEAD>";
+        - run HOOK_HEAD hooks
+        - print meta headers
+        - print <TITLE></TITLE></HEAD>
+        - print "<BODY>"
+        - run HOOK_BODY hooks
+        - synchronize form data and program variables
+        - run the defined ACTION function
+        - run HOOK_POST_ACTION hooks
+        - prepare menus
+        - run HOOK_PRE_DISPLAY hooks
+        - expose the dislpay tree
+        - run HOOK_CLOSE hooks
+        - close the page and save persistent data
+        - print "</BODY></HTML>"

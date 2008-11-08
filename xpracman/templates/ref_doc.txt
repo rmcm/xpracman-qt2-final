@@ -1,0 +1,27 @@
+today
+
+
+patv_rfdr_name
+patv_rfdr_street
+patv_rfdr_suburb patv_rfdr_postcode
+
+
+
+Dear patv_rfdr_salutation,
+
+Re:	patv_title patv_fsnam patv_psnam
+	patv_address, patv_suburb patv_postcode
+			
+Thank you very much for referring patv_psnam whom I saw today.
+
+
+
+
+
+Yours sincerely,
+
+
+
+
+
+Mr Surgeon

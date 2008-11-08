@@ -1,0 +1,40 @@
+## Path:	   Applications/vncusers
+## Description:    vncusers VNC startups
+## Type:	   string()
+## Default:	   "guest"
+## ServiceRestart: vncusers
+#
+# Which users to manage
+#
+VNCUSERS_LIST="guest"
+
+## Path:	   Applications/vncusers
+## Description:    vncusers id offset 
+## Type:	   string()
+## Default:	   "300"
+## ServiceRestart: vncusers
+#
+# ID - VNCUSERS_OFFSET + 5900 = vnc port
+#
+VNCUSERS_OFFSET="300"
+
+## Path:	   Applications/vncusers
+## Description:    vncusers VNC geometry
+## Type:	   string()
+## Default:	   "-geometry 1016x700"
+## ServiceRestart: vncusers
+#
+# Geometry argument to pass to vncserver
+#
+VNCUSERS_GEOMETRY="-geometry 1016x700"
+
+## Path:	   Applications/vncusers
+## Description:    vncusers VNC colour depth
+## Type:	   string()
+## Default:	   "-depth 24"
+## ServiceRestart: vncusers
+#
+# Depth argument to pass to vncserver
+#
+VNCUSERS_DEPTH="-depth 24"
+

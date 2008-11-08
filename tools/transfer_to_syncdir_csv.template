@@ -1,0 +1,48 @@
+#!/bin/sh
+#    $Id: transfer_to_syncdir_csv.template 2912 2006-07-05 04:56:18Z source $
+#
+#  Copyright 2006 X=X Computer Software Trust
+#                  Kangaroo Ground Australia 3097
+#
+#
+# This is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+# 
+# This software is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this software; see the file COPYING.  If not, write to
+# the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+# 
+# Report problems and direct all questions to:
+# 
+#     Rex McMaster, rmcm@compsoft.com.au
+# 
+
+# Process exported (qmvexport)  CSV and INFO files
+
+if test $# != 1 ; then \
+    echo "usage: `basename $0 ` module";
+    exit 1;
+fi
+pwd
+BASE=$1
+
+if test -f "${BASE}.info" -a -f "${BASE}.csv" ; then \
+    _FILE_CSV="`kdialog --getsavefilename ${PRAC_DOCROOT}/${BASE} '*.csv'`"
+    if test $? = 0 ; then
+      cp -p "${BASE}.csv" "${_FILE_CSV}" || exit 1
+    else
+      exit 1
+    fi
+else
+    knotify --title "Failed to locate exported file(s)"
+    exit 1
+fi
+exit 0
+

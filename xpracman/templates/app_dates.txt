@@ -1,0 +1,25 @@
+today
+
+
+
+patv_title patv_fsnam patv_psnam
+patv_address
+patv_suburb patv_postcode
+
+
+
+Dear patv_title patv_psnam,
+
+As requested, please find enclosed a list of dates on which you attended
+appointments with Mr Surgeon.
+
+	
+	
+If you require any further information please do let me know.
+
+Yours sincerely,
+
+
+
+ 
+Secretary to Mr Surgeon

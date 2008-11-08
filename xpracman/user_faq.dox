@@ -1,0 +1,282 @@
+/*
+ *     $Id: user_faq.dox 1272 2002-04-24 23:08:01Z source $
+ * 
+ *   Copyright 2001 X=X Computer Software Trust
+ *    		  Kangaroo Ground Australia 3097
+ * 
+ * 
+ *  This is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License published by
+ *  the Free Software Foundation; either version 2, or (at your option)
+ *  any later version.
+ *  
+ *  This software is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this software; see the file COPYING.  If not, write to
+ *  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ *  
+ *  Report problems and direct all questions to:
+ *  
+ *      Rex McMaster, rmcm@compsoft.com.au
+ *  
+ *
+
+ */
+
+/*
+ * ======================================================================
+ * DESCRIPTION: 
+ *
+ * ======================================================================
+ */
+
+/*
+ * ======================================================================
+ * INCLUDES:
+ * ======================================================================
+ */
+
+
+
+/*! \page faq Frequently Asked Questions
+
+
+
+  <ol>
+  <li> \ref FAQ_ADD_PATN
+  <li> \ref FAQ_ADD_SVPF
+  <li> \ref FAQ_PRINT_INVOICE
+  <li> \ref FAQ_ADD_CREDIT
+  <li> \ref FAQ_PRINT_STATEMENT
+  <li> \ref FAQ_EDIT_CURRENT_PATN_DBTR
+  <li> \ref FAQ_EDIT_CURRENT_PATN_RFDR
+  <li> \ref FAQ_BANK_RECONCILIATION
+  <li> \ref FAQ_BANK_REPORT_NEW
+  <li> \ref FAQ_BANK_REPORT_OLD
+
+  </ol>
+
+  <hr>
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \section FAQ_ADD_PATN How do I enter a new patient record?
+  <ol>
+
+  <li> Select the patient window, using the \b P shortcut button in
+  the <b>View Toolbar</b>
+  
+  \image html view_toolbar.jpg "View Toolbar"
+  \image latex view_toolbar.jpg "View Toolbar"
+  
+  This will display the <b>Patient Demographics</b> window.
+  <li> Press the <b>Add Row</b> button in the <b>Patient
+  Demographics toolbar</b>.
+  
+  \image html patn_toolbar.jpg "Patient Demographics Toolbar"
+  \image latex patn_toolbar.jpg "Patient Demographics Toolbar"
+  
+  A new row will appear in the <b>Patient Demographics</b> window.
+  <li> Edit the patient demographic fields directly in the patient
+  display window. Alternatively, press the <b>Minieditor</b> button
+  to edit the new row in a separate
+  window (close this window when you have finished)
+
+  </ol>
+  (\ref faq)
+  <hr>
+
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \section FAQ_ADD_SVPF How do I add a new service to a patient record
+
+  <ol>
+
+  <li> Select a patient record in the patient display window.
+  <li> Press the <b>Services Performed</b> button at the bottom of the
+  <b>Patient Demographics</b> window.
+  
+  \image html patn_children.jpg "Displays associated with Patient"
+  \image latex patn_children.jpg "Displays associated with Patient"
+
+  
+
+  A <b>Services Performed</b> window will
+  appear below the <b>Patient Demographics</b> window. Any existing
+  services will be displayed in this window.
+  <li> Press the <b>Add Row</b> button in the Services-performed
+  toolbar. A new row will appear in the <b>Services Performed</b> window.
+  <li> Edit the service fields directly in the services display
+  window. Alternatively, press the \b Minieditor button to edit the
+  new row in a separate window (close this window when you have
+  finished)
+
+  </ol>
+  (\ref faq)
+  <hr>
+
+
+
+
+  
+
+  <!--  ------------------------------------------------------------ -->
+
+  \section FAQ_PRINT_INVOICE How do I print an invoice
+
+  <ol>
+
+  <li> Select a service in the <b>Services Performed</b> window.
+  This service should be part of the invoice to be printed.
+  <li> Press the <b>I</b> shortcut button in the <b>Print</b>
+  toolbar. A window containing the invoice will appear.
+  <li> Press the <b>Print</b> button to send the invoice to the printer.
+
+  </ol>
+  (\ref faq)
+  <hr>
+  
+  
+
+  <!--  ------------------------------------------------------------ -->
+  
+  \section FAQ_ADD_CREDIT How do I add a credit to an invoice
+
+  <ol>
+  
+  <li> Select first the patient, then the service to be credited.
+  <li> Press the <b>Credits</b> button at the bottom of the
+  <b>Services Performed</b> display window.
+  <li> Press the <b>Add Row</b> button in the <b>Credits</b>
+  toolbar. A new row will appear in the <b>Credits</b> display window.
+  <li> Edit the payment fields directly in the credits display
+  window. Alternatively, press the \b Minieditor button to edit the
+  new row in a separate window (close this window when you have
+  finished)
+
+  </ol>
+  (\ref faq)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \section FAQ_PRINT_STATEMENT How do I print a debtor statement
+
+  <ol>
+
+  <li> Select a patient record in the patient display window.
+  <li> Press the <b>S</b> shortcut button in the <b>Print</b>
+  toolbar. A window containing the statement will appear.
+  <li> Press the <b>Print</b> button to send the statement to the printer.
+  
+  </ol>
+  (\ref faq)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \section FAQ_EDIT_CURRENT_PATN_DBTR How do I edit the current Debtor for a patient?
+
+  <ol>
+
+  <li> Select a patient record in the patient display window.
+  <li> Press the <b>D</b> shortcut button in the <b>View</b>
+  toolbar. A window containing the Debtor Record for the current
+  patient will appear.
+  <li> Edit the Debtor details (Remember that a debtor can be shared
+  across many patients - pressing the <b>Patients Covered</b> button
+  at the bottom of the Debtors Window will list the patients covered
+  by the selected debtor)
+  <li> Press the <b>P</b> shortcut button in the <b>View</b>
+  toolbar to return to the Patient window.
+  
+  </ol>
+  (\ref faq)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \section FAQ_EDIT_CURRENT_PATN_RFDR How do I edit the current Referrer for a patient?
+
+  <ol>
+
+  <li> Select a patient record in the patient display window.
+  <li> Press the <b>R</b> shortcut button in the <b>View</b>
+  toolbar. A window containing the Referrer Record for the current
+  patient will appear.
+  <li> Edit the Referrer details (Remember that a referrer can be
+  shared across many patients - pressing the <b>Patients Covered</b>
+  button at the bottom of the Referrers Window will list the patients
+  covered by the selected referrer)
+  <li> Press the <b>P</b> shortcut button in the <b>View</b>
+  toolbar to return to the Patient window.
+  
+  </ol>
+  (\ref faq)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \section FAQ_BANK_RECONCILIATION How do I print a bank reconcilation list
+
+  <ol>
+
+  <li> Press the <b>B</b> shortcut button in the <b>Print</b>
+  toolbar. A Popup Box containing bank list options will appear, with a banklist
+  ID of <b>0</b>. The <b>Banklist ID 0</b> is the list of unbanked items.
+  <li> Select <b>Reconciliation</b>.
+  </ol>
+  (\ref faq)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \section FAQ_BANK_REPORT_NEW How do I prepare and print a new bank list.
+
+  <ol>
+
+  <li> Press the <b>B</b> shortcut button in the <b>View</b>
+  toolbar. A window containing bank list lists will appear
+  <li> Press the <b>Add Row</b> button in the <b>Bank Deposit
+  Reports</b> toolbar. A new row will appear in the <b>Bank Deposit
+  Reports</b> display window.  It will be assigned a new <b>ID</b> number.
+  <li> To print this new list, press the <b>B</b> shortcut button in the <b>Print</b>
+  toolbar. A Popup Box containing bank list options will appear, with
+  the new ID number. Select <b>Bank</b>.
+  </ol>
+  (\ref faq)
+  <hr>
+  
+  
+  <!--  ------------------------------------------------------------ -->
+
+  \section FAQ_BANK_REPORT_OLD How do I reprint an existing bank list.
+
+  <ol>
+
+  <li> Press the <b>B</b> shortcut button in the <b>View</b>
+  toolbar. A window containing bank list lists will appear
+  <li> Find and select the list which you wish to print, using the standard query methods.
+  <li> To print this list, press the <b>B</b> shortcut button in the <b>Print</b>
+  toolbar. A Popup Box containing bank list options will appear, with a
+  the list ID. Select <b>Bank</b>.
+  </ol>
+  (\ref faq)
+  <hr>
+  
+
+*/
+// Local Variables:
+// mode:C++
+// End:

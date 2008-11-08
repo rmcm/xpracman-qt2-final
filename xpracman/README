@@ -1,0 +1,4 @@
+XPracMan is a tool for managing medical
+and accounting records. It requires an
+existing PostgreSQL (http://www.postgresql.org)
+installation.

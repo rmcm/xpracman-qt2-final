@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+
+<!-- 
+    XPracMan installation file.
+    
+    To compile it :
+    - go in the bin directory where you installed IzPack
+    - call "compile ../sample/install.xml -b ../sample"
+-->
+
+<installation version="1.0">
+	<!-- 
+        The info section.
+        The meaning of the tags should be natural ...
+    -->
+	<info>
+		<appname>XPracMan</appname>
+		<appversion>4.3RC1</appversion>
+		<authors>
+			<author name="Rex McMaster" email="rmcm@compsoft.com.au"/>
+		</authors>
+		<url>http://www.compsoft.com.au/</url>
+		<uninstaller write="yes"/>
+	</info>
+	<property name="xpracman.dir" value="xpracman"/>
+	<!-- 
+        The gui preferences indication.
+        Sets the installer window to 640x480. It will not be able to change the size.
+    -->
+	<guiprefs width="640" height="480" resizable="no">
+		<laf name="looks">
+			<os family="unix"/>
+			<param name="variant" value="plastic3D" />
+		</laf>
+	</guiprefs>
+	<!-- 
+        The locale section.
+        Asks here to include the English and French langpacks.
+    -->
+	<locale>
+		<langpack iso3="eng"/>
+	</locale>
+	<!-- 
+        The resources section.
+        The ids must be these ones if you want to use the LicencePanel and/or the InfoPanel.
+    -->
+	<resources>
+		<res id="Installer.image" src="images/panel_xpracman.png"/>
+		<res id="LicencePanel.licence" src="COPYING"/>
+		<res id="InfoPanel.info" src="README"/>
+		<res id="XInfoPanel.info" src="README.installed"/>
+                <res id="ProcessPanel"
+	</resources>
+	<!-- 
+        The panels section.
+        We indicate here which panels we want to use. The order will be respected.
+    -->
+	<panels>
+		<panel classname="HelloPanel"/>
+		<panel classname="InfoPanel"/>
+		<panel classname="LicencePanel"/>
+		<panel classname="TargetPanel"/>
+		<panel classname="PacksPanel"/>
+		<panel classname="InstallPanel"/>
+                <panel classname="ProcessPanel"/>
+		<panel classname="XInfoPanel"/>
+		<panel classname="SimpleFinishPanel"/>
+	</panels>
+	<!-- 
+        The packs section.
+        We specify our packs.
+    -->
+	<packs>
+		<pack name="XPracMan" required="yes">
+			<description>XPracMan v4.3RC1 Integrated Modules - this is the main 
+				application software. </description>
+			<file src="README" targetdir="$INSTALL_PATH"/>
+			<file src="COPYING" targetdir="$INSTALL_PATH"/>
+			<file src="xpracman" targetdir="$INSTALL_PATH"/>
+			<executable targetfile="$INSTALL_PATH/xpracman" stage="never"/>
+			<file src="invoice.awk" targetdir="$INSTALL_PATH"/>
+			<file src="format_lj.awk" targetdir="$INSTALL_PATH"/>
+			<file src="format_plain.awk" targetdir="$INSTALL_PATH"/>
+			<file src="print_invoice" targetdir="$INSTALL_PATH"/>
+			<file src="form.awk" targetdir="$INSTALL_PATH"/>
+			<file src="form_sql.awk" targetdir="$INSTALL_PATH"/>
+			<file src="form_label.example" targetdir="$INSTALL_PATH"/>
+			<file src="print_form" targetdir="$INSTALL_PATH"/>
+			<file src="bank.awk" targetdir="$INSTALL_PATH"/>
+			<file src="bank_sql.awk" targetdir="$INSTALL_PATH"/>
+			<file src="print_bank" targetdir="$INSTALL_PATH"/>
+			<file src="XPracMan.kdelnk" targetdir="$INSTALL_PATH"/>
+			<parsable targetfile="$INSTALL_PATH/XPracMan.kdelnk" 
+				targetdir="$INSTALL_PATH"/>
+			<file src="xpracmanrc" targetdir="$INSTALL_PATH"/>
+			<file src="userpreferences" targetdir="$INSTALL_PATH"/>
+			<file src="pcedit" targetdir="$INSTALL_PATH"/>
+			<file src="xpracman.sh" targetdir="$INSTALL_PATH"/>
+			<file src="README.installed" targetdir="$INSTALL_PATH"/>
+			<file src="images/logo_xpracman_dark.png" targetdir="$INSTALL_PATH"/>
+			<file src="images/logo_xpracman_light.png" targetdir="$INSTALL_PATH"/>
+			<parsable targetfile="$INSTALL_PATH/xpracman.sh" 
+				targetdir="$INSTALL_PATH"/>
+			<executable targetfile="$INSTALL_PATH/xpracman.sh" stage="never"/>
+			<file src="/usr/local/qt2/lib/libqt.so.2" 
+				targetdir="$INSTALL_PATH"/>
+                        <file src="install.sh" targetdir="$INSTALL_PATH"/>
+                        <parsable targetfile="$INSTALL_PATH/install.sh"/>
+			<executable targetfile="$INSTALL_PATH/install.sh" keep="true" 
+                                failure="ask"
+				stage="postinstall"/>
+		</pack>
+		<pack name="PracMan-SQL" required="no">
+			<description> PRAC Database - installs a PRAC Database</description>
+			<file src="prac_init.sql" targetdir="$INSTALL_PATH"/>
+			<file src="installdb.sh" targetdir="$INSTALL_PATH"/>
+			<parsable targetfile="$INSTALL_PATH/installdb.sh"/>
+			<executable targetfile="$INSTALL_PATH/installdb.sh" keep="true" 
+                                failure="ask"
+				stage="postinstall"/>
+		</pack>
+		<pack name="XPracMan - source for XPracMan" required="no">
+			<description>XPracMan Source</description>
+			<file src="xpracman-src.tgz" targetdir="$INSTALL_PATH"/>
+		</pack>
+                <processing>
+                  <job name="do xyz">
+                    <os family="windows" />
+                    <executefile name="$INSTALL_PATH/scripts/xyz.bat">
+                      <arg>doit</arg><arg>$variable</arg>
+                    </executefile>
+                  </job>
+                  <job name="do xyz">
+                    <os family="unix" />
+                    <executefile name="$INSTALL_PATH/scripts/xyz.sh">
+                      <arg>doit</arg><arg>$variable</arg>
+                    </executefile>
+                  </job>
+                </processing>
+
+ 
+	</packs>
+</installation>

@@ -1,0 +1,200 @@
+/*
+ *     $Id: user_windowcomponents.dox 1272 2002-04-24 23:08:01Z source $
+ * 
+ *   Copyright 2001 X=X Computer Software Trust
+ *    		  Kangaroo Ground Australia 3097
+ * 
+ * 
+ *  This is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License published by
+ *  the Free Software Foundation; either version 2, or (at your option)
+ *  any later version.
+ *  
+ *  This software is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this software; see the file COPYING.  If not, write to
+ *  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ *  
+ *  Report problems and direct all questions to:
+ *  
+ *      Rex McMaster, rmcm@compsoft.com.au
+ *  
+ * 
+
+ */
+
+/*
+ * ======================================================================
+ * DESCRIPTION: 
+ *
+ * ======================================================================
+ */
+
+/*
+ * ======================================================================
+ * INCLUDES:
+ * ======================================================================
+ */
+
+
+
+/*! \page windowcomponents Window Components
+  This section aims to give an idea of the general layout and navigation
+used in the program etc.
+
+This is an example of the what the screen layout will look like (have
+a graphic of it)
+
+<ol>
+
+<li> <b>Menu Bar.</b>
+
+The menu bar can be used can be used to access XPracMan procedures.
+
+The menu bar is situated along the top of the XPracMan window, and
+contains the following menu options: File, View, Print, Utilities,
+Preferences, and Help. The menu options can each be accessed by
+clicking on the required menu with the mouse. Alternatively, each menu
+can also be accessed by pressing the <b>alt</b> key and typing the
+letter which underlined in the required menu title.
+
+<b>Example:</b>
+
+To access the Utilities menu, select with the mouse, or press <b>alt</b> + <b>u</b> 
+
+
+<li> <b>Pull-down menus</b>
+  
+  The pull-down menus, which are labeled File and View, allow the user
+  to chose both the particular database, and the way in which the
+  database will be viewed. To access the options, mouse-click on the
+  downward facing arrow. This will bring up a list of options. To view
+  options down the list, use the scroll bar on the right-hand side of
+  the pull-down menu, by mouse-clicking on the upward and downward
+  facing arrows. Using the mouse, click once on the required option.
+
+<b>Example:</b>
+
+To view Debtors, mouse-click on the downward facing button on the
+right-hand side of the View pull-down menu. Mouse-click on the bottom
+downward facing button until the option ``Debtor'' comes into view.
+Mouse-click on the word ``Debtor''.
+
+<li> <b>Shortcut Buttons</b>
+  
+  The XPracMan screen includes a number of buttons which can be used
+  to access frequently used displays. Unlike the pull-down menus, which
+  include all the viewing options, the shortcut buttons include just
+  a selection of displays. The option is given to display: Patient
+  demographics (<b>P</b>), Debtors (<b>D</b>), Invoices (<b>I</b>),
+  Unpaid Invoices (<b>U</b>), Payments (<b>$</b>),
+  Banking (<b>B</b>), Waiting Patients (<b>W</b>) and Referring
+  Doctors (<b>R</b>). To use the shortcut buttons, mouse-click over
+  the top of the required button. 
+
+<b>Example:</b>
+
+To display the unpaid invoices present, mouse-click the button
+labeled <b>U</b>. 
+
+<li> <b>Print Buttons</b>
+  
+The print buttons are located below the database option.?? The word
+  ``Print'' is followed by five white rectangular icons.
+
+  The print buttons allow the user to print a particular item, from
+  the choice of: Invoice (<b>I</b>), Statement (<b>S</b>),
+  Label (<b>L</b>), Bank Deposit (<b>B</b>), and Post Contract
+  Installment (<b>C</b>).
+  
+  These functions can be achieved by mouse-clicking on top of the
+  desired icon. To check the function of a particular button, hold the
+  mouse cursor over the top of the icon (without mouse-clicking). A
+  small box will appear below the mouse cursor with a description of
+  the function.
+
+<b>Example:</b>
+
+To print a statement, first confirm the function of the selected
+button. The words``Print Statement'' will appear when the mouse-cursor
+is held on the button marked <b>S</b>. Then mouse-click the icon and
+the statement will begin to print. 
+ 
+<li> <b>Search Fields</b>
+  
+  The search fields are located beneath the print icons. In XPracMan
+  various data can be used to locate files. As will be shown, this
+  data can include the name or address of a patient, debtor codes,
+  invoice numbers and referring doctors. 
+  
+  There are four fields?? that can be used to direct a search. The
+  first field, which has a drop-down menu and is located on the far
+  left of the window, allows the user to chose the particular field
+  which will be searched. A mouse-click on the downward facing button
+  located on the right of the menu will display the available options.
+  
+  The second field, which also has a drop-down menu, allows the user
+  to specify the nature of the search. The choice from this menu will
+  determine, for example, whether the search results match, are like,
+  contain or equal the data that is entered.
+  
+  The data being searched for is entered in the third field. The
+  drop-down menu attached to this field can be used to access data
+  that has been recently entered. 
+  
+  The fourth field allows the user to select from the drop-down menu,
+  the method by which the search results will be ordered. Search
+  results can be alphabetically or numerically ordered according to
+  various criteria??, such as surname, invoice number or the date on
+  which the file was created.
+
+<li> <b>Toolbar Buttons</b>
+  
+  The toolbar buttons are located beneath the searching fields. On the
+  buttons are icons, which are graphic symbols of the button's
+  function. To use, mouse-click once on the required the button. To
+  verify each button's function, hold the mouse cursor over the top of
+  the icon (without mouse-clicking). A small box will appear below the
+  mouse cursor with a description of the function.
+  
+  The first button adds a new row of the type that is currently being
+  viewed. For example, a new patient row will be added if the button
+  is pushed when patient demographics are being viewed.
+  
+  The second button opens up a mini-editor, which can be used to edit
+  the row that is currently selected.
+  
+  The third button deletes the row that is currently selected. A
+  dialogue box will appear and ask for confirmation of the deletion.
+  Mouse-click ``yes'' to confirm. Press ``cancel'' to cancel the deletion.
+  
+  The fourth button prints the set that is currently selected.??
+  
+  The fifth button exports the set that is currently selected.??
+  
+  The sixth button imports data??
+  
+  The seventh button copies the row that is currently selected. 
+
+<li> <b>Check-Buttons (Radio buttons??)</b>
+  
+  Along the bottom of the window is a series of check-buttons. These
+  buttons can be used to open a lower level on the screen and view
+  further information on the row currently selected. For example,
+  having located and selected a patient row, the check-buttons can be
+  used to view either the invoices, patient notes, schedule,
+  documents, services performed, care episodes or contracts associated
+  with the particular patient.
+
+</ol>
+
+
+  
+*/
+// Local Variables:
+// mode:C++
+// End:

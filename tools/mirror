@@ -1,0 +1,49 @@
+#!/bin/sh
+#
+# Mirror first disk to second disk
+_DEBUG=""
+_MOUNT="${_DEBUG} /bin/mount"
+_UMOUNT="${_DEBUG} /bin/umount"
+_FSCK="${_DEBUG} /sbin/fsck"
+_RSYNC="${_DEBUG} /usr/bin/rsync --delete"
+_RSYNC_EXCLUDES="" #--exclude=''"
+_LOG=/var/log/mirror.log
+_ERR=0 export _ERR
+# run in subshell
+(
+
+# First make sure mirror is unmounted
+for f in boot home export ; do
+    ${_UMOUNT} /mirror/$f
+done
+${_UMOUNT} /mirror
+${_FSCK} -y -f -q /mirror || _ERR=1
+${_MOUNT} /mirror || exit 1
+${_RSYNC} ${_RSYNC_EXCLUDES} -ax / /mirror/ || _ERR=1
+
+# Then mount and mirror the rest
+for f in boot home export ; do
+    if test $f = "boot" ; then
+	_QUIET=""
+    else
+	_QUIET="-q"
+    fi
+    ${_UMOUNT} /mirror/$f
+    ${_FSCK} -y -f ${_QUIET} /mirror/$f || _ERR=1
+    ${_MOUNT} /mirror/$f || _ERR=1
+    ${_RSYNC} ${_RSYNC_EXCLUDES} -ax /$f/ /mirror/$f/ || _ERR=1
+    ${_UMOUNT} /mirror/$f || _ERR=1
+    ${_FSCK} -y -f ${_QUIET} /mirror/$f || _ERR=1
+done
+
+${_UMOUNT} /mirror || _ERR=1
+${_FSCK} -y -f -q /mirror || _ERR=1
+
+if test "${_ERR}" -ne 0 ; then
+  exit 1
+fi
+) > ${_LOG} 2>&1
+
+if test $? -ne 0 -o ${_ERR} -ne 0 ; then
+   mail -s "Berger: Mirror Error" support@compsoft.com.au < ${_LOG}
+fi
