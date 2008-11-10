@@ -1,0 +1,2 @@
+delete from "form" where form_code = 'quotation';
+insert into "form" ("form_code","form_desc","form_classname","form_page_attribute","form_includes","form_pagesize","form_orientation","form_mg_top","form_mg_bottom","form_mg_left","form_mg_right","form_rh_height","form_rh_frequency","form_rf_height","form_rf_frequency","form_ph_height","form_ph_frequency","form_pf_height","form_pf_frequency","form_dt_height") values ('quotation','Standard Quotation','quiv','quiv_qute__sequence','lhinvc,quotation_base',0,0,10,10,40,40,0,0,0,0,150,1,110,1,611);
