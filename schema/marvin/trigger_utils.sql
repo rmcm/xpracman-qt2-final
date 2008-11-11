@@ -70,10 +70,10 @@ returns integer as $$
 
     BEGIN
 
-    EXECUTE ''
+    EXECUTE '
        UPDATE pg_class
        SET    reltriggers = 0
-       WHERE  relname in (select mtcl_name from mtcl);'';
+       WHERE  relname in (select mtcl_name from mtcl);';
        GET DIAGNOSTICS count = ROW_COUNT;
        return count;
     END;
@@ -92,12 +92,12 @@ returns integer as $$
 
     BEGIN
 
-    EXECUTE ''
+    EXECUTE '
        UPDATE pg_class
        SET    reltriggers =  (SELECT count(*)
                               FROM   pg_trigger
                               where  pg_class.oid = tgrelid)
-       WHERE  relname in (select mtcl_name from mtcl);'';
+       WHERE  relname in (select mtcl_name from mtcl);';
        GET DIAGNOSTICS count = ROW_COUNT;
        return count;
     END;
@@ -119,9 +119,9 @@ returns text as $$
     BEGIN
 
     count := 0;
-    output := '''';
+    output := '';
     for tmp_rec in 
-      EXECUTE ''
+      EXECUTE '
          SELECT rpad(relname,10) ||
                 to_char( reltriggers::integer,99999999) ||
                 to_char( count_triggers,99999999) as output
@@ -131,10 +131,10 @@ returns text as $$
                  GROUP BY tgrelid) as realtriggers
          WHERE  pg_class.oid = realtriggers.tgrelid 
          AND   relname in (select mtcl_name from mtcl)
-         ORDER BY relname;''
+         ORDER BY relname;'
 
       LOOP
-        output := output || ''\n'' || tmp_rec.output;
+        output := output || E'\n' || tmp_rec.output;
         count := count + 1;
       END LOOP;
 
