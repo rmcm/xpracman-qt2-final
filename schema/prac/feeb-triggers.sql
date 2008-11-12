@@ -35,13 +35,13 @@
 drop trigger tr_before_feeb on feeb;
 drop trigger feeb_tr_after_feet on feet;
 drop trigger feeb_tr_after_serv on serv;
+-- 
+-- drop function feeb_tr_after() CASCADE;
+-- drop function tr_before_feeb() CASCADE;
 
-drop function feeb_tr_after() CASCADE;
-drop function tr_before_feeb() CASCADE;
-
-create function feeb_tr_after()
-returns opaque
-as 'DECLARE
+create or replace function feeb_tr_after()
+returns trigger as $$
+    DECLARE
 
     BEGIN
     -- add new feeb rows
@@ -53,26 +53,18 @@ as 'DECLARE
 
     return new;
 
-    END;'
+    END;$$
     LANGUAGE 'plpgsql';
 
-create function tr_before_feeb()
-returns opaque
-as 'DECLARE
+create or replace function tr_before_feeb()
+returns trigger as $$
+    DECLARE
 
     BEGIN
-    -- add SCH amounts from mbst
-
-    if (new.feeb_feet_code = ''SCH'' and coalesce(new.feeb_amount, 0.0) = 0.0) then
-        select  coalesce(mbst_sch100,0.0)
-        into    new.feeb_amount
-        from    mbst
-        where   mbst_item = new.feeb_serv_code;
-    end if;
 
     return new;
 
-    END;'
+    END; $$
     LANGUAGE 'plpgsql';
 
 create trigger feeb_tr_after_feet after insert
@@ -81,7 +73,7 @@ create trigger feeb_tr_after_feet after insert
 create trigger feeb_tr_after_serv after insert
     on serv for each row
     execute procedure feeb_tr_after();
-create trigger tr_after_feeb before insert or update
+create trigger tr_before_feeb before insert or update
     on feeb for each row
     execute procedure tr_before_feeb();
 

@@ -37,25 +37,22 @@
 drop trigger serv_tr_before on serv;
 drop function serv_tr_before();
 create function serv_tr_before()
-returns opaque
-as 'DECLARE
+returns trigger as $$
+   DECLARE
 
     BEGIN
     -- set a dummy code
     if ( new.serv_code is null ) then
-      new.serv_code = ''NEW-''||new.serv__sequence::text;
+      new.serv_code = 'NEW-'||new.serv__sequence::text;
     end if;
 
     if ( new.serv_desc is null ) then
-      select  mbst_desc
-      into    new.serv_desc
-      from    mbst
-      where   mbst_item = new.serv_code;
+      new.serv_desc = 'no description';
     end if;
 
     return new;
 
-    END;'
+    END; $$
     LANGUAGE 'plpgsql';
 
 create trigger serv_tr_before before insert or update
@@ -68,8 +65,7 @@ create trigger serv_tr_before before insert or update
 drop trigger tr_serv_ckdel on serv;
 drop function fn_serv_ckdel();
 create function fn_serv_ckdel()
-returns opaque
-as '
+returns trigger as $$
     DECLARE
       tmp_svpf_count integer;
     BEGIN
@@ -79,23 +75,23 @@ as '
     from   svpf
     where  svpf_serv_code = old.serv_code;
     
-    if ( TG_OP = ''DELETE'' ) then
+    if ( TG_OP = 'DELETE' ) then
        if tmp_svpf_count > 0  then
-         RAISE EXCEPTION ''The Service Code % has % dependent services recorded, so cannot be deleted'',
+         RAISE EXCEPTION 'The Service Code % has % dependent services recorded, so cannot be deleted',
                 old.serv_code, tmp_svpf_count;
        end if;
        return old;
     end if;
 
-    if ( TG_OP = ''UPDATE'' ) then
+    if ( TG_OP = 'UPDATE' ) then
        if ( tmp_svpf_count > 0  and new.serv_code <> old.serv_code ) then
-         RAISE EXCEPTION ''The Service Code % has % dependent services recorded, so cannot be changed'',
+         RAISE EXCEPTION 'The Service Code % has % dependent services recorded, so cannot be changed',
                 old.serv_code, tmp_svpf_count;
        end if;
     end if;
 
     return new;
-    END;'
+    END; $$
     LANGUAGE 'plpgsql';
 
 create trigger tr_serv_ckdel before delete or update
