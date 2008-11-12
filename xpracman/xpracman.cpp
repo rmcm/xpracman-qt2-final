@@ -1653,12 +1653,13 @@ void XpracMan::printBankDeposit()
         bkdp__sequence = "0";
 
     QString form_name;
+    QString bank_select;
     
     switch( QMessageBox::information( this,
                                       "printBankDeposit:Select",
 				      QString("Banking/Reconciliation Report\nBatch-ID %1").arg(bkdp__sequence),
-				      "Bank", "Reconciliation",
-				      0, 1) )
+				      "Bank", "Reconciliation", "Today's Payments",
+				      2, -1) )
     {
         case 0:
             if (bkdp__sequence.toInt() == 0) {
@@ -1673,11 +1674,19 @@ void XpracMan::printBankDeposit()
               }
             }
             form_name = "bank-deposit";
+            bank_select = QString("select * from bank_deposit_report(%1)")
+                .arg( bkdp__sequence );
             break;
         case 1:
             form_name = "bank-reconciliation";
+            bank_select = QString("select * from bank_deposit_report(%1)")
+                .arg( bkdp__sequence );
             break;
         case 2:
+            form_name = "bank-today";
+            bank_select = QString("select * from bank_deposit_report('%1'::date)")
+                .arg(QDate::currentDate().toString());
+            break;
         default:
             return;
             break;
@@ -1695,8 +1704,7 @@ void XpracMan::printBankDeposit()
             return;
     }
  
-    int i = reln_bkdr->open( QString ("select * from bank_deposit_report(%1)" )
-                             .arg( bkdp__sequence ));
+    int i = reln_bkdr->open( bank_select );
  
     if ( i < 1 )
     {

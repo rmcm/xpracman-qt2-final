@@ -136,6 +136,94 @@ CREATE or REPLACE FUNCTION bank_deposit_report( integer )
 $$ LANGUAGE 'plpgsql';
 
 -- ----------------------------------------
+-- Create a function returning SETOF
+-- bank_deposit_type for date range
+-- and listing group.
+-- ----------------------------------------
+CREATE or REPLACE FUNCTION bank_deposit_report( date, text )
+        RETURNS SETOF bank_deposit_type AS $$
+
+    DECLARE
+    a_date  ALIAS for $1;
+    a_list  ALIAS for $2;
+    x_record bank_deposit_type;
+
+    BEGIN
+
+    FOR x_record IN
+    SELECT       tdtp_list,
+                 tdtp_desc,
+                 to_char(paym_date_entry,'DD-MM-YYYY HH24:MI'),
+                 coalesce( (select crep_patient_name
+                  from   crep
+                  where  crep_paym__sequence = paym__sequence
+                  limit  1), ''),
+                 paym_drawer,
+                 paym_bank,
+                 paym_branch,
+                 paym_amount,
+                 (select sum(paym_amount)
+                  from paym p LEFT JOIN tdtp t ON (p.paym_tdtp_code = t.tdtp_code)
+                  where date(p.paym_date_entry) = a_date
+                  and   p.paym_tdtp_code = paym.paym_tdtp_code),
+                 (select sum(paym_amount)
+                  from paym p LEFT JOIN tdtp ON(p.paym_tdtp_code = tdtp.tdtp_code)
+                  where date(p.paym_date_entry) = a_date
+                  and   tdtp.tdtp_list = a_list),
+                 (select sum(paym_amount)
+                  from paym p
+                  where date(p.paym_date_entry) = a_date),
+                 paym__sequence,
+                 paym__timestamp,
+                 paym__user_entry,
+                 paym__status
+    FROM         paym LEFT JOIN tdtp ON (tdtp.tdtp_code = paym.paym_tdtp_code)
+    WHERE        date(paym_date_entry) = a_date
+    AND          tdtp_list = a_list
+    AND          paym_amount > 0.00
+    ORDER BY tdtp_list, paym_tdtp_code, paym_date_entry
+
+    LOOP
+        RETURN NEXT x_record;
+    END LOOP;
+
+    END;
+$$ LANGUAGE 'plpgsql';
+
+-- ----------------------------------------
+-- Create a function returning SETOF
+-- bank_deposit_type for specified date
+-- (a convience function of above)
+-- ----------------------------------------
+CREATE or REPLACE FUNCTION bank_deposit_report( date )
+        RETURNS SETOF bank_deposit_type AS $$
+
+    DECLARE
+    a_date ALIAS for $1;
+    x_list record;
+    x_record bank_deposit_type;
+
+    BEGIN
+
+    FOR x_list IN
+    SELECT     distinct( tdtp_list ) as v_list
+    FROM       tdtp
+    ORDER BY   tdtp_list
+
+    LOOP
+        FOR x_record IN
+        SELECT       *
+        FROM         bank_deposit_report( a_date, x_list.v_list )
+        
+        LOOP
+            RETURN NEXT x_record;
+        END LOOP;
+    END LOOP;
+
+    END;
+$$ LANGUAGE 'plpgsql';
+
+-- ----------------------------------------
 -- Create a VIEW returning the unbanked 
 -- batch, to create the metadata entries
 -- Directly call the SETOF functions to
