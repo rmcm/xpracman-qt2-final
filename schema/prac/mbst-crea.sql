@@ -28,7 +28,7 @@
 
 create table mbst                       -- MBS Table of Fees
 (
- mbst_item integer, 
+ mbst_item text, 
  mbst_desc text,
  mbst_sch100 numeric(12,2),
  mbst_sch75 numeric(12,2),
