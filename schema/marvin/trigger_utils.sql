@@ -123,8 +123,8 @@ returns text as $$
     for tmp_rec in 
       EXECUTE '
          SELECT rpad(relname,10) ||
-                to_char( reltriggers::integer,99999999) ||
-                to_char( count_triggers,99999999) as output
+                to_char( reltriggers::integer,''99999999'') ||
+                to_char( count_triggers,''99999999'') as output
          FROM   pg_class,
                 (SELECT tgrelid, count(*) as count_triggers
                  FROM pg_trigger
