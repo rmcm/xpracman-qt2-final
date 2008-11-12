@@ -1,2 +1,5 @@
 .svn/
 *~
+*.o
+lib*.a
+lib*.so
