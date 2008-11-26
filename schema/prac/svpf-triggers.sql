@@ -33,8 +33,8 @@
 -- ------------------------------------------------------------
 
 create or replace function fn_svpf_null2default()
-returns trigger
-as '
+returns trigger as $$
+
         DECLARE
                 tmp_invc__sequence svpf.svpf_invc__sequence%TYPE; 
                 tmp_serv_code serv.serv_code%TYPE;
@@ -44,10 +44,25 @@ as '
                 sequence_id integer;
                 x_pos integer;
         BEGIN
-        -- Patient is an absolute requirement
 
+        -- Patient is an absolute requirement
         if (new.svpf_patn__sequence is null) then
-           RAISE EXCEPTION ''Patient ID number (svpf_patn__sequence) is mandatory'';
+           RAISE EXCEPTION 'Patient ID number (svpf_patn__sequence) is mandatory';
+        end if;
+
+        -- Set svpf_patn__sequence from invoice if necessary and possible
+        RAISE NOTICE 'new.svpf_patn__sequence = %', new.svpf_patn__sequence;
+        if (new.svpf_patn__sequence = 0
+            and new.svpf_invc__sequence is not null
+            and new.svpf_invc__sequence > 0) then
+            select *
+            from   invc
+            into   tmp_invc
+            where  invc__sequence = new.svpf_invc__sequence;
+            if (found) then
+              new.svpf_patn__sequence = tmp_invc.invc_patn__sequence;
+              RAISE NOTICE 'setting new.svpf_patn__sequence to %', new.svpf_patn__sequence;
+            end if;
         end if;
 
         select *
@@ -65,13 +80,13 @@ as '
           where   patn__sequence = new.svpf_patn__sequence;
 
           if ( not found ) then
-            RAISE EXCEPTION ''Unable to create a Patient Record (%)'', new.svpf_patn__sequence;
+            RAISE EXCEPTION 'Unable to create a Patient Record (%)', new.svpf_patn__sequence;
           end if;
         end if;
 
         -- if missing service code, then use a default
         if (new.svpf_serv_code is null) then
-          new.svpf_serv_code := ''-'';
+          new.svpf_serv_code := '-';
         end if;
 
         -- invc can be found or created
@@ -92,7 +107,7 @@ as '
           into   tmp_invc__sequence;
 
           if tmp_invc__sequence is null then
-              RAISE EXCEPTION ''Unable to locate a suitable invoice'';
+              RAISE EXCEPTION 'Unable to locate a suitable invoice';
           else
             -- recover it
             select *
@@ -113,29 +128,29 @@ as '
         and    fept_feet_code = patn_feet_code;
 
         if not found then
-          RAISE EXCEPTION ''item % not found for patient %'', new.svpf_serv_code,new.svpf_patn__sequence;
-          tmp_fept.fept_desc := ''UNKNOWN'';
+          RAISE EXCEPTION 'item % not found for patient %', new.svpf_serv_code,new.svpf_patn__sequence;
+          tmp_fept.fept_desc := 'UNKNOWN';
           tmp_fept.fept_amount := 0.00;
           tmp_fept.fept_gst_amount := 0.00;
         end if;
-        if ( TG_OP = ''INSERT'' ) then
-              -- RAISE EXCEPTION ''item = %, desc=%'', tmp_fept.fept_serv_code, tmp_fept.fept_desc;
+        if ( TG_OP = 'INSERT' ) then
+              -- RAISE EXCEPTION 'item = %, desc=%', tmp_fept.fept_serv_code, tmp_fept.fept_desc;
           if (new.svpf_desc is null) then
             new.svpf_desc := tmp_fept.fept_desc;
           end if;
           if (new.svpf_amount is null) then
             new.svpf_amount := fn_round_amount(tmp_fept.fept_amount * (new.svpf_percentage/100::numeric));
           end if;
-          if (new.svpf_gst_amount is null and new.svpf_date_service < ''jul 1 2000'' ) then
+          if (new.svpf_gst_amount is null and new.svpf_date_service < 'jul 1 2000' ) then
             new.svpf_gst_amount := fn_round_amount(tmp_fept.fept_gst_amount * (new.svpf_percentage/100::numeric));
           end if;
         end if;
 
-        if ( TG_OP = ''UPDATE'' ) then
-           --   RAISE NOTICE ''item = %, desc=%, perc=%'', tmp_fept.fept_serv_code,
+        if ( TG_OP = 'UPDATE' ) then
+           --   RAISE NOTICE 'item = %, desc=%, perc=%', tmp_fept.fept_serv_code,
            --                                              tmp_fept.fept_desc,
            --                                              new.svpf_percentage;
-           --   RAISE NOTICE ''amount = %, perc=%, gst=%'', tmp_fept.fept_amount,
+           --   RAISE NOTICE 'amount = %, perc=%, gst=%', tmp_fept.fept_amount,
            --                                               tmp_fept.fept_gst_percentage,
            --                                               tmp_fept.fept_gst_amount;
            -- item code change - refresh description and amount
@@ -148,7 +163,7 @@ as '
               new.svpf_amount := fn_round_amount(tmp_fept.fept_amount * (new.svpf_percentage/100::numeric));
            end if;
            -- always recalculate the GST amount
-           if ( new.svpf_date_service > ''jul 1 2000'' ) then
+           if ( new.svpf_date_service > 'jul 1 2000' ) then
              new.svpf_gst_amount := fn_round_amount(new.svpf_amount * (tmp_fept.fept_gst_percentage/100::numeric));
            end if;
            -- final sanity checks
@@ -167,7 +182,7 @@ as '
 
         -- And check for %P in desc - replace with provider
         -- 
-        x_pos := position( ''~P'' in new.svpf_desc);
+        x_pos := position( '~P' in new.svpf_desc);
         if ( x_pos > 0 ) then
           if ( length(new.svpf_desc) > x_pos + 1 ) then
             new.svpf_desc := substring(new.svpf_desc from 1 for (x_pos-1)) || tmp_patn.patn_prov_code || substring(new.svpf_desc from (x_pos+2));
@@ -176,27 +191,28 @@ as '
           end if;
         end if;
     return new;
-    END;'
-    LANGUAGE 'plpgsql';
+    END;
+$$  LANGUAGE 'plpgsql';
 
 drop trigger tr_svpf_null2default on svpf;
 create trigger tr_svpf_null2default before insert or update
     on svpf for each row
     execute procedure fn_svpf_null2default();
---
+
+-- ------------------------------------------------------------
 -- PL function to prevent change or deleteion
---
+-- ------------------------------------------------------------
 
 create or replace function fn_svpf_closedinvoice()
-returns trigger
-as 'DECLARE
+returns trigger as $$
+    DECLARE
     tmp_invc_date_printed invc.invc_date_printed%TYPE;
     old_invc__sequence invc.invc__sequence%TYPE;
     new_invc__sequence invc.invc__sequence%TYPE;
-    x_mtau_attributes mtau.mtau_attributes%TYPE := '''';
-    x_mtau_before mtau.mtau_before%TYPE := '''';
-    x_mtau_after mtau.mtau_after%TYPE := '''';
-    x_sep char(1) := ''~'';
+    x_mtau_attributes mtau.mtau_attributes%TYPE := '';
+    x_mtau_before mtau.mtau_before%TYPE := '';
+    x_mtau_after mtau.mtau_after%TYPE := '';
+    x_sep char(1) := '~';
     BEGIN
 
     old_invc__sequence := -1;
@@ -206,14 +222,14 @@ as 'DECLARE
     -- INSERTS should not be here
     -- ------------------------------  
 
-    if (TG_OP != ''UPDATE'' and TG_OP != ''DELETE'') then
-      RAISE EXCEPTION ''tr_svpf_closedinvoice: this trigger can only be used for UPDATE and DELETE'';
+    if (TG_OP != 'UPDATE' and TG_OP != 'DELETE') then
+      RAISE EXCEPTION 'tr_svpf_closedinvoice: this trigger can only be used for UPDATE and DELETE';
     end if;
 
     -- ------------------------------  
     -- uninteresting DELETES
     -- ------------------------------  
-    if ( TG_OP = ''DELETE'' ) then
+    if ( TG_OP = 'DELETE' ) then
       if (old.svpf_invc__sequence is null or old.svpf_invc__sequence = 0) then
         return old;
       end if;
@@ -225,7 +241,7 @@ as 'DECLARE
     -- ------------------------------  
     -- UPDATES may be of interest
     -- ------------------------------  
-    if (TG_OP = ''UPDATE'') then
+    if (TG_OP = 'UPDATE') then
       old_invc__sequence := old.svpf_invc__sequence;
       new_invc__sequence := new.svpf_invc__sequence;
     end if;
@@ -248,7 +264,7 @@ as 'DECLARE
       tmp_invc_date_printed = now();
     end if;
 
-    -- RAISE NOTICE ''tr_svpf_closedinvoice: tmp_invc_date_printed = %, old_invc__sequence = %, new_invc__sequence = %'', tmp_invc_date_printed, old_invc__sequence, new_invc__sequence;
+    -- RAISE NOTICE 'tr_svpf_closedinvoice: tmp_invc_date_printed = %, old_invc__sequence = %, new_invc__sequence = %', tmp_invc_date_printed, old_invc__sequence, new_invc__sequence;
 
     -- ------------------------------  
     -- ALREADY PRINTED - only
@@ -258,7 +274,7 @@ as 'DECLARE
     if ( tmp_invc_date_printed is not null ) then
       -- 32 is office-admin
       if ( (select perms::integer & 32 from mvac_user where username = current_user) != 32 ) then
-        RAISE EXCEPTION ''This record cannot be copied, changed or deleted - the invoice number % has been printed. Please contact your Systems Administrator for assistance.'',
+        RAISE EXCEPTION 'This record cannot be copied, changed or deleted - the invoice number % has been printed. Please contact your Systems Administrator for assistance.',
          old_invc__sequence;
         return null;
       end if;
@@ -267,27 +283,27 @@ as 'DECLARE
     -- ------------------------------
     -- Audit deletes after printing.
     -- ------------------------------
-    if (TG_OP = ''DELETE'' and tmp_invc_date_printed is not null ) then
+    if (TG_OP = 'DELETE' and tmp_invc_date_printed is not null ) then
   
       insert into mtau(mtau_table_name, mtau_row_sequence, mtau_operation, mtau_attributes, mtau_before, mtau_after)
-              select    ''svpf'', old.svpf__sequence, TG_OP,
+              select    'svpf', old.svpf__sequence, TG_OP,
                         x_sep ||
-                        ''svpf_date_service'' || x_sep ||
-                        ''svpf_serv_code'' || x_sep ||
-                        ''svpf_percentage'' || x_sep ||
-                        ''svpf_desc'' || x_sep ||
-                        ''svpf_amount'' || x_sep ||
-                        ''svpf_gst_amount'' || x_sep ||
-                        ''svpf_invc__sequence'' || x_sep ||
-                        ''svpf_mdaf__sequence'' || x_sep ||
-                        ''svpf_patn__sequence'',
+                        'svpf_date_service' || x_sep ||
+                        'svpf_serv_code' || x_sep ||
+                        'svpf_percentage' || x_sep ||
+                        'svpf_desc' || x_sep ||
+                        'svpf_amount' || x_sep ||
+                        'svpf_gst_amount' || x_sep ||
+                        'svpf_invc__sequence' || x_sep ||
+                        'svpf_mdaf__sequence' || x_sep ||
+                        'svpf_patn__sequence',
                         x_sep ||
-                        coalesce( old.svpf_date_service::text, '''' ) || x_sep ||
-                        coalesce( old.svpf_serv_code, '''' ) || x_sep ||
+                        coalesce( old.svpf_date_service::text, '' ) || x_sep ||
+                        coalesce( old.svpf_serv_code, '' ) || x_sep ||
                         coalesce( old.svpf_percentage, -1 ) || x_sep ||
-                        coalesce( old.svpf_desc, '''' ) || x_sep ||
-                        coalesce( to_char(old.svpf_amount,''9999999999.99''), '''' ) || x_sep ||
-                        coalesce( to_char(old.svpf_gst_amount,''9999999999.99''), '''' ) || x_sep ||
+                        coalesce( old.svpf_desc, '' ) || x_sep ||
+                        coalesce( to_char(old.svpf_amount,'9999999999.99'), '' ) || x_sep ||
+                        coalesce( to_char(old.svpf_gst_amount,'9999999999.99'), '' ) || x_sep ||
                         coalesce( old.svpf_invc__sequence, -1 ) || x_sep ||
                         coalesce( old.svpf_mdaf__sequence, -1 ) || x_sep ||
                         coalesce( old.svpf_patn__sequence, -1 ),
@@ -300,37 +316,37 @@ as 'DECLARE
     -- Audit updates after printing
     -- ------------------------------
   
-    if ( TG_OP = ''UPDATE'' and tmp_invc_date_printed is not null ) then
+    if ( TG_OP = 'UPDATE' and tmp_invc_date_printed is not null ) then
 
       insert into mtau(mtau_table_name, mtau_row_sequence, mtau_operation, mtau_attributes, mtau_before, mtau_after)
-              select    ''svpf'', old.svpf__sequence, TG_OP,
+              select    'svpf', old.svpf__sequence, TG_OP,
                         x_sep ||
-                        ''svpf_date_service'' || x_sep ||
-                        ''svpf_serv_code'' || x_sep ||
-                        ''svpf_percentage'' || x_sep ||
-                        ''svpf_desc'' || x_sep ||
-                        ''svpf_amount'' || x_sep ||
-                        ''svpf_gst_amount'' || x_sep ||
-                        ''svpf_invc__sequence'' || x_sep ||
-                        ''svpf_mdaf__sequence'' || x_sep ||
-                        ''svpf_patn__sequence'',
+                        'svpf_date_service' || x_sep ||
+                        'svpf_serv_code' || x_sep ||
+                        'svpf_percentage' || x_sep ||
+                        'svpf_desc' || x_sep ||
+                        'svpf_amount' || x_sep ||
+                        'svpf_gst_amount' || x_sep ||
+                        'svpf_invc__sequence' || x_sep ||
+                        'svpf_mdaf__sequence' || x_sep ||
+                        'svpf_patn__sequence',
                         x_sep ||
-                        coalesce( old.svpf_date_service::text, '''' ) || x_sep ||
-                        coalesce( old.svpf_serv_code, '''' ) || x_sep ||
+                        coalesce( old.svpf_date_service::text, '' ) || x_sep ||
+                        coalesce( old.svpf_serv_code, '' ) || x_sep ||
                         coalesce( old.svpf_percentage, -1 ) || x_sep ||
-                        coalesce( old.svpf_desc, '''' ) || x_sep ||
-                        coalesce( to_char(old.svpf_amount,''9999999999.99''), '''' ) || x_sep ||
-                        coalesce( to_char(old.svpf_gst_amount,''9999999999.99''), '''' ) || x_sep ||
+                        coalesce( old.svpf_desc, '' ) || x_sep ||
+                        coalesce( to_char(old.svpf_amount,'9999999999.99'), '' ) || x_sep ||
+                        coalesce( to_char(old.svpf_gst_amount,'9999999999.99'), '' ) || x_sep ||
                         coalesce( old.svpf_invc__sequence, -1 ) || x_sep ||
                         coalesce( old.svpf_mdaf__sequence, -1 ) || x_sep ||
                         coalesce( old.svpf_patn__sequence, -1 ),
                         x_sep ||
-                        coalesce( new.svpf_date_service::text, '''' ) || x_sep ||
-                        coalesce( new.svpf_serv_code, '''' ) || x_sep ||
+                        coalesce( new.svpf_date_service::text, '' ) || x_sep ||
+                        coalesce( new.svpf_serv_code, '' ) || x_sep ||
                         coalesce( new.svpf_percentage, -1 ) || x_sep ||
-                        coalesce( new.svpf_desc, '''' ) || x_sep ||
-                        coalesce( to_char(new.svpf_amount,''9999999999.99''), '''' ) || x_sep ||
-                        coalesce( to_char(new.svpf_gst_amount,''9999999999.99''), '''' ) || x_sep ||
+                        coalesce( new.svpf_desc, '' ) || x_sep ||
+                        coalesce( to_char(new.svpf_amount,'9999999999.99'), '' ) || x_sep ||
+                        coalesce( to_char(new.svpf_gst_amount,'9999999999.99'), '' ) || x_sep ||
                         coalesce( new.svpf_invc__sequence, -1 ) || x_sep ||
                         coalesce( new.svpf_mdaf__sequence, -1 ) || x_sep ||
                         coalesce( new.svpf_patn__sequence, -1 );
@@ -340,14 +356,14 @@ as 'DECLARE
     -- ------------------------------
     -- Tidy up.
     -- ------------------------------
-    if (TG_OP = ''DELETE'') then
+    if (TG_OP = 'DELETE') then
       return old;
     else
       return new;
     end if;
 
-    END;'
-    LANGUAGE 'plpgsql';
+    END;
+$$  LANGUAGE 'plpgsql';
 
 drop trigger tr_svpf_closedinvoice on svpf;
 create trigger tr_svpf_closedinvoice before update or delete
