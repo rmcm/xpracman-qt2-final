@@ -110,12 +110,12 @@ returns trigger as $$
         end if;
 
         -- get service totals
-        select sum(svpf.svpf_amount),
-               sum(svpf.svpf_gst_amount)
+        select sum(svpf_amount),
+               sum(svpf_gst_amount)
         into   sum_svpf_amount,
                sum_svpf_gst_amount
         from   svpf
-        where svpf.svpf_invc__sequence = x_invc__sequence;
+        where svpf_invc__sequence = x_invc__sequence;
 
         if (sum_svpf_amount is null) then
           sum_svpf_amount = 0.00;
@@ -127,7 +127,7 @@ returns trigger as $$
         update invc
           set invc_amount = sum_svpf_amount,
               invc_gst_amount = sum_svpf_gst_amount
-          where invc.invc__sequence = x_invc__sequence;
+          where invc__sequence = x_invc__sequence;
 
     return new;
     END;
