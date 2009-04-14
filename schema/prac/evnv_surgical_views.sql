@@ -38,3 +38,20 @@ CREATE VIEW evnv_surgical AS
   WHERE   (evnv.evnv_aptp_code = 'SG'::text);
 
 grant select, insert, update, delete on evnv_surgical to public;
+
+CREATE VIEW evnv_surgical_am AS
+  SELECT  *
+  FROM    evnv
+  WHERE   (evnv.evnv_aptp_code = 'SG'::text)
+  AND     extract('hour' from evnv.evnv_starttime) < 13;
+
+grant select, insert, update, delete on evnv_am to public;
+
+CREATE VIEW evnv_surgical_pm AS
+  SELECT  *
+  FROM    evnv
+  WHERE   (evnv.evnv_aptp_code = 'SG'::text)
+  AND     extract('hour' from evnv.evnv_starttime) >= 13;
+
+grant select, insert, update, delete on evnv_pm to public;
+
