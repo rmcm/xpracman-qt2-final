@@ -45,7 +45,7 @@ CREATE VIEW evnv_surgical_am AS
   WHERE   (evnv.evnv_aptp_code = 'SG'::text)
   AND     extract('hour' from evnv.evnv_starttime) < 13;
 
-grant select, insert, update, delete on evnv_am to public;
+grant select, insert, update, delete on evnv_surgical_am to public;
 
 CREATE VIEW evnv_surgical_pm AS
   SELECT  *
@@ -53,5 +53,5 @@ CREATE VIEW evnv_surgical_pm AS
   WHERE   (evnv.evnv_aptp_code = 'SG'::text)
   AND     extract('hour' from evnv.evnv_starttime) >= 13;
 
-grant select, insert, update, delete on evnv_pm to public;
+grant select, insert, update, delete on evnv_surgical_pm to public;
 
