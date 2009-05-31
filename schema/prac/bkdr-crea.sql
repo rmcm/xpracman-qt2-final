@@ -41,11 +41,42 @@ CREATE TYPE bank_deposit_type AS (
     bkdr_tdtp_total numeric(12,2),
     bkdr_list_total numeric(12,2),
     bkdr_grand_total numeric(12,2),
+    bkdr_bkdp__sequence integer,
     bkdr__sequence integer,
     bkdr__timestamp timestamp,
     bkdr__user_entry text,
     bkdr__status text
 );
+
+-- ----------------------------------------
+-- Create a function returning a list (string)
+-- of credits associated with a payment
+-- ----------------------------------------
+CREATE or REPLACE FUNCTION patient_name_list( integer )
+       RETURNS text AS $$
+
+    DECLARE
+    a_paym__sequence ALIAS for $1;
+    x_credit_record record;
+    x_list text := '';
+    x_sep text := '';
+    x_counter integer := 0;
+    BEGIN
+      FOR x_credit_record IN
+      SELECT coalesce( crep_patient_name, '') || ' ($' || crep_cred_amount || ')' as patient_record
+      FROM   crep
+      WHERE  crep_paym__sequence = a_paym__sequence
+
+    LOOP
+        x_counter := x_counter + 1;
+        x_list := x_list || x_sep || '[' || x_counter || '] ' || x_credit_record.patient_record;
+        x_sep := '  ';
+    END LOOP;
+
+    RETURN x_list;
+
+    END;
+$$ LANGUAGE 'plpgsql';
 
 -- ----------------------------------------
 -- Create a function returning SETOF
@@ -66,10 +97,7 @@ CREATE or REPLACE FUNCTION bank_deposit_report( integer, text )
     SELECT       tdtp_list,
                  tdtp_desc,
                  to_char(paym_date_entry,'DD-MM-YYYY HH24:MI'),
-                 coalesce( (select crep_patient_name
-                  from   crep
-                  where  crep_paym__sequence = paym__sequence
-                  limit  1), ''),
+                 patient_name_list(paym__sequence),
                  paym_drawer,
                  paym_bank,
                  paym_branch,
@@ -85,6 +113,7 @@ CREATE or REPLACE FUNCTION bank_deposit_report( integer, text )
                  (select sum(paym_amount)
                   from paym p
                   where p.paym_bkdp__sequence = a_batch),
+                 paym_bkdp__sequence,
                  paym__sequence,
                  paym__timestamp,
                  paym__user_entry,
@@ -173,6 +202,7 @@ CREATE or REPLACE FUNCTION bank_deposit_report( date, text )
                  (select sum(paym_amount)
                   from paym p
                   where date(p.paym_date_entry) = a_date),
+                 paym_bkdp__sequence,
                  paym__sequence,
                  paym__timestamp,
                  paym__user_entry,
