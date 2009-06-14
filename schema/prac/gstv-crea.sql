@@ -37,6 +37,7 @@ create view gstv                       -- GST Payments View
  cred_paym__sequence                      as gstv_cred_paym__sequence,
  cred_invc__sequence                      as gstv_cred_invc__sequence,
  cred_amount                              as gstv_cred_amount,
+ cred_amount + cred_gst_amount            as gstv_cred_total_amount,
  cred_gst_amount                          as gstv_cred_gst_amount,
  --
  -- paym
