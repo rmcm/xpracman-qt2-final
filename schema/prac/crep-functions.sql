@@ -33,8 +33,7 @@
 -- 
 drop function crep_insert_row();
 create function crep_insert_row()
-returns integer
-as '
+returns integer as $$
     DECLARE
                 rec_crep crep%ROWTYPE;
                 tmp_cred__sequence cred.cred__sequence%TYPE; 
@@ -84,7 +83,7 @@ as '
 
 
          -- get a cred__sequence
-         select nextval(''cred_cred__sequence_seq'')
+         select nextval('cred_cred__sequence_seq')
          into tmp_cred__sequence;
          -- add the cred record 
          insert into cred(
@@ -101,7 +100,8 @@ as '
                      tmp_cred__sequence);
 
     return tmp_cred__sequence;
-    END;'
+    END;
+$$
     LANGUAGE 'plpgsql';
 
 

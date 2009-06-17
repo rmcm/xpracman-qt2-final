@@ -35,8 +35,8 @@
 --
 
 create or replace function cred_tr_before()
-returns trigger
-as 'DECLARE
+returns trigger as $$
+    DECLARE
     sum_cred_amount cred.cred_amount%TYPE;
     sum_cred_gst_amount cred.cred_gst_amount%TYPE;
     sum_unpaid cred.cred_amount%TYPE;
@@ -60,7 +60,7 @@ as 'DECLARE
         -- THERE MUST BE AN INVOICE!!
         -- ----------------------------------------
         if ( not found ) then
-          raise EXCEPTION ''cred_tr_before:invoice # % does not exist'', new.cred_invc__sequence;
+          raise EXCEPTION 'cred_tr_before:invoice # % does not exist', new.cred_invc__sequence;
           return NULL;
         end if;
 
@@ -70,7 +70,7 @@ as 'DECLARE
 
         sum_unpaid := rec_invc.invc_amount - rec_invc.invc_paid_amount;
         sum_gst_unpaid := rec_invc.invc_gst_amount - rec_invc.invc_paid_gst_amount;
-        if ( TG_OP = ''UPDATE'' ) then
+        if ( TG_OP = 'UPDATE' ) then
           sum_unpaid := sum_unpaid + old.cred_amount;
           sum_gst_unpaid := sum_gst_unpaid + old.cred_gst_amount;
         end if;
@@ -89,7 +89,7 @@ as 'DECLARE
           -- if not found create a dummy to temporarily satisfy constraints
           if ( not found ) then
             insert into paym(paym__sequence) values(0);
-            -- raise notice ''cred_tr_before:inserting new payment'';
+            -- raise notice 'cred_tr_before:inserting new payment';
           end if;
         end if;
 
@@ -102,7 +102,7 @@ as 'DECLARE
 
         -- get the payment already-allocated amount
 
-        select coalesce(sum(cred_amount + cred_gst_amount), ''0.00''::numeric)
+        select coalesce(sum(cred_amount + cred_gst_amount), '0.00'::numeric)
         into   sum_other_paym
         from   cred
         where  cred_paym__sequence = new.cred_paym__sequence
@@ -127,7 +127,7 @@ as 'DECLARE
         -- to use as default
 
         if ( new.cred_amount = 0 and new.cred_gst_amount = 0 ) then
-          -- raise notice ''cred_tr_before: adjusting zero amount to %/%'', sum_unpaid, sum_gst_unpaid;
+          -- raise notice 'cred_tr_before: adjusting zero amount to %/%', sum_unpaid, sum_gst_unpaid;
           new.cred_amount     := sum_unpaid;
           new.cred_gst_amount := sum_gst_unpaid;
 
@@ -140,18 +140,18 @@ as 'DECLARE
         -- No overpayments of GST ----------
         -- ---------------------------------
         if ( new.cred_gst_amount > sum_gst_unpaid ) then
-          -- raise notice ''cred_tr_before: adjusting GST overpayment to % from %'', new.cred_gst_amount, sum_gst_unpaid;
+          -- raise notice 'cred_tr_before: adjusting GST overpayment to % from %', new.cred_gst_amount, sum_gst_unpaid;
           new.cred_gst_amount := sum_gst_unpaid;
         end if;
 
         -- No negatives amounts ----------
         -- -------------------------------
         if ( new.cred_amount  < 0 ) then
-          -- raise notice ''cred_tr_before: adjusting negative payment to 0.00 from %'', new.cred_amount;
+          -- raise notice 'cred_tr_before: adjusting negative payment to 0.00 from %', new.cred_amount;
           new.cred_amount := 0;
         end if;
         if ( new.cred_gst_amount < 0) then
-          -- raise notice ''cred_tr_before: adjusting negative GST payment to 0.00 from %'', new.cred_gst_amount;
+          -- raise notice 'cred_tr_before: adjusting negative GST payment to 0.00 from %', new.cred_gst_amount;
           new.cred_gst_amount := 0;
         end if;
 
@@ -163,7 +163,8 @@ as 'DECLARE
         end if;
 
     return new;
-    END;'
+    END;
+$$
     LANGUAGE 'plpgsql';
 
 drop trigger cred_tr_before on cred;
@@ -177,8 +178,8 @@ create trigger cred_tr_before before insert or update
 --
 
 create or replace function invc_credit_totals()
-returns trigger
-as 'DECLARE
+returns trigger as $$
+    DECLARE
     sum_cred_amount cred.cred_amount%TYPE;
     sum_cred_gst_amount cred.cred_gst_amount%TYPE;
     rec_invc invc%ROWTYPE;
@@ -186,7 +187,7 @@ as 'DECLARE
 
     BEGIN
 
-      if ( TG_OP = ''DELETE'' ) then
+      if ( TG_OP = 'DELETE' ) then
         rec_invc.invc__sequence = old.cred_invc__sequence;
         rec_paym.paym__sequence = old.cred_paym__sequence;
       else
@@ -208,7 +209,7 @@ as 'DECLARE
       if (sum_cred_gst_amount is null) then
         sum_cred_gst_amount := 0.00::numeric;
       end if;
-      -- raise notice ''invc_credit_totals:sum_cred_amount = %'', sum_cred_amount;
+      -- raise notice 'invc_credit_totals:sum_cred_amount = %', sum_cred_amount;
       
       update invc
         set invc_paid_amount = sum_cred_amount,
@@ -219,15 +220,16 @@ as 'DECLARE
       if (rec_paym.paym__sequence > 0 ) then
         select  set_paym_total(rec_paym.paym__sequence)
         into    sum_cred_amount;
-        -- RAISE NOTICE ''updating payment total for % - %'', new.cred_paym__sequence, sum_cred_amount;
+        -- RAISE NOTICE 'updating payment total for % - %', new.cred_paym__sequence, sum_cred_amount;
       end if;
 
-      if ( TG_OP = ''DELETE'' ) then
+      if ( TG_OP = 'DELETE' ) then
         return old;
       else
         return new;
       end if;
-    END;'
+    END;
+$$
     LANGUAGE 'plpgsql';
 
 drop trigger invc_credit_totals on cred;

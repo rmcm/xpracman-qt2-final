@@ -33,8 +33,7 @@
 -- 
 
 create or replace function crev_insert_row()
-returns integer
-as '
+returns integer as $$
     DECLARE
                 rec_crev crev%ROWTYPE;
                 tmp_paym__sequence paym.paym__sequence%TYPE; 
@@ -63,7 +62,7 @@ as '
          end if;
 
          if ( rec_crev.crev_site_entry is null ) then
-            rec_crev.crev_site_entry := ''-'';
+            rec_crev.crev_site_entry := '-';
          end if;
 
             -- set to non-null
@@ -72,7 +71,7 @@ as '
          end if;
 
          if ( rec_crev.crev_tdtp_code is null ) then
-            rec_crev.crev_tdtp_code := ''-'';
+            rec_crev.crev_tdtp_code := '-';
          end if;
 
          -- set to non-null
@@ -86,14 +85,14 @@ as '
          end if;
 
          -- get a paym__sequence
-         select nextval(''paym_paym__sequence_seq'')
+         select nextval('paym_paym__sequence_seq')
          into tmp_paym__sequence;
 
 
         --
         -- Debugging
         --
-        -- RAISE NOTICE ''OUT->%/%/%/%/%/%/%/%/%/%/%/%/'',
+        -- RAISE NOTICE 'OUT->%/%/%/%/%/%/%/%/%/%/%/%/',
         --              rec_crev.crev_date_entry,
         --              rec_crev.crev_user_entry,
         --              rec_crev.crev_site_entry,
@@ -130,7 +129,7 @@ as '
                      tmp_paym__sequence);
 
          -- get a cred__sequence
-         select nextval(''cred_cred__sequence_seq'')
+         select nextval('cred_cred__sequence_seq')
          into tmp_cred__sequence;
          -- add the cred record 
          insert into cred(
@@ -147,7 +146,8 @@ as '
                      tmp_cred__sequence);
 
     return tmp_cred__sequence;
-    END;'
+    END;
+$$
     LANGUAGE 'plpgsql';
 
 
