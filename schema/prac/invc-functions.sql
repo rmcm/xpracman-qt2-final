@@ -235,7 +235,7 @@ as 'DECLARE
     patient_name text;
 
     BEGIN
-    select patn_psnam || '', '' || patn_fsnam
+    select coalesce(patn_psnam, '') || '', '' || coalesce(patn_fsnam, '')
     into   patient_name
     from   patn,invc
     where  invc__sequence = invc_number

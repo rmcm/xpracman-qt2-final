@@ -237,7 +237,9 @@ returns text as $$
         if (count > 1) then
           exit;
         end if;
-        label := tmp_rec.patn_psnam || ',' || tmp_rec.patn_fsnam || ',' || tmp_rec.invc_dbtr_code;
+        label := coalesce(tmp_rec.patn_psnam, '') || ',' 
+                 || coalesce(tmp_rec.patn_fsnam, '') || ',' 
+                 || coalesce(tmp_rec.invc_dbtr_code, '');
     END LOOP;
 
     if (count = 1) then
