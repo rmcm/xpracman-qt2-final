@@ -63,7 +63,7 @@ CREATE or REPLACE FUNCTION patient_name_list( integer )
     x_counter integer := 0;
     BEGIN
       FOR x_credit_record IN
-      SELECT coalesce( crep_patient_name, '') || ' ($' || crep_paid_amount + crep_paid_gst_amount || ')' 
+      SELECT coalesce( crep_patient_name, '') || ' ($' || crep_cred_amount + crep_cred_gst_amount || ')' 
              as patient_record
       FROM   crep
       WHERE  crep_paym__sequence = a_paym__sequence
