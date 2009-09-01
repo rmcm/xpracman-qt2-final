@@ -1,27 +1,27 @@
 -- -*-sql-*-
---      $Id$ 
+--      $Id$
 --
---    Copyright 2000 X=X Computer Software Trust 
---                  Kangaroo Ground Australia 3097 
+--    Copyright 2000 X=X Computer Software Trust
+--                  Kangaroo Ground Australia 3097
 --
 --
---   This is free software; you can redistribute it and/or modify 
---   it under the terms of the GNU General Public License published by 
---   the Free Software Foundation; either version 2, or (at your option) 
---   any later version. 
+--   This is free software; you can redistribute it and/or modify
+--   it under the terms of the GNU General Public License published by
+--   the Free Software Foundation; either version 2, or (at your option)
+--   any later version.
 --
---   This software is distributed in the hope that it will be useful, 
---   but WITHOUT ANY WARRANTY; without even the implied warranty of 
---   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
---   GNU General Public License for more details. 
+--   This software is distributed in the hope that it will be useful,
+--   but WITHOUT ANY WARRANTY; without even the implied warranty of
+--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--   GNU General Public License for more details.
 --
---   You should have received a copy of the GNU General Public License 
---   along with this software; see the file COPYING.  If not, write to 
---   the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA. 
+--   You should have received a copy of the GNU General Public License
+--   along with this software; see the file COPYING.  If not, write to
+--   the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 --
---   Report problems and direct all questions to: 
+--   Report problems and direct all questions to:
 --
---       Rex McMaster, rmcm@compsoft.com.au 
+--       Rex McMaster, rmcm@compsoft.com.au
 --
 -- Integrity functions and utility functions for invoices and statements
 --
@@ -36,7 +36,8 @@
 
 create or replace function cred_tr_before()
 returns trigger as $$
-    DECLARE
+
+  DECLARE
     sum_cred_amount cred.cred_amount%TYPE;
     sum_cred_gst_amount cred.cred_gst_amount%TYPE;
     sum_unpaid cred.cred_amount%TYPE;
@@ -47,7 +48,6 @@ returns trigger as $$
     avail_paym paym.paym_amount%TYPE;
 
     BEGIN
-
         -- ----------------------------------------
         -- get credit/debit totals from invoice
         -- ----------------------------------------
@@ -156,16 +156,15 @@ returns trigger as $$
         end if;
 
         -- No overpayments if GST is unpaid
-        -- -------------------------------- 
+        -- --------------------------------
         if ( (sum_unpaid < new.cred_amount) and (sum_gst_unpaid > new.cred_gst_amount) ) then
-          raise exception ''You cannot make an overpayment which ignores outstanding GST''; 
+          raise exception 'You cannot make an overpayment which ignores outstanding GST';
           return null;
         end if;
 
     return new;
     END;
-$$
-    LANGUAGE 'plpgsql';
+$$  LANGUAGE 'plpgsql';
 
 drop trigger cred_tr_before on cred;
 create trigger cred_tr_before before insert or update
@@ -173,64 +172,79 @@ create trigger cred_tr_before before insert or update
     execute procedure cred_tr_before();
 
 
---
--- PL function to update invoice credit totals.
---
-
+--  ---------------------------------------------------------------------
+-- PL function to update invoice and payment credit totals.  If INSERT
+-- or DELETE, then there is only one invoice/payment to adjust - the
+-- new and the old respectively. In the case of UPDATE, both the new
+-- and old invoices/payments need to be adjusted.
+--  ---------------------------------------------------------------------
 create or replace function invc_credit_totals()
 returns trigger as $$
-    DECLARE
-    sum_cred_amount cred.cred_amount%TYPE;
-    sum_cred_gst_amount cred.cred_gst_amount%TYPE;
-    rec_invc invc%ROWTYPE;
-    rec_paym paym%ROWTYPE;
+   DECLARE
+
+    x_cred_invc invc.invc__sequence%TYPE;
+    x_cred_paym paym.paym__sequence%TYPE;
+    x_cred_invc_old invc.invc__sequence%TYPE;
+    x_cred_paym_old paym.paym__sequence%TYPE;
+    update_count integer;
 
     BEGIN
-
+    -- ---------------------------------------------
+    -- Set the OLD/NEW Invoice/Payment sequence-ID's
+    -- ---------------------------------------------
       if ( TG_OP = 'DELETE' ) then
-        rec_invc.invc__sequence = old.cred_invc__sequence;
-        rec_paym.paym__sequence = old.cred_paym__sequence;
+        x_cred_invc = old.cred_invc__sequence;
+        x_cred_paym = old.cred_paym__sequence;
       else
-        rec_invc.invc__sequence = new.cred_invc__sequence;
-        rec_paym.paym__sequence = new.cred_paym__sequence;
+        x_cred_invc = new.cred_invc__sequence;
+        x_cred_paym = new.cred_paym__sequence;
       end if;
-      
-      -- get service totals
-      select sum(cred.cred_amount),
-             sum(cred.cred_gst_amount)
-      into   sum_cred_amount,
-             sum_cred_gst_amount
-      from   cred
-      where cred.cred_invc__sequence = rec_invc.invc__sequence;
-      
-      if (sum_cred_amount is null) then
-        sum_cred_amount := 0.00::numeric;
-      end if;
-      if (sum_cred_gst_amount is null) then
-        sum_cred_gst_amount := 0.00::numeric;
-      end if;
-      -- raise notice 'invc_credit_totals:sum_cred_amount = %', sum_cred_amount;
-      
-      update invc
-        set invc_paid_amount = sum_cred_amount,
-            invc_paid_gst_amount = sum_cred_gst_amount
-        where invc.invc__sequence = rec_invc.invc__sequence;
-
-      -- update paym
-      if (rec_paym.paym__sequence > 0 ) then
-        select  set_paym_total(rec_paym.paym__sequence)
-        into    sum_cred_amount;
-        -- RAISE NOTICE 'updating payment total for % - %', new.cred_paym__sequence, sum_cred_amount;
+      if ( TG_OP = 'INSERT' ) then
+        x_cred_invc_old = new.cred_invc__sequence;
+        x_cred_paym_old = new.cred_paym__sequence;
+      else
+        x_cred_invc_old = old.cred_invc__sequence;
+        x_cred_paym_old = old.cred_paym__sequence;
       end if;
 
+    -- ---------------------------------------------
+    -- Update the invoice totals (paid and GST)
+    -- ---------------------------------------------
+      update invc set
+        invc_paid_amount = (
+           select  coalesce(sum(cred_amount),0.00)
+           from    cred
+           where   cred_invc__sequence = invc.invc__sequence),
+        invc_paid_gst_amount = (
+           select  coalesce(sum(cred_gst_amount),0.00)
+           from    cred
+           where   cred_invc__sequence = invc.invc__sequence)
+      where invc__sequence in (x_cred_invc, x_cred_invc_old);
+      GET DIAGNOSTICS update_count = ROW_COUNT;
+      RAISE NOTICE 'invc_cred_totals::invoices = %', update_count;
+
+    -- ---------------------------------------------
+    -- Update the payment total
+    -- ---------------------------------------------
+      update paym set
+          paym_amount = (
+               select  coalesce(sum(cred.cred_amount),0.00) + coalesce(sum(cred_gst_amount),0.00)
+               from    cred
+               where   cred_paym__sequence = paym.paym__sequence)
+      where paym__sequence in (x_cred_paym, x_cred_paym_old);
+      GET DIAGNOSTICS update_count = ROW_COUNT;
+      RAISE NOTICE 'invc_cred_totals::payments = %', update_count;
+
+    -- ---------------------------------------------
+    -- Return the correct record
+    -- ---------------------------------------------
       if ( TG_OP = 'DELETE' ) then
         return old;
       else
         return new;
       end if;
     END;
-$$
-    LANGUAGE 'plpgsql';
+$$ LANGUAGE 'plpgsql';
 
 drop trigger invc_credit_totals on cred;
 create trigger invc_credit_totals after insert or update or delete
