@@ -4094,8 +4094,17 @@ void XpracAppTool::dataChangeRequested( eventItem * ei )
             newtss = QString("%1").arg(qtDateTimeToPgTimestamp(ei->start) );
         new_evnv->update( 0, "evnv_starttime", QString( "%1").arg(newtss) );
         new_evnv->update( 0, "evnv_duration", QString( "%1 minutes").arg(ei->duration));
-        new_evnv->save();
-
+        int rows_saved = new_evnv->save();
+        // if save  failed, display the reason and remove the
+        if (rows_saved != 1) {
+            QMessageBox::information( 0, "The new appointment cannot be saved",
+                                      QString(tr("This appointment cannot be saved:<BR><BR>%1"))
+                                      .arg(new_evnv->lastError()),
+                                      "OK", 0 );
+            new_evnv->remove( 0, true );
+            init(); // redisplay
+            return;
+        }
             // Redisplay the day.
         init();
     }
@@ -4104,6 +4113,13 @@ void XpracAppTool::dataChangeRequested( eventItem * ei )
     int current_row = 0;
 
     edit_evnv->load(current_row );
+    if (new_evnv->attributeValue( current_row, "evnv_patn_patf_code") == "BLOCK") {
+        QMessageBox::information( 0, "The new appointment cannot be changed",
+                                  QString(tr("This appointment cannot be changed:<BR><BR>%1"))
+                                  .arg("the patient is blocked"),
+                                  "OK", 0 );
+        return;
+    }
     edit_evnv->exec();
     init();
 

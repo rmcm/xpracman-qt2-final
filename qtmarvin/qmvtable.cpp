@@ -696,9 +696,8 @@ void QmvTableItem::setContentFromEditor( QWidget * w )
     QString oldvalue = tupatt->currentValue();
     if ( edit_prompting && !oldvalue.isNull() && oldvalue.length() > 0 &&
          QMessageBox::information( parent_table, "setContentFromEditor:Save",
-                                   QString("Are you sure that you want to alter this value \n\n %1 : %2")
-                                   .arg( "old" )
-                                   .arg( "new" ),
+                                   QString("Are you sure that you want to replace the existing value of %1")
+                                   .arg( oldvalue ),
                                    "Yes", "Cancel",
                                    0, 1 ) != 0 ) {
         return;
@@ -731,7 +730,20 @@ void QmvTableItem::setContentFromEditor( QWidget * w )
             else
                 mode = QmvMultiLineEdit::NeverSave;
             
-            ( (QmvMultiLineEdit *) w)->save( mode ); // attempt a save
+            bool save_result = 
+                ( (QmvMultiLineEdit *) w)->save( mode ); // attempt a save
+            if ( !save_result ) {
+                if ( tupatt->parentTuple() && tupatt->parentTuple()->parentClass() ) {
+                    QString sql_error = tupatt->parentTuple()->lastError();
+                    if (sql_error.length() < 1 )
+                        sql_error = "Unknown Error Message";
+                    QMessageBox::warning(0, "Save value:Warning",
+                                         QString("The save failed<br><b>%1</b>")
+                                         .arg(sql_error),
+                                         "OK", 0 );
+                }
+            }
+
             newvalue = ( (QmvMultiLineEdit *) w)->text(); // perhaps the save altered the value
     }
             
