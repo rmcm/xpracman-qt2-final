@@ -172,7 +172,9 @@ returns trigger as $$
           into    new.patn_prov_code;
         end if;
 
-        if (new.patn_flno is null or new.patn_flno = '-') then
+        if (new.patn_flno is null
+           or new.patn_flno = ''
+           or new.patn_flno = '-') then
           new.patn_flno = new.patn__sequence;
         end if;
 
