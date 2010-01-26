@@ -36,19 +36,22 @@ as $$
         -- RAISE NOTICE 'fn_patn_limit_duplicates: patn__sequence = %', new.patn__sequence;
 
         -- ----------------------------------------
-        -- checks only apply to changes in firstname
-        -- from null
+        -- checks only apply to changes in lastname,
+	-- firstname, DOB, fee-type or postcode
         -- ----------------------------------------
-	if ( not (old.patn_fsnam is null and
-	      new.patn_fsnam is not null) ) then
+	if ( upper(coalesce(new.patn_psnam, '')) = upper(coalesce(old.patn_psnam, '')) and
+	     upper(coalesce(new.patn_fsnam, '')) = upper(coalesce(old.patn_fsnam, '')) and
+	     coalesce(date(new.patn_dob), '1/1/2009') = coalesce(date(old.patn_fsnam), '1/1/2009') and
+	     coalesce(new.patn_feet_code, '') = coalesce(old.patn_feet_code, '') and
+	     coalesce(new.patn_postcode, '') = coalesce(old.patn_postcode, '')) then
 	   return new;
 	end if;
 
         -- ----------------------------------------
         -- the surname must be valid
         -- ----------------------------------------
-	if ( new.patn_psnam is null ) then
-	   RAISE EXCEPTION 'The Surname must be valid';
+	if ( coalesce(new.patn_psnam, '') = '' ) then
+	   RAISE EXCEPTION 'The Surname must not be blank';
 	   return null;
 	end if;
 
@@ -61,12 +64,19 @@ as $$
         from   patn
         where upper(patn_psnam) = upper(new.patn_psnam)
         and   upper(patn_fsnam) = upper(new.patn_fsnam)
-	and   (new.patn_feet_code is null or (patn_feet_code = new.patn_feet_code))
-	and   (new.patn_dob is null or (date(patn_dob) = date(new.patn_dob)))
+	and   (new.patn_feet_code is null or
+	       new.patn_feet_code = '-' or
+	       (patn_feet_code = new.patn_feet_code))
+	and   (new.patn_dob is null or
+	       (date(patn_dob) = date(new.patn_dob)))
+	and   (new.patn_postcode is null or
+	       (patn_postcode = new.patn_postcode))
 	and   patn__sequence != new.patn__sequence;
 
+	-- RAISE NOTICE 'DEBUG: % % (% % %) - %',new.patn_fsnam, new.patn_psnam, new.patn_feet_code, 
+	-- 	 coalesce(date(new.patn_dob)::text, 'X-DOB'), coalesce(new.patn_postcode, 'X-PC'), x_count;
         if ( x_count > 0 ) then
-           RAISE EXCEPTION 'The name % % (%, %, %) already exists (%). Try entering the fee-level, DOB and postcode before entering the first name.',
+           RAISE EXCEPTION 'The name % % (%, %, %) already exists (%). Try entering the fee-level, DOB or postcode to differentiate this patient record.',
                  new.patn_fsnam, new.patn_psnam, new.patn_feet_code, 
 		 coalesce(date(new.patn_dob)::text, ''), coalesce(new.patn_postcode, ''), x_count;
             return null;
