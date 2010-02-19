@@ -1,0 +1,3 @@
+# after copying the invc and svpf rows from mtau ...
+# the "TAB" should be a real tab
+ awk -F'TAB' '{gsub(/~/,",",$4);gsub(/~ */, "\047,\047", $5);printf("insert into %s(%s__sequence,%s) values(%d,%s\047);\n", $1,$1, substr($4,2), $2, substr($5,3))}' mtau_tmp.copy > ! mtau_tmp.sql

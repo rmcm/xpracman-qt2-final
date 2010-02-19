@@ -63,6 +63,7 @@ select setval('empl_empl__sequence_seq', coalesce(max(empl__sequence), 1)) from 
 select setval('evnt_evnt__sequence_seq', coalesce(max(evnt__sequence), 1)) from evnt;
 select setval('feeb_feeb__sequence_seq', coalesce(max(feeb__sequence), 1)) from feeb;
 select setval('invc_invc__sequence_seq', coalesce(max(invc__sequence), 1)) from invc;
+select setval('mbst_mbst__sequence_seq', coalesce(max(mbst__sequence), 1)) from mbst;
 select setval('note_note__sequence_seq', coalesce(max(note__sequence), 1)) from note;
 select setval('pate_pate__sequence_seq', coalesce(max(pate__sequence), 1)) from pate;
 select setval('patn_patn__sequence_seq', coalesce(max(patn__sequence), 1)) from patn;
