@@ -35,7 +35,7 @@ create view fept                -- Aged debt view
  feeb_serv_code                         as fept_serv_code,
  serv_gst_percentage                    as fept_gst_percentage,
  feeb_amount                            as fept_amount,
- to_char((feeb_amount*serv_gst_percentage)/100::numeric(12,2), '00.00')::numeric
+ to_char((feeb_amount*serv_gst_percentage)/100::numeric(12,2), '000.00')::numeric
                                         as fept_gst_amount,
  serv_desc                              as fept_desc,
  --
