@@ -1802,27 +1802,25 @@ void XpracMan::displayReferrers()
     if ( dbw )
     {
         int panel_id = dbw->getPanelID();
+        QString relname = "patn"; //default
         QmvRelationWidget * curr_relwid = dbw->getRelationWidget(panel_id);
-        if (curr_relwid) {
-            QmvSqlClass * cls = curr_relwid->getRelation();
-            if (cls) {
-                QString relname = cls->relationName();
-                QmvTuple *curtup = dbw->getSelectedTuple (relname);
-                QString fk = QString("%1_rfdr_code").arg(relname);
-                if (curtup && curtup->attributeValue (fk).length ())
-                {
-                    QString value =
-                            QmvClass::cleanForSQL (curtup->attributeValue (fk));
-                    query =
-                    QString ("select * from rfdr where rfdr_code = '%1'::text"
-	                       " and rfdr_code != '-'").arg (value);
-                }
-                        
-            }
+        if (curr_relwid && curr_relwid->getRelation()) {
+                relname = curr_relwid->getRelation()->relationName();
         }
-        
+            
+        QmvTuple *curtup = dbw->getSelectedTuple (relname);
+        QString fk = QString("%1_rfdr_code").arg(relname);
+        if (curtup && curtup->attributeValue (fk).length ())
+        {
+            QString value =
+                QmvClass::cleanForSQL (curtup->attributeValue (fk));
+            query =
+                QString ("select * from rfdr where rfdr_code = '%1'::text"
+                         " and rfdr_code != '-'").arg (value);
+        }
     }
     displayQuerySet( "rfdr", query );
+
 }
 
 // --------------------------------------------------------------------------------
