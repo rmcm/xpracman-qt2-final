@@ -87,7 +87,7 @@ returns text as $$
       desc := desc || eol ||
               rpad('... other payments (',29,chr(28)) ||
               count-maxrows || ')' ||
-              to_char(other_balance, 99999.99);
+              to_char(other_balance, '99999.99');
     end if;
 
     return desc;
