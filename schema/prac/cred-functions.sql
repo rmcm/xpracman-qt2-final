@@ -59,9 +59,8 @@ returns text as $$
                 (cred_amount + cred_gst_amount) as cred_total,
                 short_date(cred__timestamp) as cred_date,
                 cred__timestamp,
-                rpad( (case when paym_drawer is null
-                        then tdtp_desc
-                        else paym_drawer end),10,chr(32)) as drawer
+                rpad( coalesce(paym_drawer, coalesce(tdtp_desc, tdtp_code))
+                        ,10,chr(32)) as drawer
       from      cred,paym,tdtp
       where     cred_invc__sequence = ' || tmp_invc__sequence || '
       and       cred_paym__sequence = paym__sequence
@@ -85,8 +84,7 @@ returns text as $$
 
     if ( other_balance > 0 ) then
       desc := desc || eol ||
-              rpad('... other payments (',29,chr(28)) ||
-              count-maxrows || ')' ||
+              rpad('... other payments (' || count-maxrows || ')',29,chr(32)) ||
               to_char(other_balance, '99999.99');
     end if;
 
