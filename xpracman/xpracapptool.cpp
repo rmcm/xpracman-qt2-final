@@ -703,7 +703,11 @@ void XpracAppTool::loadProviderMenu()
 {
     if (  ! popup_provider )
         return;
-    reln_prov->open("select * from prov order by prov_code");
+    reln_prov->open("select * from prov where prov__status !~* 'R' order by prov_code");
+    // revert to all providers if none match
+    if (reln_prov->count() < 1)
+        reln_prov->open("select * from prov order by prov_code");
+
     popup_provider->clear();
     popup_ev_provider->clear();
     popup_prov_codes.setAutoDelete(TRUE);
