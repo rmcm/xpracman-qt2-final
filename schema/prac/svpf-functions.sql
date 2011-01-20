@@ -1,28 +1,28 @@
 --     $Id$
--- 
+--
 --   Copyright 2003 X=X Computer Software Trust
 --    		  Kangaroo Ground Australia 3097
--- 
--- 
+--
+--
 --  This is free software; you can redistribute it and/or modify
 --  it under the terms of the GNU General Public License published by
 --  the Free Software Foundation; either version 2, or (at your option)
 --  any later version.
---  
+--
 --  This software is distributed in the hope that it will be useful,
 --  but WITHOUT ANY WARRANTY; without even the implied warranty of
 --  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 --  GNU General Public License for more details.
---  
+--
 --  You should have received a copy of the GNU General Public License
 --  along with this software; see the file COPYING.  If not, write to
 --  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
---  
+--
 --  Report problems and direct all questions to:
---  
+--
 --      Rex McMaster, rmcm@compsoft.com.au
---  
--- 
+--
+--
 
 -- ------------------------------------------------------------
 -- Perform a multiservice reduction on the items of an invoice.
@@ -33,10 +33,11 @@
 
  create or replace function svpf_ms_adjust(int, text)
  returns integer
- as 'DECLARE
+ as $$
+    DECLARE
      -- NAME TABLE.ATTRIBUTE%TYPE;
      -- NAME TABLE%ROWTYPE;
-         
+
      tmp_invc__sequence ALIAS for $1;
      tmp_svpf_date_service ALIAS for $2;
      tmp_rec record;
@@ -44,24 +45,24 @@
      count integer;
      new_pc integer;
      ts text;
- 
+
      BEGIN
- 
+
        count := 0;
        ts := quote_literal(tmp_svpf_date_service);
- 
-     FOR tmp_rec in EXECUTE ''
+
+     FOR tmp_rec in EXECUTE '
        select    svpf_amount,
                  svpf__sequence
        from      svpf
-       where     svpf_invc__sequence = '' || tmp_invc__sequence || ''
-         and     date(svpf_date_service) = '' || ts || ''
-         and     svpf_serv_code not in ('' ||
-                          chr(39) || ''104'' || chr(39) || '','' ||
-                          chr(39) || ''105'' || chr(39) ||
-                  '')
-       order by  svpf_amount desc;''
- 
+       where     svpf_invc__sequence = ' || tmp_invc__sequence || '
+         and     date(svpf_date_service) = ' || ts || '
+         and     svpf_serv_code not in (' ||
+                          chr(39) || '104' || chr(39) || ',' ||
+                          chr(39) || '105' || chr(39) ||
+                  ')
+       order by  svpf_amount desc;'
+
      LOOP
          count := count + 1;
          new_pc := 25;
@@ -71,25 +72,27 @@
          if ( count = 2) then
            new_pc := 50;
          end if;
- 
+
          update svpf
             set svpf_percentage = new_pc
           where svpf__sequence = tmp_rec.svpf__sequence;
- 
+
      END LOOP;
- 
- 
+
+
      return count - 1;
-     END;'
-   LANGUAGE 'plpgsql';
- 
+     END;
+$$
+LANGUAGE 'plpgsql';
+
 -- ------------------------------------------------------------
 -- Function: Determine the credit paid to a service
 -- ------------------------------------------------------------
 
 create or replace function fn_guess_credit(int)
 returns  numeric
-as 'DECLARE
+as $$
+   DECLARE
 
     x_svpf__sequence ALIAS for $1;
     x_cred_amount NUMERIC;
@@ -113,14 +116,14 @@ as 'DECLARE
         return 0.0;
     end if;
 
-    -- RAISE NOTICE ''invc = %'', x_invc__sequence;
+    -- RAISE NOTICE 'invc = %', x_invc__sequence;
 
-    FOR tmp_rec in EXECUTE ''
+    FOR tmp_rec in EXECUTE '
       select    (svpf_amount + svpf_gst_amount) as tmp_svpf_total,
                 svpf__sequence
       from      svpf
-      where     svpf_invc__sequence = '' || x_invc__sequence || ''
-      order by  svpf_date_service, svpf__sequence;''
+      where     svpf_invc__sequence = ' || x_invc__sequence || '
+      order by  svpf_date_service, svpf__sequence;'
 
     LOOP
 
@@ -134,7 +137,7 @@ as 'DECLARE
         end if;
         -- decrement
         x_cred_amount := x_cred_amount - tmp_rec.tmp_svpf_total;
-        
+
         -- nothing left
         if (x_cred_amount < 0.0) then
           return 0.0;
@@ -142,12 +145,13 @@ as 'DECLARE
 
     END LOOP;
 
-    RAISE EXCEPTION ''An unexpected error occurred - please report this to your supplier'';
+    RAISE EXCEPTION 'An unexpected error occurred - please report this to your supplier';
 
     return 0.0;
 
-    END;'
-  LANGUAGE 'plpgsql';
+    END;
+$$
+LANGUAGE 'plpgsql';
 
 -- ------------------------------------------------------------
 -- Function: Round up to nearest 5 cents
@@ -158,8 +162,12 @@ returns numeric as $$
     DECLARE
       a_amount ALIAS for $1;
       x_amount numeric;
+      x_flag integer;
 
     BEGIN
+    if (COALESCE((select conf_value from conf where conf_code = 'FN_ROUND_AMOUNT'), 'yes') = 'no') then
+        return a_amount;
+      end if;
 
       x_amount := ((ceil(a_amount * 20) * 5)::numeric)/100;
       return x_amount;
@@ -172,4 +180,3 @@ LANGUAGE 'plpgsql';
 \set mttb_rcs_header '\'$Id$\''
 insert into mttb(mttb_name, mttb_rcs_header) select :mttb_name, :mttb_rcs_header
         except select mttb_name, mttb_rcs_header from mttb;
-
