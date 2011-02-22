@@ -105,10 +105,10 @@ fi
 for f in ${_FORMS} ; do 
     printf "delete from form where form_code = '$f';\n"
     sqlexec "select ${_FORM_ATTS} from form where form_code = '$f'"\
-             | awk -vform_atts="${_FORM_ATTS}" \
+             | awk -v form_atts="${_FORM_ATTS}" \
                     '{gsub(/\|/,"\047,\047");printf("insert into \"form\" (%s) values(\047%s\047);\n", form_atts, $0)}'
     sqlexec "select ${_FMDT_ATTS} from fmdt where fmdt_form_code = '$f'"\
-             | awk -vform_atts="${_FMDT_ATTS}" \
+             | awk -v form_atts="${_FMDT_ATTS}" \
                     '{gsub(/\|/,"\047,\047");printf("insert into \"fmdt\" (%s) values(\047%s\047);\n", form_atts, $0)}'
 
 done
