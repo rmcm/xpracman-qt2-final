@@ -1,5 +1,5 @@
 --  -*- sql -*-
---  
+--
 --    $Id$
 
 --  Copyright 2001 X=X Computer Software Trust
@@ -10,24 +10,24 @@
 -- it under the terms of the GNU General Public Licensepublished by
 -- the Free Software Foundation; either version 2, or (at your option)
 -- any later version.
- 
+
 -- This software is distributed in the hope that it will be useful,
 -- but WITHOUT ANY WARRANTY; without even the implied warranty of
 -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 -- GNU General Public License for more details.
- 
+
 -- You should have received a copy of the GNU General Public License
 -- along with this software; see the file COPYING.  If not, write to
 -- the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
- 
--- Report problems and direct all questions to:
- 
---     Rex McMaster, rmcm@compsoft.com.au
- 
 
--- 
+-- Report problems and direct all questions to:
+
+--     Rex McMaster, rmcm@compsoft.com.au
+
+
+--
 -- Create a function to provide a descriptive credit summary
--- 
+--
 
 create or replace function cred_summary(int,int)
 returns text as $$
@@ -38,18 +38,18 @@ returns text as $$
     tmp_rec record;
     eol text;
     count integer;
-    desc text;
+    descr text;
     other_desc text;
     other_balance numeric;
     pad text;
-                
+
     BEGIN
 
     eol := '';
     count := 0;
     other_balance := 0;
     other_desc = '';
-    desc := '';
+    descr := '';
     pad := ' ';
 
     -- collect the credits
@@ -73,7 +73,7 @@ returns text as $$
         if ( count > maxrows ) then
            other_balance := other_balance + tmp_rec.cred_total::numeric;
         else
-          desc := desc || eol ||
+          descr := descr || eol ||
                   '#'|| tmp_rec.cred_paym__sequence ||
                   ' ' || tmp_rec.cred_date ||
                   ' ' || tmp_rec.drawer ||
@@ -83,12 +83,12 @@ returns text as $$
     END LOOP;
 
     if ( other_balance > 0 ) then
-      desc := desc || eol ||
+      descr := descr || eol ||
               rpad('... other payments (' || count-maxrows || ')',29,chr(32)) ||
               to_char(other_balance, '99999.99');
     end if;
 
-    return desc;
+    return descr;
     END;
 $$
 LANGUAGE 'plpgsql';
